@@ -780,7 +780,7 @@ body a:focus,body a:hover {
     max-height: 100%;
 }
 
-.read-more,.btn-send,.not-found .search-submit {
+.read-more,.btn-send,.not-found .search-submit,.btn-search {
     font-size: 15px;
     display: inline-block;
     line-height: normal;
@@ -793,12 +793,12 @@ body a:focus,body a:hover {
     box-shadow: 3px 3px 3px 0 rgba(0,0,0,.3);
     transition: all .5s;
 }
-.read-more,.not-found .search-submit {
+.read-more,.not-found .search-submit,.btn-search {
 	background: -webkit-linear-gradient(left,#4e85d1 0%,#43348a 50%,#4e85d1 100%);
 	background-size: 300%,1px;
 	background-position: 0%;
 }
-.read-more:hover,.read-more:focus,.not-found .search-submit:hover,.not-found .search-submit:focus {
+.read-more:hover,.read-more:focus,.not-found .search-submit:hover,.not-found .search-submit:focus,.btn-search:hover,.btn-search:focus {
 	color: #fff;
 	background-position: 100%;
 }
@@ -835,6 +835,28 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 .tbl-product th,.tbl-product td {
 	font-size: 15px;
 	border: 1px solid #f0f2f5;padding: 10px;
+}
+.search-block {
+    border: 1px solid rgba(48,51,57,.2);
+}
+.search-block .form-control {height: 40px;font-size: 14px;}
+.search-block .btn-search {height: 45px;}
+.search-block h3 {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 0 10px;
+    margin: 0;
+    color: #055699;
+}
+.search-block h3:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+    background: url(assets/images/icon-search-home.png) no-repeat center center;
+    background-size: 100% 100%;
 }
 .animation-bg .table-img::before, .animation-bg .table-img::after {
     content: "";

@@ -71,114 +71,36 @@ get_header();
 				?>	 
 			</div> 
 			<div class="col-md-4 col-lg-3 d-none d-md-block wow fadeInRight">
-				<div class="search-block">
-			        <h3>Công Cụ Tìm Kiếm</h3>          
-			        <div class="tab-content">
-			          <div id="nhadat-ban" class="tab-pane fade in active">
-			            <form class="form-timkiem" action="<?php bloginfo('url'); ?>/ket-qua-tim-kiem" method="get" accept-charset="utf-8" enctype="multipart/form-data">
-			              <input type="text" name="name_search" class="form-control mt-8" placeholder="Nhập địa điểm cần tìm kiếm">
-			              <input class="hinhthuc_bds" type="hidden" name="hinhthuc_bds" value="Cần bán">
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="loai_bds">
-			                  <option value="">Loại bất động sản</option>
-			                  <?php showTaxomi('loaibds');?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="city_post">
-			                  <option value="">Tỉnh/Thành phố</option>
-			                  <?php $tinh_thanhpho = get_thanhpho();
-			                  if(count($tinh_thanhpho) > 0):
-			                    foreach ($tinh_thanhpho as $k => $v) {
-			                      echo "<option ".selected($city_post, $v['matp'] )."  value='".$v['matp']."'>".$v['name']."</option>";
-			                    } 
-			                  endif; ?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="quan_post">
-			                  <option value="">Quận/Huyện</option>
-			                  <option value=""><?php echo $_POST['city_post'];?></option>
-			                  <?php
-			                  $quanhuyen = get_address($_POST['city_post'],'0');
-			                  if(count($quanhuyen) > 0):
-			                    foreach ($quanhuyen as $k => $v) {
-			                      echo "<option ".selected($quan_post, $v['maqh'] )."  value='".$v['maqh']."'>".$v['qh']."</option>";
-			                    }
-			                  endif;?>
-			                </select>
-			              </div>
-			              <div class="select-box  mt-8">
-			                <select class="form-control" name="area_post">
-			                  <option value="">Diện tích</option>
-			                  <?php showTaxomi('area');?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="pricebds_post">
-			                  <option value="">Mức giá</option>
-			                  <?php showTaxomi('pricebds');?>
-			                </select>
-			              </div> 
-			              <input type="submit" name="querySearch" class="form-control btn-search" value="Tìm Kiếm">
-			              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
-			            </form>                     
-			          </div>
-			          <div id="nhadat-chothue" class="tab-pane fade">
-			            <form class="form-timkiem" action="<?php bloginfo('url'); ?>/ket-qua-tim-kiem" method="get" accept-charset="utf-8" enctype="multipart/form-data">
-			              <input type="text" name="name_search" class="form-control mt-8" placeholder="Nhập địa điểm cần tìm kiếm">
-			              <input class="hinhthuc_bds" type="hidden" name="hinhthuc_bds" value="Cho thuê">
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="loai_bds">
-			                  <option value="">Loại bất động sản</option>
-			                  <?php showTaxomi('loaibds');?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="city_post">
-			                  <option value="">Tỉnh/Thành phố</option>
-			                  <?php $tinh_thanhpho = get_thanhpho();
-			                  if(count($tinh_thanhpho) > 0):
-			                    foreach ($tinh_thanhpho as $k => $v) {
-			                      echo "<option ".selected($city_post, $v['matp'] )."  value='".$v['matp']."'>".$v['name']."</option>";
-			                    } 
-			                  endif; ?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="quan_post">
-			                  <option value="">Quận/Huyện</option>
-			                  <option value=""><?php echo $_POST['city_post'];?></option>
-			                  <?php
-			                  $quanhuyen = get_address($_POST['city_post'],'0');
-			                  if(count($quanhuyen) > 0):
-			                    foreach ($quanhuyen as $k => $v) {
-			                      echo "<option ".selected($quan_post, $v['maqh'] )."  value='".$v['maqh']."'>".$v['qh']."</option>";
-			                    }
-			                  endif;?>
-			                </select>
-			              </div>
-			              <div class="select-box  mt-8">
-			                <select class="form-control" name="area_post">
-			                  <option value="">Diện tích</option>
-			                  <?php showTaxomi('area');?>
-			                </select>
-			              </div>
-			              <div class="select-box mt-8">
-			                <select class="form-control" name="pricebds_post">
-			                  <option value="">Mức giá</option>
-			                  <?php showTaxomi('pricebds');?>
-			                </select>
-			              </div> 
-			              <input type="submit" name="querySearch" class="form-control btn-search" value="Tìm Kiếm">
-			              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
-			            </form>                     
-			          </div>          
-			        </div>                  
+				<div class="search-block p-2">
+			        <h3 class="m-0 mb-2">Công Cụ Tìm Kiếm</h3>          
+		            <form class="form-timkiem" action="<?php bloginfo('url'); ?>/ket-qua-tim-kiem" method="get" accept-charset="utf-8" enctype="multipart/form-data">
+		              <input type="text" name="name_search" class="form-control mb-3" placeholder="Nhập địa điểm cần tìm kiếm">
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="loai_bds">
+		                  <option value="">Loại bất động sản</option>
+		                  <?php //showTaxomi('loaibds');?>
+		                </select>
+		              </div>
+		              
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="area_post">
+		                  <option value="">Diện tích</option>
+		                  <?php //showTaxomi('area');?>
+		                </select>
+		              </div>
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="pricebds_post">
+		                  <option value="">Mức giá</option>
+		                  <?php //showTaxomi('pricebds');?>
+		                </select>
+		              </div> 
+		              <input type="submit" name="querySearch" class="form-control btn-search text-uppercase" value="Tìm Kiếm">
+		              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
+		            </form>                     
 			    </div>
 			</div>
 		</div>      
 	</div>	
 </div>
 
-<?php get_footer();
+<?php get_footer(); ?>

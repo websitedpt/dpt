@@ -123,7 +123,6 @@ $(document).ready(function() {
 		});
 	}
 	
-	
 	$('.slider-for').slick({
 	  slidesToShow: 1,
 	  slidesToScroll: 1,

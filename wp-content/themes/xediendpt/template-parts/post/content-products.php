@@ -76,7 +76,7 @@
 	            		<div class="col pr-0 pr-md-2"><?php if(get_option('Hotline1') !='') {echo'<a class="d-block text-center px-2 py-2 phone-1" href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'"><i class="icon fa fa-phone pr-2"></i>'.get_option('Hotline1').'</a>';}?>
 	            		</div>
 	            		<div class="col">
-	            			<?php if(get_option('Hotline1') !='') {echo'<a class="d-block text-center px-2 py-2 phone-2" href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'"><i class="fa fa-mobile pr-2" aria-hidden="true"></i>'.get_option('phone_company').'</a>';}?>
+	            			<?php if(get_option('phone_company') !='') {echo'<a class="d-block text-center px-2 py-2 phone-2" href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'"><i class="fa fa-mobile pr-2" aria-hidden="true"></i>'.get_option('phone_company').'</a>';}?>
 	            		</div>
 	            	</div>
 	            </div>
