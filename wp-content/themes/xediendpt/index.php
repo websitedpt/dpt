@@ -71,7 +71,7 @@ get_header(); ?>
             <h3 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex align-items-center">Về Chúng Tôi!</h3>
             <p>Xe điện Đại Phát Tín là đơn vị cung cấp xe ô tô điện chính hãng tại thị trường Việt Nam. Hoạt động kinh doanh chính của chúng tôi hiện nay là phân phối, cung ứng dịch vụ bảo trì sửa chữa và cung cấp phụ tùng xe ô tô điện. Sản xuất và kinh doanh xe tải điện nhập khẩu nguyên chiếc & đóng thùng xe tải điện.</p>
             <p>Hiện nay, xe điện Đại Phát tín là một trong những nhà nhập khẩu lớn xe ô tô điện chính hãng. Với nhiều mẫu mã đa dạng, đem lại cho người dân Việt Nam những sản phẩm xe điện bốn bánh đa dạng, chất lượng giá cả hợp lý.</p>
-            <a href="<?php bloginfo('url'); ?>/gioi-thieu" class="read-more px-4 text-capitalize rounded mt-3" title="">Xem thêm <i class="fa fa-angle-right pl-2" aria-hidden="true"></i></a>                
+            <a href="<?php bloginfo('url'); ?>/gioi-thieu" class="read-more px-4 text-capitalize rounded mt-3 mb-4 mb-md-0" title="">Xem thêm <i class="fa fa-angle-right pl-2" aria-hidden="true"></i></a>                
           </div>
         </div>
         <div class="col-12 col-md-6">
@@ -86,7 +86,7 @@ get_header(); ?>
     </div>        
   </div> 
   
-  <div class="py-5">
+  <div class="py-5 prod-home">
     <div class="container pt-4 pb-3 overflow-hidden">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-4 pb-4 text-center wow fadeInDown">Sản Phẩm</h3>
     </div>
@@ -100,7 +100,7 @@ get_header(); ?>
                 <div class="col-12">   
                   <div class="wow fadeInUp" data-wow-duration="2s">    
                     <div class="title-block title-b-3 position-relative line-bg-3 text-uppercase mt-2 mb-5 pb-2 d-flex align-items-center flex-wrap"><?php echo $term->name; ?>
-                      <div class="ml-auto d-flex flex-wrap align-items-center">
+                      <div class="ml-md-auto d-flex flex-wrap align-items-center">
                         <ul class="list-inline list-tabs mb-0 mr-md-4 nav" role="tablist">
                           <?php
                             $stt= 1;
@@ -111,13 +111,13 @@ get_header(); ?>
                                 if($stt==1) {
                                   $class1 ='active';
                                 }
-                                echo '<li class="list-inline-item"><a class="px-2 nav-link '.$class1.'" id="home-tab" data-toggle="tab" href="#'.$term_child->slug.'" role="tab" aria-controls="home" >'. $term_child->name .'</a></li>'; 
+                                echo '<li class="list-inline-item"><a class="px-0 px-sm-2 nav-link '.$class1.'" id="home-tab" data-toggle="tab" href="#'.$term_child->slug.'" role="tab" aria-controls="home" >'. $term_child->name .'</a></li>'; 
                                 $stt ++;
                               }                              
                             }
                           ?>
                         </ul>
-                        <a title="Xem tất cả" href="<?php echo get_term_link($term->slug, $taxonomy_prod); ?>" class="view-all text-capitalize pull-right">Xem tất cả <i class="fa fa-eye"></i></a>                        
+                        <a title="Xem tất cả" href="<?php echo get_term_link($term->slug, $taxonomy_prod); ?>" class="view-all text-capitalize pull-right pl-2 pl-md-0">Xem tất cả <i class="fa fa-eye"></i></a>                        
                       </div>
                     </div>
                     <div class="tab-content">                      
@@ -175,8 +175,7 @@ get_header(); ?>
                                       </div>'; 
                                     }
                                   }
-                                echo '
-                                </div></div>';
+                                echo '</div></div>';
                               //} 
                               $pst ++;
                             }                           
@@ -235,11 +234,11 @@ get_header(); ?>
         endif; ?>
     </div>
   </div>
-  <div class="py-5  bg-gray why-select">
+  <div class="py-4 py-md-5 bg-gray why-select">
     <div class="container pt-4 pb-3 overflow-hidden wow zoomIn">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
       <div class="row">
-        <div class="col-6 mb-4">
+        <div class="col-12 col-sm-6 mb-4">
           <div class="box-select p-5">
             <div class="media">
               <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid">                    
@@ -250,7 +249,7 @@ get_header(); ?>
             </div>            
           </div>
         </div>
-        <div class="col-6 mb-4">
+        <div class="col-12 col-sm-6 mb-4">
           <div class="box-select p-5">
             <div class="media">
               <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-2.png" alt="" class="mr-3 img-fluid">                    
@@ -261,7 +260,7 @@ get_header(); ?>
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6 mb-4 mb-4 mb-sm-0">
           <div class="box-select p-5">
             <div class="media">
               <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-3.png" alt="" class="mr-3 img-fluid">                    
@@ -272,7 +271,7 @@ get_header(); ?>
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-sm-6">
           <div class="box-select p-5">
             <div class="media">
               <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-4.png" alt="" class="mr-3 img-fluid">                    
@@ -287,9 +286,9 @@ get_header(); ?>
     </div>
   </div>
 
-  <div class="py-5 review-custome">
+  <div class="py-4 py-md-5 review-custome">
     <div class="container pt-4 pb-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center wow fadeInDown">Đánh giá khách hàng</h3>
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 mb-md-5 pb-4 text-center wow fadeInDown">Đánh giá khách hàng</h3>
       <?php 
         $post_news_videos = new WP_Query(array(
           'post_type' => 'review',
@@ -329,13 +328,13 @@ get_header(); ?>
       wp_reset_postdata();  ?>      
     </div>
   </div>
-  <div class="py-5 news-home bg-gray">
+  <div class="py-4 py-md-5 news-home bg-gray">
     <div class="container pt-4 pb-3">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center wow fadeInDown">Tin tức</h3>
       <?php echo news_home();?>
     </div>
   </div>
-  <div class="show-room py-5">
+  <div class="show-room py-4 py-md-5">
       <div class="container pt-4 pb-3 overflow-hidden">
         <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 pb-4 text-center wow fadeInDown">Hệ thống showroom</h3>
         <?php 
@@ -351,8 +350,8 @@ get_header(); ?>
               $post_id = get_the_ID();
               $addres_room = get_post_meta($post_id, 'addres_room', true );
               ?>  
-              <div class="col-6 col-sm-4 col-md-4 mt-4">
-                <div class="block-room py-4 p-md-4 p-lg-5">
+              <div class="col-sm-6 col-sm-4 col-md-4 mt-4">
+                <div class="block-room py-4 px-4 p-lg-5">
                   <h5 class="mt-0 text-uppercase mb-3"><?php echo get_the_title();?></h5>
                   <div class="media">
                     <div class="icon-map"><i class="fa fa-map-marker" aria-hidden="true"></i></div>                  

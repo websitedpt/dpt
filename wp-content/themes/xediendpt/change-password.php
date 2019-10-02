@@ -37,7 +37,7 @@
 		<div class="wrap-content my-5">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-md-9 mb-4 mb-md-0">
 						<div class="content-list">
 							<h2><?php echo get_the_title();?></h2> 
 							<p>&nbsp;</p>                
@@ -60,7 +60,7 @@
 			                	</div>
 
 			                    
-			                    <p class="form-submit text-right">
+			                    <p class="form-submit text-center mt-4">
 			                        <?php //echo $referer; ?>
 			                        <input name="updateuser" type="submit" id="updateuser" class="btn btn-send" value="<?php _e('Thay đổi mật khẩu', 'profile'); ?>" />
 			                        <?php wp_nonce_field( 'update-user' ) ?>
@@ -72,7 +72,7 @@
 			            
 			        	</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-md-3">
 						<div class="slide-bar"> 
 							<div class="block-bar"> 
 								<h3>Trang Cá Nhân</h3> 

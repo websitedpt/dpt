@@ -510,11 +510,12 @@ body a:focus,body a:hover {
 .wrap-mmenu {
 	background: #1d4b83;
 }
+.wrap-mmenu .collapse.navbar-collapse {border-top:none;}
 #top-menu.navbar-nav li {
 	padding: 0 25px;
 	position: relative
 }
-.sticky .header-top-one {display: none}
+.sticky .header-top-one {display: none !important}
 .sticky #top-menu.navbar-nav li,.home .sticky #top-menu.navbar-nav li {
 	padding-left: 22px;
 	padding-right: 22px;
@@ -605,6 +606,7 @@ body a:focus,body a:hover {
 	font-size: 22px;
 	font-weight: bold;
     color: #0077bd;
+    line-height: 1.4
 }
 .social-icon li a {
     text-align: center;
@@ -785,7 +787,7 @@ body a:focus,body a:hover {
 	border-top: 4px solid transparent;
 	border-left: 5px solid #992828;
 }
-.home .wrap-mmenu .navbar-collapse {margin-left: 25%;padding-left: 7px}
+.home .wrap-mmenu .navbar-collapse {margin-left: 25%;padding-left: 7px;border-top:none;}
 .home .sticky .wrap-mmenu .navbar-collapse {margin-left: 0;padding-left: 0}
 .title-block {
 	font-family: 'Times New Roman', Helvetica,Arial,sans-serif;
@@ -1079,10 +1081,10 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	color: #292929;
 	position: relative
 }
-.list-tabs li a.active{
+.list-tabs li a.active,.list-tabs li:hover a,.list-tabs li:focus a{
 	color: #cb3435
 }
-.list-tabs li a.active::after {
+.list-tabs li a.active::after,.list-tabs li:hover a::after,.list-tabs li:hover a::after {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -1863,7 +1865,7 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
     animation-name: zoomIn
 }
 
-@media(max-width: 1999px) {
+@media(max-width: 1199px) {
 	.home .wrap-mmenu .navbar-collapse {margin-left: 0;padding-left: 0;}
 	.home #top-menu.navbar-nav li {
 	    padding: 0 20px;
@@ -1915,18 +1917,89 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	    min-height: 53px;
 	}
 }
+@media(max-width: 1000px) {
+	.user-after-login .dropdown-menu {
+		background: #fff;
+		position: static;
+		width: 100%;
+	}
+	.list-m li .dropdown-menu.show a {
+		color: #444;
+		border: none;padding-left: 10px;
+		padding-right: 10px;
+	}
+	.user-after-login {display: block}
+	#top-menu.navbar-nav li.current_page_item a::before, #top-menu.navbar-nav li:hover a::before, #top-menu.navbar-nav li.current-menu-item a::before {
+		border-bottom: none;
+	}
+	#top-menu.navbar-nav>li.current_page_item>a, #top-menu.navbar-nav>li:hover>a, #top-menu.navbar-nav>li.current-menu-item>a,#top-menu.navbar-nav>li.active>a {
+		color: #00BCD4;
+	}
+	#top-menu.navbar-nav>li>a,.list-m li a {
+		    font-size: 14px;
+		    border-bottom: 1px solid #2e63a2;
+		    text-align: left;
+		    padding: 10px 0;
+	}
+	.wrap-mmenu ul li:focus .sub-menu, .wrap-mmenu ul li:hover .sub-menu,.wrap-mmenu ul li.active .sub-menu {
+		position: static;
+		border-bottom: none;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		margin-bottom: 10px;
+	}
+	.header .wrap-mmenu {overflow-y: auto;padding-top: 15px;}
+	.list-m li a {
+		color: #fff;
+		text-align: left;
+		text-transform: uppercase;
+		outline: none;
+	}
+	#top-menu.navbar-nav li>a::before {
+		border-width: 2px;
+	}
+	#top-menu.navbar-nav li a i {float:right;width: 25px;text-align: right;}
+}
 @media(max-width: 767px) {
+	.title-post {font-size: 18px;}
+	.wrap-content .content-list h2 {font-size: 18px;}
+	.list-tabs li a {
+		font-size: 14px;
+	}
+	.prod-home .title-b-3::after{
+		display: none
+	}
+	.list-tabs li a.active::after {
+		bottom: 0
+	}
+	.list-tabs li  a.nav-link {padding-bottom: 2px;margin-bottom: 8px;text-transform: capitalize}
+	#top-menu.navbar-nav li a {
+		padding-top: 10px;padding-bottom: 10px;
+	}
+	.header .support, .header .hotline {
+		padding-left: 38px;
+	}
+	.header .support::before {
+		width: 32px;
+    	height: 30px;
+	}
+	.header .hotline::before {
+		width: 30px;
+		height: 30px;
+	}
+	.header .support a, .header .hotline a {font-size: 14px;}
 	.page-title {font-size: 25px;}
 	.h-video {height: 350px;}
 	.title-block {font-size: 18px;}
-	.banner {min-height: 400px;}
+	.banner {min-height: 350px;}
 	.new-letter input {height: 45px;}
 	
 	.header-contact-right {font-size: 13px;}
 	.header-contact-right .icon{
 		font-size: 18px;
 	}
-	#top-menu.navbar-nav li a {text-align: left}
+	
 	.languges {min-height: auto}
 	.header.sticky .header-contact-right {display: none !important;}
 	.header.sticky .logo {padding: 0;}

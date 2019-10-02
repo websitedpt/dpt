@@ -15,7 +15,7 @@
 		<div class="wrap-content my-5">
 			<div class="container">
 				<div class="row">
-					<div class="col-sm-9">
+					<div class="col-md-9 mb-4 mb-md-0">
 						<div class="content-list">
 							<h2><?php echo get_the_title();?></h2> 
 							<p>&nbsp;</p>             
@@ -62,7 +62,7 @@
 
 						</div>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-md-3">
 						<div class="slide-bar"> 
 							<div class="block-bar"> 
 								<h3>Trang Cá Nhân</h3> 

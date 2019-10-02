@@ -1098,14 +1098,14 @@ function news_home($post_page = '3') {
 			        </div><div class="col-12 col-lg-6 wow fadeInRight">';
 				} else { 
 		            $string .= '<div class="row mb-3 mb-md-4">
-			            <div class="col-6 pr-0">
+			            <div class="col-sm-6 pr-sm-0">
 				            <div class="overflow-hidden rounded-left item-block  text-center">
 				                <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">
 				                  <div class="bg-img" style="background-image: url('.$thumb['0'].')"></div>
 				                </a>   
 				            </div>  
 			            </div>
-			            <div class="col-6 pl-0 align-items-center">
+			            <div class="col-sm-6 pl-sm-0 align-items-center">
 			              <div class="p-3 p-md-4 item-block rounded-right h-100">
 			                <div class="meta-date">
 			                  <span class="date-time">'.get_the_date().'</span>

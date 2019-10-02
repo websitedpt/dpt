@@ -22,10 +22,21 @@
 </head>
 <body <?php body_class(); ?>>
   <header class="header">
-    <div class="header-top-one py-2">
-      <div class="container d-flex align-items-center">    
-        <!-- <div class="pr-4"><i class="fa fa-envelope-o pr-2 icon" aria-hidden="true"></i><a href="mailto:service@martoyo.net" title="service@martoyo.net">service@martoyo.net</a></div> -->
-        <ul class="list-inline social-icon m-0">
+    <div class="header-top-one py-2 d-block">
+      <div class="container d-flex align-items-center"> 
+        <div class="d-flex d-md-none justify-content-center w-100">
+          <div class="support hidden-xs">
+            <div>Tổng đài tư vấn</div>
+            <?php if(get_option('Hotline1') !='') {echo'<a href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'">'.get_option('Hotline1').'</a>';}?>
+            <span>&</span>
+            <?php if(get_option('Hotline2') !='') {echo'<a href="tel:'.get_option('Hotline2').'" title="'.get_option('Hotline2').'">'.get_option('Hotline2').'</a>';}?>
+          </div>
+          <div class="hotline hidden-xs ml-2 ml-sm-3">
+            <div>Hotline</div>
+            <?php if(get_option('phone_company') !='') {echo'<a href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'">'.get_option('phone_company').'</a>';}?>
+          </div>             
+        </div>   
+        <ul class="list-inline social-icon m-0 d-none d-lg-block">
           <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
           <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>
           <?php if(get_option('youtube_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('youtube_company').'" target="_blank" title="'.get_option('youtube_company').'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';}?>
@@ -75,12 +86,7 @@
         </ul>
       </div>       
     </div>
-    <div class="header-contact-right d-flex d-md-none justify-content-center pt-2 px-2">
-      
-      <!-- <div class="pr-3 pr-sm-4"><i class="fa fa-envelope-o pr-2 icon" aria-hidden="true"></i><a href="mailto:service@martoyo.net" title="service@martoyo.net">service@martoyo.net sss</a></div>
-      <div class="pl-3 pl-sm-4 pr-3 pr-sm-4 border-l"><i class="icon fa fa-phone pr-2"></i><a class="link-phone" href="tel:18000009" title="1800 0009">1800 0009</a></div> -->
-    </div>
-    <div class="header-top py-2 py-md-4">
+    <div class="header-top py-2 py-md-2 py-lg-4">
       <div class="container d-flex flex-wrap align-items-center">
         <a class="navbar-brand logo mx-md-auto" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
           <img src="<?php echo get_template_directory_uri();?>/assets/images/logo.png" alt="<?php echo get_bloginfo( 'name' );?>">
@@ -126,10 +132,10 @@
                 'menu_class' => 'navbar-nav'
               ) ); ?>          
             <?php endif; ?> 
-            <ul class="list-inline ml-auto mb-0 d-lg-none">
-              <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/tin-tuc/su-kien/" title="Sự kiện" class="d-inline-block">Sự kiện</a></li>
-              <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/cau-hoi-thuong-gap/" title="Câu hỏi thường gặp" class="d-inline-block">Câu hỏi thường gặp</a></li>
-              <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/tuyen-dung/" title="Tuyển dụng" class="d-block">Tuyển dụng</a></li>
+            <ul class="list-inline ml-auto mb-0 d-lg-none list-m">
+              <li class="pl-3 d-block"><a href="<?php bloginfo('url'); ?>/tin-tuc/su-kien/" title="Sự kiện" class="d-block">Sự kiện</a></li>
+              <li class="pl-3 d-block"><a href="<?php bloginfo('url'); ?>/cau-hoi-thuong-gap/" title="Câu hỏi thường gặp" class="d-block">Câu hỏi thường gặp</a></li>
+              <li class="pl-3 d-block"><a href="<?php bloginfo('url'); ?>/tuyen-dung/" title="Tuyển dụng" class="d-block">Tuyển dụng</a></li>
               <?php if(is_user_logged_in()){
                 $current_user = wp_get_current_user();
                 $user_login = $current_user->user_login;
@@ -138,8 +144,8 @@
                 $avatar = get_user_meta($current_user->ID,'bdsttppic', true);
                 $avatar_image =wp_get_attachment_image_src($avatar, 'medium');
               ?>
-                <li class="pl-3 d-inline-block">
-                  <div class="user-after-login">
+                <li class="pl-3 d-block">
+                  <div class="user-after-login show">
                     <a href="#" class="profile-image" data-toggle="dropdown">
                       <div><i class="fa fa-angle-double-down" aria-hidden="true"></i><?php echo $user_login;?>
                       <div class="avarta-user">
@@ -151,7 +157,7 @@
                       </div>
                       </div>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu show">
                       <li><a href="<?php bloginfo('url'); ?>/thong-tin-ca-nhan" title="Thông tin cá nhân"><i class="fa fa-info" aria-hidden="true"></i>Thông tin cá nhân</a></li>
                       <li class="divider"></li>
                       <li><a href="<?php bloginfo('url'); ?>/thay-doi-thong-tin" title="Quản lý thông tin"><i class="fa fa-cog"></i>Quản lý thông tin</a></li>
@@ -163,8 +169,8 @@
                   </div>
                 </li>
               <?php } else {?>  
-                <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/dang-ky/" title="Đăng ký" class="d-block"><i class="fa fa-user-circle-o pr-1" aria-hidden="true"></i>Đăng ký</a></li>
-                <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/dang-nhap/" title="Đăng nhập" class="d-block"><i class="fa fa-sign-in pr-1" aria-hidden="true"></i>Đăng nhập</a></li>
+                <li class="pl-3 d-block"><a href="<?php bloginfo('url'); ?>/dang-ky/" title="Đăng ký" class="d-block"><i class="fa fa-user-circle-o pr-1" aria-hidden="true"></i>Đăng ký</a></li>
+                <li class="pl-3 d-block"><a href="<?php bloginfo('url'); ?>/dang-nhap/" title="Đăng nhập" class="d-block"><i class="fa fa-sign-in pr-1" aria-hidden="true"></i>Đăng nhập</a></li>
               <?php } ?>
             </ul>
             

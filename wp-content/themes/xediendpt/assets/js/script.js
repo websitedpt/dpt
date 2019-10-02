@@ -10,20 +10,6 @@ d.slice(e-c+1,e+c+2).addClass("slick-active").attr("aria-hidden","false")),0===a
 
 $(document).ready(function() {	
 	new WOW().init();
-	$('.languges .languges-inner').on('click', function(event) {
-		event.preventDefault();
-		var that = $(this);
-		$(this).parent().find('.sub-menu').toggleClass('active');
-		var listLi = $(this).parent().find('.sub-menu li');
-		listLi.on('click',  function(event) {
-			event.preventDefault();
-			$getLang = $(this).find('.flag').attr('class');
-			that.find('.flag').attr('class', $getLang);
-			$(this).parent().removeClass('active');
-
-		});
-	});
-
 	var close = true;
 	if($(window).width() < 992) {
 	    if($('.btn-menu-top').length){
@@ -41,13 +27,13 @@ $(document).ready(function() {
 	                
 	            }
 	        });
-	        $('.menu-primary ul li a i').on('click', function(event) {
+	        $('#top-menu li a i').on('click', function(event) {
 	        	event.preventDefault();
 	        	var that_li = $(this).parents('li');
 	        	if(that_li.hasClass('active')) {
-	        		$('.menu-primary ul li').removeClass('active');
+	        		$('#top-menu li').removeClass('active');
 	        	} else {
-	        		$('.menu-primary ul li').removeClass('active');
+	        		$('#top-menu li').removeClass('active');
 	        		$(this).parents('li').addClass('active');
 	        		
 	        	}
@@ -77,6 +63,16 @@ $(document).ready(function() {
 		  autoplay: true,
 		  infinite: true,
 	  		speed: 300,
+	  		responsive: [
+		        
+		        {
+		          breakpoint: 767,
+		          settings: {
+		            slidesToShow: 1
+		          }
+		        },
+		        
+		      ]
 		});
 	}
 	if($('[data-related]').length) {
@@ -120,6 +116,7 @@ $(document).ready(function() {
 		  autoplay: true,
 		  infinite: true,
 	  		speed: 300,
+
 		});
 	}
 	

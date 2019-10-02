@@ -15,7 +15,7 @@ get_header(); ?>
 <div class="wrap page-search py-5">
 	<div class="container">
 		<?php if ( have_posts() ) : ?>
-			<h1 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex align-items-center"><?php printf( __( 'Search Results for: %s', 'twentyseventeen' ), '<span style="color:#cb3435; padding-left:10px">' . get_search_query() . '</span>' ); ?></h1>
+			<h1 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex flex-wrap align-items-center"><?php printf( __( 'Search Results for: %s', 'twentyseventeen' ), '<span style="color:#cb3435; padding-left:10px">' . get_search_query() . '</span>' ); ?></h1>
 		<?php else : ?>
 			<h1 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex align-items-center"><?php _e( 'Nothing Found', 'twentyseventeen' ); ?></h1>
 		<?php endif; ?>
