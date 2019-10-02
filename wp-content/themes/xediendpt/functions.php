@@ -1078,13 +1078,17 @@ function news_home($post_page = '3') {
 			$the_query->the_post();
 			//$content = get_the_content();
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
-			if ( has_post_thumbnail() ) {	
+				
 				if($stt==1) { 									
 			        $string .= '<div class="col-12 col-lg-6 mb-3 mb-md-4 first-post wow fadeInLeft">
 			          <div class="overflow-hidden rounded item-block text-center">
-			            <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">
-			              <div class="bg-img mb-3" style="background-image: url('.$thumb['0'].')"></div>
-			            </a>    
+			            <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">';
+			            if ( has_post_thumbnail() ) {
+			              $string .= '<div class="bg-img mb-3" style="background-image: url('.$thumb['0'].')"></div>';
+			            } else {
+			            	$string .= '<div class="bg-img mb-3 d-flex align-items-center justify-content-center no-img"><img src="'.get_template_directory_uri().'/assets/images/noimage.jpg" alt="Không có hình ảnh"></div>';
+			            }
+			            $string .= '</a>
 			            <div class="p-3 pt-md-4 pb-md-5 px-md-5">
 			              <div class="meta-date">
 			                <span class="date-time">'.get_the_date().'</span>
@@ -1099,9 +1103,14 @@ function news_home($post_page = '3') {
 		            $string .= '<div class="row mb-3 mb-md-4">
 			            <div class="col-sm-6 pr-sm-0">
 				            <div class="overflow-hidden rounded-left item-block  text-center">
-				                <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">
-				                  <div class="bg-img" style="background-image: url('.$thumb['0'].')"></div>
-				                </a>   
+				                <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">';
+				                if ( has_post_thumbnail() ) {
+					              $string .= '<div class="bg-img mb-3" style="background-image: url('.$thumb['0'].')"></div>';
+					            } else {
+					            	$string .= '<div class="bg-img mb-3 d-flex align-items-center justify-content-center no-img"><img src="'.get_template_directory_uri().'/assets/images/noimage.jpg" alt="Không có hình ảnh"></div>';
+					            }
+				                  
+				                $string .= '</a>
 				            </div>  
 			            </div>
 			            <div class="col-sm-6 pl-sm-0 align-items-center">
@@ -1118,7 +1127,8 @@ function news_home($post_page = '3') {
 		         ';
 				}
 				
-			} $stt ++;
+			//}
+			 $stt ++;
 		}
 		$string .= '</div></div><div class="text-center mt-5">
         <a href="'.get_site_url().'/tin-tuc/" class="read-more py-3 px-4 text-capitalize rounded" title="Tin tức">Xem thêm tin tức <i class="fa fa-angle-right pl-2" aria-hidden="true"></i></a>

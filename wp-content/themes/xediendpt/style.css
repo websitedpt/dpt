@@ -1168,6 +1168,12 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	background-size: cover;
 	transition: all .5s
 }
+.event-post-ger {
+	    color: #909090;font-size: 13px;
+}
+.border-b-1 {
+	border-bottom: 1px solid #eee
+}
 .gthieu-home .img-wrap  .bg-img {
 	height: 400px;
 }

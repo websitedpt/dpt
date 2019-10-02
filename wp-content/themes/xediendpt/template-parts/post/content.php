@@ -5,7 +5,13 @@
 	$parentSlug = $parent->slug;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php the_title( '<h1 class="title-post mb-3 mb-md-4">', '</h1>' );?>	
+	<div class="mb-3 mb-md-4">
+	<?php the_title( '<h1 class="title-post border-b-1 mb-3 pb-2">', '</h1>' );
+		echo '<div class="event-post-ger"><i class="fa fa-calendar pr-2" aria-hidden="true"></i>'.get_the_date().' 
+		<i class="fa fa-user-circle-o pr-2 pl-3" aria-hidden="true"></i> '.get_the_author().'</div>';
+	?>	
+		
+	</div>
 	<div class="entry-content">		
 		<?php		
 			/* translators: %s: Name of current post */
