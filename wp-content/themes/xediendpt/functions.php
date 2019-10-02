@@ -1392,13 +1392,13 @@ function sanpham_output($post) {
 		<div class="px-15 h-w">
 			<p>
 				<label for="price" style="color:#000;font-weight: bold">Giá: </label><br>		
-				<input type="text" style="height:38px;width: 100%" id="price" name="price" placeholder="1.500.000(vnđ)" value="<?php echo esc_attr($price); ?>"/>
+				<input type="number" style="height:38px;width: 100%" id="price" name="price" placeholder="1.500.000" step="any" value="<?php echo esc_attr($price); ?>"/>
 		 	</p>
 		</div>
 		<div class="px-15 h-w">			
 		 	<p>
 				<label for="price_promo" style="color:#000;font-weight: bold">Giá khuyến mãi: </label><br>		
-				<input type="text" style="height:38px;width: 100%" id="price_promo" name="price_promo" placeholder="1.500.000(vnđ)" value="<?php echo esc_attr($price_promo); ?>"/>
+				<input type="number" style="height:38px;width: 100%" id="price_promo" name="price_promo" placeholder="1.500.000" step="any" value="<?php echo esc_attr($price_promo); ?>"/>
 		 	</p>
 		</div>
 		<div class="px-15 h-w">
