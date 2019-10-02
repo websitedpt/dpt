@@ -8,7 +8,7 @@ get_header(); global $wpdb;?>
       <div class="row">
         <div class="col-sm-9">          
           <div class="real-list">
-            <?php //if(isset( $_POST['querySearch'] ) && isset( $_POST['post_nonce_field'] ) && wp_verify_nonce( $_POST['post_nonce_field'], 'post_nonce' )) {
+            <?php 
               if (isset($_GET['name_search'])) {
                 $name_search = $_GET['name_search'];
               }                  
@@ -27,7 +27,15 @@ get_header(); global $wpdb;?>
               if (isset($_GET['tinhtrang'])) {
                 $tinhtrang = $_GET['tinhtrang'];              
               }
-              
+              if (isset($_GET['color'])) {
+                $color = $_GET['color'];              
+              }
+              if (isset($_GET['price'])) {
+                $price = $_GET['price'];              
+              }
+              if (isset($_GET['model'])) {
+                $model = $_GET['model'];              
+              }
             $post = array(
               's' => $name_search,
               'post_type' => 'sanpham',
@@ -47,6 +55,54 @@ get_header(); global $wpdb;?>
                   array(
                     'key' => 'loaixe',
                     'value' => $loaixe,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'xuatxu',
+                    'value' => $xuatxu,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'namsanxuat',
+                    'value' => $namsanxuat,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'tinhtrang',
+                    'value' => $tinhtrang,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'color',
+                    'value' => $color,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'price',
+                    'value' => $price,
+                    'compare' => 'LIKE'
+                  )
+                ),
+                array(
+                  'relation' => 'OR',
+                  array(
+                    'key' => 'model',
+                    'value' => $model,
                     'compare' => 'LIKE'
                   )
                 ),

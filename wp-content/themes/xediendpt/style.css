@@ -257,7 +257,7 @@ body a:focus,body a:hover {
 }
 .header.sticky .menu-menu-primary-container {margin-left: auto;}
 .banner {
-	min-height: 420px;
+	height: 420px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -284,7 +284,7 @@ body a:focus,body a:hover {
 .banner-home .slick-slider:hover .slick-prev {
     right: 15px;
 }
-.banner-general>div {z-index: 5}
+.banner-general>div {position: relative;z-index: 5;    height: 100%;}
 .page-title {
 	color: #fff;
 	font-size: 35px;

@@ -12,8 +12,11 @@
 
 <meta name="description" content="<?php bloginfo('description'); ?>" />
 <?php wp_head(); //session_start();
+
   if (is_home() || is_front_page()) {?>
-        <meta property="og:image" content="<?php echo get_template_directory_uri();?>/assets/images/banner-1.jpg"> 
+      <meta property="og:title" content="The Crypto Sight - Your Daily Crypto Insight." />
+      <meta property="og:description" content="Brings you the latest news on cryptocurrency and technology. TheCryptoSight covers all aspects of crypto asset and blockchain technology." />
+      <meta property="og:image" content="<?php echo get_template_directory_uri();?>/assets/images/banner-1.jpg"> 
     <?php } else {     
     echo '<meta property="og:image" content="'. get_the_post_thumbnail_url(get_the_ID(),'full')   .'" />';    
     }

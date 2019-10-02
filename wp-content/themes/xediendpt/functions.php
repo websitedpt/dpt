@@ -897,9 +897,8 @@ function contactForm() { ?>
 		$mail->Username   = "automails123@gmail.com";
 		$mail->Password   = "Khongthequen89";
 		$mail->SetFrom('admin@gmail.com');
-		$mail->addAddress('automails123@gmail.com');
-
-		// $mail->addCC($email,'ducnguyen6318@gmail.com');
+		$mail->addAddress($mail_company);
+		$mail->addCC($email,'automails123@gmail.com');
 		// $mail->addBCC('automails123@gmail.com');
 		$mail->Subject    = "Nội Dung Từ Trang Liên Hệ -  ".get_bloginfo( 'name' )."";//address_company
 		$body.="<div style='background-color:#ffffff;color:#000000;font-family:Arial,Helvetica,sans-serif;font-size:15px;margin:0 auto;padding:0'>
@@ -1301,7 +1300,12 @@ function create_posttype_sanpham() {
 		array(
 		  'labels' => array(
 		    'name' => __( 'Sản Phẩm' ),
-		    'singular_name' => __( 'sanpham' )
+		    'singular_name' => __( 'sanpham' ),
+        	'add_new_item'        => __( 'Thêm sản phẩm mới'),
+        	'add_new'             => __( 'Thêm sản phẩm mới' ),
+        	'update_item'         => __( 'Cập nhật sản phẩm' ),
+        	'search_items'        => __( 'Tìm kiếm sản phẩm ' ),
+	        'edit_item'           => __( 'Chỉnh sửa sản phẩm ' ),
 		  ),
 		  'hierarchical' => true,
 		  'show_ui' => true, 

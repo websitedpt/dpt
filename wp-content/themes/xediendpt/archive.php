@@ -23,9 +23,9 @@ get_header();
     $paged = 1;
   }   
 ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
-  <div class="container text-center">
-      <h1 class="text-uppercase page-title mb-3"><?php echo $taxonomy->name; ?></h1>
+<div class="banner banner-general position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
+  <div class="container text-center d-flex flex-wrap align-items-center position-relative">
+      <h1 class="text-uppercase page-title mb-3 d-block text-center w-100"><?php echo $taxonomy->name; ?></h1>
       <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
   </div>
 </div>

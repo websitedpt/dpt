@@ -30,10 +30,11 @@ get_header();
 	$taitrong = get_post_meta($postid, 'taitrong', true);
 	$hangxe = get_post_meta($postid, 'hangxe', true);
 	$loaixe = get_post_meta($postid, 'loaixe', true);
+
 ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
-	<div class="container text-center">
-        <h1 class="text-uppercase page-title mb-3"><?php echo get_the_title(); ?></h1>
+<div class="banner banner-general  position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
+	<div class="container text-center d-flex flex-wrap align-items-center position-relative">
+        <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title(); ?></h1>
         <div id="crumbs" class="list-crumb text-capitalize">
 		    <i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo get_site_url();?>" title="">Trang chủ</a>
 		    <?php foreach ( $terms as $child ) {
@@ -84,9 +85,21 @@ get_header();
 		                </select>
 		              </div>
 		              <div class="select-box mb-3">
+		                <select class="form-control" name="model">
+		                  <option value="" selected disabled hidden>Model</option>
+		                  <?php showTaxomi('model');?>
+		                </select>
+		              </div> 
+		              <div class="select-box mb-3">
 		                <select class="form-control" name="loaixe">
 		                  <option value="" selected disabled hidden>Loại xe</option>
 		                  <?php showTaxomi('loaixe');?>
+		                </select>
+		              </div>
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="color">
+		                  <option value="" selected disabled hidden>Màu sắc</option>
+		                  <?php showTaxomi('color');?>
 		                </select>
 		              </div>
 		              
@@ -108,6 +121,14 @@ get_header();
 		                  <?php showTaxomi('tinhtrang');?>
 		                </select>
 		              </div> 
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="price">
+		                  <option value="" selected disabled hidden>Giá tiền</option>
+		                  <?php showTaxomi('price');?>
+		                </select>
+		              </div> 
+		              
+		              
 		              <input type="submit" name="querySearch" class="form-control btn-search text-uppercase" value="Tìm Kiếm">
 		              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
 		            </form>                     

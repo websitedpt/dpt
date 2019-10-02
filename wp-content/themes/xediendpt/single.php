@@ -10,9 +10,9 @@
  * @version 1.0
  */
 get_header(); $Catalog = get_the_category();$catalogName = $Catalog[0]->cat_name; ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
-  <div class="container text-center">
-      <h1 class="text-uppercase page-title mb-3"><?php echo get_the_title(); ?></h1>
+<div class="banner banner-general  position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
+  <div class="container text-center d-flex flex-wrap align-items-center position-relative">
+      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title(); ?></h1>
       <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
   </div>
 </div>
