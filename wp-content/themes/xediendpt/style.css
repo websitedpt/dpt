@@ -233,12 +233,12 @@ outline: none;
 } 
 body {	
 font-family: 'Roboto-Regular', Helvetica,Arial,sans-serif;
-font-size: 16px;
+font-size: 15px;
 color: #010101;
 line-height: 1.7
 }
 body a {
-	color: #151515
+	color: #477fc5
 }
 body a:focus,body a:hover {
 	text-decoration: none;
@@ -289,6 +289,143 @@ body a:focus,body a:hover {
 	color: #fff;
 	font-size: 35px;
 }
+.block-2 {
+    border: 1px solid #ccc;
+    background-color: #f5f6f7;
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+    -ms-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+    -o-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.28);
+}
+.block-2 h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+    border-bottom: 1px solid #eee;
+    padding: 0 0 5px;
+    color: #055699;
+    text-transform: uppercase;
+}
+.block-2 .form-control {
+    height: 45px;
+}
+.wrap-content .content-list {
+    border: 1px solid #eee;
+    padding: 20px 15px;
+}
+.wrap-content .content-list h2 {
+    color: #055699;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+    padding-bottom: 5px;
+}
+.block-bar {
+    border: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.block-bar h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #055699;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    padding: 5px 0 8px;
+    border-bottom: 1px solid #eee;
+}
+.profesional-img {
+    text-align: center;
+    background-color: #eee;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profesional-img i {
+    font-size: 50px;
+    color: #055699;
+}
+.full-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #055699;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.block-bar ul li {
+    margin-bottom: 10px;
+}
+.block-bar ul li.active a, .block-bar ul li:hover a, .block-bar ul li:focus a {
+    color: #cb3435
+}
+.user-after-login {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+    position: relative;
+    cursor: pointer;
+}
+.user-after-login .fa-angle-double-down {
+    font-size: 18px;
+    padding-right: 4px;
+}
+.user-after-login .avarta-user {
+    margin-left: 5px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgb(87, 136, 156);
+}
+.user-after-login .avarta-user i {
+    color: #fff;
+    font-size: 20px;
+    line-height: 35px;
+}
+.user-after-login .dropdown-menu {
+    background: #f0f0f0;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    left: auto;
+    right: 0;
+}
+.user-after-login:hover .dropdown-menu {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.dropdown-menu .divider {
+    height: 1px;
+    margin: 9px 0;
+    overflow: hidden;
+    background-color: #e5e5e5;
+}
+.dropdown-menu>li:not(:last-child) {margin-bottom: 10px}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.dropdown-menu>li:hover>a  {color: #0077bd}
+.dropdown-menu>li>a::after {display: none}
+.user-after-login .dropdown-menu i {
+    padding-right: 8px;
+}
 .not-found .page-title {color: #1d4b83;}
 .not-found .search-form {	    
 	display: -webkit-box!important;
@@ -304,6 +441,16 @@ body a:focus,body a:hover {
     align-items: center!important;
 }
 .not-found .search-field  {width: auto !important;margin-left: 8px;margin-right: 8px;height: 45px;min-width:300px;margin-bottom: 0.5rem}
+.page-search .entry-title a {
+	font-size: 18px;
+}
+.page-search article {
+	border: 1px solid #eee;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+.page-search article .link-more {font-style: italic}
+.page-search .navigation.pagination svg {display: none}
 #crumbs {
 	position: absolute;
 	bottom: 15px;
@@ -817,6 +964,11 @@ body a:focus,body a:hover {
 	-moz-box-shadow: #cac7c7 0 0 16px;
 	box-shadow: #cac7c7 0 0 16px;
 }
+.shadow-img-3 {
+	-webkit-box-shadow: #f5f3f3 0 0 8px;
+	-moz-box-shadow: #f5f3f3 0 0 8px;
+	box-shadow: #f5f3f3 0 0 8px;
+}
 
 .review-star {
 	font-size: 13px;
@@ -826,12 +978,20 @@ body a:focus,body a:hover {
 	font-size: 16px;
 	color: #cb3435
 }
+.box-3 li:not(:last-child) a {
+	border-bottom: 1px solid #eee;
+}
+.box-3 li a {
+	font-size: 14px;
+	color: #444	
+}
+.box-3 li:hover a  {color: #0077bd}
 .price del {color: #505050;    font-size: 15px;}
 .wrap-price .price {font-size: 20px;}
 .wrap-price del {color: #505050;}
 .content-product .title-block {font-size: 18px;}
 table.tbl-product  {margin-bottom: 1.5rem!important}
-.tbl-product th {background:#d0d0d0;color: #195e88}
+.tbl-product th {background:#f5f6f7;color: #195e88}
 .tbl-product th,.tbl-product td {
 	font-size: 15px;
 	border: 1px solid #f0f2f5;padding: 10px;
@@ -1703,6 +1863,33 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
     animation-name: zoomIn
 }
 
+@media(max-width: 1999px) {
+	.home .wrap-mmenu .navbar-collapse {margin-left: 0;padding-left: 0;}
+	.home #top-menu.navbar-nav li {
+	    padding: 0 20px;
+	}
+	#top-menu.navbar-nav li {
+		padding: 0 18px;
+	}
+	#top-menu.navbar-nav li a {
+		font-size: 15px;
+	}
+	.header .search-area input {min-width: 270px;}
+	.sticky #top-menu.navbar-nav li, .home .sticky #top-menu.navbar-nav li {
+	    padding-left: 18px;
+	    padding-right: 18px;
+	}
+}
+@media(max-width: 1111px) {
+	.sticky #top-menu.navbar-nav li, .home .sticky #top-menu.navbar-nav li {
+	    padding-left: 15px;
+	    padding-right: 15px;
+	}
+	.review-custome .img-review {
+	    width: 100px;
+	    height: 100px;
+	}
+}
 @media(min-width: 768px) {
 	.wrap-mmenu ul li.active a i::before,.wrap-mmenu ul li:focus a i::before,.wrap-mmenu ul li:hover a i::before {
         content:"\f106"

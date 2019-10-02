@@ -25,9 +25,9 @@ $terms = get_terms($taxonomy);
     if ( $terms && !is_wp_error( $terms ) ) : 
       echo '<ul class="list-menu list-inline px-3 box-2">';
       foreach ( $terms as $term ) {
-        if($term->parent == 0) { ?> 
-          <li class="menu-item-has-children"><a href="<?php echo get_term_link($term->slug, $taxonomy); ?>" title="<?php echo $term->name; ?>" class="menu-item-has-children"><?php echo $term->name; ?></a>
-            <?php $term_children = get_term_children($term->term_id,$taxonomy);?>
+        if($term->parent == 0) { 
+          $term_children = get_term_children($term->term_id,$taxonomy);?>
+          <li class="<?php if($term_children) {echo "menu-item-has-children";}?>"><a href="<?php echo get_term_link($term->slug, $taxonomy); ?>" title="<?php echo $term->name; ?>" class="menu-item-has-children"><?php echo $term->name; ?></a>            
               <ul class="menu-list list-inline pl-3">
                 <?php  
                   foreach($term_children as $child){

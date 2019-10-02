@@ -37,57 +37,88 @@ get_header();
         <?php if($taxonomy_name == 'danh-muc-san-pham') {
           if($taxonomy->parent == 0) {
             echo '<div class="row">';
-            foreach ( $term_children as $child ) {    
-              $term = get_term_by('id', $child, $taxonomy_name );
-              $image_id = get_term_meta ($term->term_id, 'category-image-id', true );
-              $banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
-              if($term->count > 0) {
-                if($term->count == 1) {
-                  $q_Post = new WP_Query(array(
-                    'post_type' => 'sanpham',
-                    'post_status' => 'publish',
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => $term->taxonomy,
-                            'field' => 'slug',
-                            'terms' => $term->slug,
-                            'operator' => 'IN'
-                        )
-                     )
-                  ));
-                  if($q_Post->have_posts()) {
-                    while ($q_Post->have_posts()) { 
-                      $q_Post->the_post(); 
-                      $post_id = get_the_ID();
-                      echo '<div class="col-md-4 my-3 box-1">
-                        <a href="' . get_the_permalink() . '" title="'. $term->name .'">
-                          <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
-                            '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto')).'                 
-                          </div>
-                          <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
-                            '. $term->name .'
-                          </h3>
-                        </a>
-                      </div>'; 
+            if($term_children) {
+              foreach ( $term_children as $child ) {    
+                $term = get_term_by('id', $child, $taxonomy_name );
+                $image_id = get_term_meta ($term->term_id, 'category-image-id', true );
+                $banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
+                if($term->count > 0) { 
+                  if($term->count == 1) {
+                    $q_Post = new WP_Query(array(
+                      'post_type' => 'sanpham',
+                      'post_status' => 'publish',
+                      'tax_query' => array(
+                          array(
+                              'taxonomy' => $term->taxonomy,
+                              'field' => 'slug',
+                              'terms' => $term->slug,
+                              'operator' => 'IN'
+                          )
+                       )
+                    ));
+                    if($q_Post->have_posts()) {
+                      while ($q_Post->have_posts()) { 
+                        $q_Post->the_post(); 
+                        $post_id = get_the_ID();
+                        echo '<div class="col-md-4 my-3 box-1">
+                          <a href="' . get_the_permalink() . '" title="'. $term->name .'">
+                            <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
+                              '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto')).'                 
+                            </div>
+                            <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
+                              '. $term->name .'
+                            </h3>
+                          </a>
+                        </div>'; 
+                      }
                     }
+                             
+                  } else { 
+                    echo '<div class="col-md-4 my-3 box-1">
+                      <a href="' . get_term_link( $child, $taxonomy_name ) . '" title="'. $term->name .'">
+                        <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
+                          <img src="'. $banerUrl.'" class="img-fluid mx-auto" alt="">                    
+                        </div>
+                        <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
+                          '. $term->name .'
+                        </h3>
+                      </a>
+                    </div>';  
                   }
-                           
-                } else {
+                } 
+              }
+            } else {
+              $p_cat = new WP_Query(array(
+                'post_type' => 'sanpham',
+                'post_status' => 'publish',
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => $taxonomy_name,
+                        'field' => 'slug',
+                        'terms' => $taxonomy->slug,
+                        'operator' => 'IN'
+                    )
+                 )
+              ));
+              if($p_cat->have_posts()) { 
+                while ($p_cat->have_posts()) { 
+                  $p_cat->the_post(); 
+                  $post_id = get_the_ID();
                   echo '<div class="col-md-4 my-3 box-1">
-                    <a href="' . get_term_link( $child, $taxonomy_name ) . '" title="'. $term->name .'">
+                    <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
                       <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
-                        <img src="'. $banerUrl.'" class="img-fluid mx-auto" alt="">                    
+                        '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto')).'                 
                       </div>
                       <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
-                        '. $term->name .'
+                        '. get_the_title() .'
                       </h3>
                     </a>
-                  </div>';  
+                  </div>'; 
                 }
               }
             }
             echo '</div>';
-          } else {
+          } else { 
             $q_products = new WP_Query(array(
             'post_type' => 'sanpham',
             'post_status' => 'publish',

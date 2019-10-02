@@ -58,17 +58,19 @@ get_header();
 <div class="content-area area-post py-5">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-lg-9 wow fadeInUp">		
-		        <?php 
-					/* Start the Loop */
-					while ( have_posts() ) : the_post();
-						get_template_part( 'template-parts/post/content-products', get_post_format() );
-						// If comments are open or we have at least one comment, load up the comment template.
-						/*if ( comments_open() || get_comments_number() ) :
-							comments_template();
-						endif;*/
-					endwhile; // End of the loop.			
-				?>	 
+			<div class="col-md-8 col-lg-9 wow fadeInUp">	
+				<div class="pr-lg-4">
+			        <?php 
+						/* Start the Loop */
+						while ( have_posts() ) : the_post();
+							get_template_part( 'template-parts/post/content-products', get_post_format() );
+							// If comments are open or we have at least one comment, load up the comment template.
+							/*if ( comments_open() || get_comments_number() ) :
+								comments_template();
+							endif;*/
+						endwhile; // End of the loop.			
+					?>	
+				</div>	
 			</div> 
 			<div class="col-md-4 col-lg-3 d-none d-md-block wow fadeInRight">
 				<div class="search-block p-2">
@@ -76,28 +78,67 @@ get_header();
 		            <form class="form-timkiem" action="<?php bloginfo('url'); ?>/ket-qua-tim-kiem" method="get" accept-charset="utf-8" enctype="multipart/form-data">
 		              <input type="text" name="name_search" class="form-control mb-3" placeholder="Nhập địa điểm cần tìm kiếm">
 		              <div class="select-box mb-3">
-		                <select class="form-control" name="loai_bds">
-		                  <option value="">Loại bất động sản</option>
-		                  <?php //showTaxomi('loaibds');?>
+		                <select class="form-control" name="hangxe">
+		                   <option value="" selected disabled hidden>Hãng xe</option>
+		                  <?php showTaxomi('hangxe');?>
+		                </select>
+		              </div>
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="loaixe">
+		                  <option value="" selected disabled hidden>Loại xe</option>
+		                  <?php showTaxomi('loaixe');?>
 		                </select>
 		              </div>
 		              
 		              <div class="select-box mb-3">
-		                <select class="form-control" name="area_post">
-		                  <option value="">Diện tích</option>
-		                  <?php //showTaxomi('area');?>
+		                <select class="form-control" name="xuatxu">
+		                  <option value="" selected disabled hidden>Xuất xứ</option>
+		                  <?php showTaxomi('xuatxu');?> 
 		                </select>
 		              </div>
 		              <div class="select-box mb-3">
-		                <select class="form-control" name="pricebds_post">
-		                  <option value="">Mức giá</option>
-		                  <?php //showTaxomi('pricebds');?>
+		                <select class="form-control" name="namsanxuat">
+		                  <option value="" selected disabled hidden>Năm sản xuất</option>
+		                  <?php showTaxomi('namsanxuat');?>
+		                </select>
+		              </div> 
+		              <div class="select-box mb-3">
+		                <select class="form-control" name="tinhtrang">
+		                  <option value="" selected disabled hidden>Tình trạng</option>
+		                  <?php showTaxomi('tinhtrang');?>
 		                </select>
 		              </div> 
 		              <input type="submit" name="querySearch" class="form-control btn-search text-uppercase" value="Tìm Kiếm">
 		              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
 		            </form>                     
 			    </div>
+			    <div class="line-doted mb-2 mt-5"></div>
+  				<h3 class="title-block text-capitalize mb-3">Hãng Xe</h3>
+  				<?php
+  					$taxonomy_prod = 'danh-muc-san-pham';
+	  				$term_children = get_term_children('14',$taxonomy_prod); 
+	  				echo '<ul class="list-menu list-inline px-2 py-2 box-3 shadow-img-3">';  
+	  				foreach ( $term_children as $child ) { 
+		  				$term_child = get_term_by('id', $child, $taxonomy_prod );
+		  				//echo $term_child->name;		  				
+		  				echo '<li class="px-2 text-capitalize"><a class="py-2 d-block" href="'.get_term_link($term_child->slug, $taxonomy_prod).'" >'. $term_child->name .'</a></li>'; 
+		  			}
+		  			echo '</ul>';
+  				?>
+
+  				<div class="line-doted mb-2 mt-5"></div>
+  				<h3 class="title-block text-capitalize mb-3">Loại Xe</h3>
+  				<?php
+	  				$term_children_2 = get_term_children('19',$taxonomy_prod); 
+	  				echo '<ul class="list-menu list-inline px-2 py-2 box-3 shadow-img-3">';  
+	  				foreach ( $term_children_2 as $child ) { 
+		  				$term_child = get_term_by('id', $child, $taxonomy_prod );
+		  				//echo $term_child->name;		  				
+		  				echo '<li class="px-2 text-capitalize"><a class="py-2 d-block" href="'.get_term_link($term_child->slug, $taxonomy_prod).'" >'. $term_child->name .'</a></li>'; 
+		  			}
+		  			echo '</ul>';
+  				?>
+
 			</div>
 		</div>      
 	</div>	

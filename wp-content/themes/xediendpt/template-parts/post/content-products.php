@@ -73,9 +73,9 @@
 	            <div class="mb-3">
 	            	<strong>Liên hệ ngay:</strong> 
 	            	<div class="mt-2 box-lh row align-items-center justify-content-center">
-	            		<div class="col pr-0 pr-md-2"><?php if(get_option('Hotline1') !='') {echo'<a class="d-block text-center px-2 py-2 phone-1" href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'"><i class="icon fa fa-phone pr-2"></i>'.get_option('Hotline1').'</a>';}?>
+	            		<div class="col col-sm-12 col-lg-6 pr-0 pr-md-2 mb-sm-3 mb-lg-0"><?php if(get_option('Hotline1') !='') {echo'<a class="d-block text-center px-2 py-2 phone-1" href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'"><i class="icon fa fa-phone pr-2"></i>'.get_option('Hotline1').'</a>';}?>
 	            		</div>
-	            		<div class="col">
+	            		<div class="col col-sm-12 col-lg-6">
 	            			<?php if(get_option('phone_company') !='') {echo'<a class="d-block text-center px-2 py-2 phone-2" href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'"><i class="fa fa-mobile pr-2" aria-hidden="true"></i>'.get_option('phone_company').'</a>';}?>
 	            		</div>
 	            	</div>

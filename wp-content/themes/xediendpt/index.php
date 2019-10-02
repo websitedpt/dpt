@@ -19,30 +19,37 @@ get_header(); ?>
 <div class="wrap-vertical">
   <div class="container">
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-xl-3 d-none d-xl-block">
         <div class="menu-vertical">
           <h4 class="px-3 m-0 text-capitalize">Danh mục sản phẩm</h4>
-          <ul class="list-inline m-0 pb-3">
-            <li class="px-3"><a href="ss" title="ss" class="d-block li-pa pl-3 pt-3 text-capitalize">Xe ô tô điện</a>
-              <ul class="list-inline pl-3 sub-list">
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-              </ul>
-            </li>
-            <li class="px-3"><a href="ss" title="ss" class="d-block li-pa pl-3 pt-3 text-capitalize">Xe điện chuyên dụng</a>
-              <ul class="list-inline pl-3 sub-list">
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>
-                <li><a href="" title="" class="py-2 text-capitalize d-block">Xe điện Eagle</a></li>                
-              </ul>
-            </li>
-            <li class="px-3"><a href="ss" title="ss" class="d-block li-pa pl-3 pt-3 text-capitalize">Phụ tùng chính hãng</a></li>
-          </ul>
+          <?php $taxonomy_p = 'danh-muc-san-pham';
+            $terms_1 = get_terms($taxonomy_p);
+            if ( $terms_1 && !is_wp_error( $terms_1 ) ) : 
+              echo '<ul class="list-inline m-0 pb-3">';
+              foreach ( $terms_1 as $term ) {
+                if($term->parent == 0) { 
+                  $term_children = get_term_children($term->term_id,$taxonomy_p);
+                  if($term_children) {?>
+                    <li class="px-3"><a href="<?php echo get_term_link($term->slug, $taxonomy_p); ?>" title="<?php echo $term->name; ?>" class="d-block li-pa pl-3 pt-3 text-capitalize"><?php echo $term->name; ?></a>  
+                      <ul class="list-inline pl-3 sub-list">
+                        <?php  
+                          foreach($term_children as $child){
+                            $chTerm = get_term_by( 'id', $child, $taxonomy_p);
+                            $termLink = get_term_link( $chTerm );
+                            echo "<li><a class='py-2 text-capitalize d-block' href='$termLink' title='$chTerm->name'>".$chTerm->name."</a></li>";
+                          }
+                        ?>
+                      </ul>
+                    </li>                
+                  <?php } else { ?>
+                    <li class="px-3 pb-1"><a href="<?php echo get_term_link($term->slug, $taxonomy_p); ?>" title="<?php echo $term->name; ?>" class="d-block li-pa pl-3 pt-3 text-capitalize"><?php echo $term->name; ?></a></li>
+                  <?php } 
+                } 
+              } ?>
+            <?php echo '</ul>'; endif; ?>
         </div>
       </div>
-      <div class="col-lg-9">
+      <div class="col-12 col-xl-9">
         <?php if(function_exists('getSliderBanner')){?>
           <div class="banner-home position-relative overflow-hidden">
             <div data-slider class="">
@@ -87,81 +94,145 @@ get_header(); ?>
       <?php $taxonomy_prod = 'danh-muc-san-pham'; $terms = get_terms($taxonomy_prod); 
         if ( $terms && !is_wp_error( $terms ) ) : 
           foreach ( $terms as $term ) {
-            if($term->parent == 0) { ?> 
+            if($term->parent == 0) {
+              $term_children = get_term_children($term->term_id,$taxonomy_prod); ?> 
               <div class="row mb-4">
                 <div class="col-12">   
                   <div class="wow fadeInUp" data-wow-duration="2s">    
                     <div class="title-block title-b-3 position-relative line-bg-3 text-uppercase mt-2 mb-5 pb-2 d-flex align-items-center flex-wrap"><?php echo $term->name; ?>
                       <div class="ml-auto d-flex flex-wrap align-items-center">
                         <ul class="list-inline list-tabs mb-0 mr-md-4 nav" role="tablist">
-                          <li class="list-inline-item">
-                            <a class="px-2 nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >Home</a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="px-2 nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile">Profile</a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="px-2 nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact">Contact</a>
-                          </li>
+                          <?php
+                            $stt= 1;
+                            foreach ( $term_children as $child ) { 
+                              $term_child = get_term_by('id', $child, $taxonomy_prod );
+                              if($term_child->count > 0) {
+                                $class1 ='';
+                                if($stt==1) {
+                                  $class1 ='active';
+                                }
+                                echo '<li class="list-inline-item"><a class="px-2 nav-link '.$class1.'" id="home-tab" data-toggle="tab" href="#'.$term_child->slug.'" role="tab" aria-controls="home" >'. $term_child->name .'</a></li>'; 
+                                $stt ++;
+                              }                              
+                            }
+                          ?>
                         </ul>
                         <a title="Xem tất cả" href="<?php echo get_term_link($term->slug, $taxonomy_prod); ?>" class="view-all text-capitalize pull-right">Xem tất cả <i class="fa fa-eye"></i></a>                        
                       </div>
                     </div>
-                    <div class="tab-content">
-                      <div class="row">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                      </div>
-                      <?php 
-                        $q_Post = new WP_Query(array(
-                          'post_type' => 'sanpham',
-                          'post_status' => 'publish',
-                          'posts_per_page' => '8',
-                          'tax_query' => array(
-                              array(
-                                  'taxonomy' => $term->taxonomy,
-                                  'field' => 'id',
-                                  'terms' => $term->term_id,
-                                  'operator' => 'IN'
-                              )
-                           )
-                        ));
-                        if($q_Post->have_posts()) {
-                          while ($q_Post->have_posts()) { 
-                            $q_Post->the_post(); 
-                            $post_id = get_the_ID();
-                            $price = get_post_meta($post_id, 'price', true);
-                            $price_promo = get_post_meta($post_id, 'price_promo', true);
-                            echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                              <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
-                                <div class="animation-bg">
-                                  <div class="table-img">
-                                    <div class="table-cell p-3 py-md-3 px-md-3 overflow-hidden">
-                                      '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto d-block')).' 
-                                    </div>
-                                  </div>
-                                  <div class="px-2 text-center">
-                                    <h4 class="title-product pt-3 position-relative">'. get_the_title() .'</h4>  
-                                    <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-                                    <div class="price pb-2">';
-                                    if($price_promo) { echo '<del class="pr-2">'.$price_promo.'</del>'; }
-                                      echo'<strong>';if($price) { echo $price; } else { echo "Liên hệ";} echo '</strong>
-                                    </div>                                            
-                                  </div>
-                                </div>
-                              </a>
-                            </div>'; 
+                    <div class="tab-content">                      
+                      <?php
+                        if($term_child) {
+                          $pst= 1;
+                          foreach ( $term_children as $child ) {    
+                            $term_child = get_term_by('id', $child, $taxonomy_prod );
+                            //$image_id = get_term_meta ($term_child->term_id, 'category-image-id', true );
+                            //$banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
+                             if($term_child->count > 0) {                            
+                              //if($term_child->count == 1) {
+                                $q_Post = new WP_Query(array(
+                                  'post_type' => 'sanpham',
+                                  'post_status' => 'publish',
+                                  'posts_per_page' => '8',
+                                  'tax_query' => array(
+                                      array(
+                                          'taxonomy' => $term->taxonomy,
+                                          'field' => 'slug',
+                                          'terms' => $term_child->slug,
+                                          'operator' => 'IN'
+                                      )
+                                   )
+                                ));
+                                $active1 ='';
+                                if($pst==1) {
+                                  $active1 ='active';
+                                }
+                                echo '<div class="tab-pane fade show '.$active1.'" id="'.$term_child->slug.'" role="tabpanel"><div class="row">';
+                                  if($q_Post->have_posts()) {
+                                    while ($q_Post->have_posts()) { 
+                                      $q_Post->the_post(); 
+                                      $post_id = get_the_ID();
+                                      $price = get_post_meta($post_id, 'price', true);
+                                      $price_promo = get_post_meta($post_id, 'price_promo', true);
+                                      echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                        <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
+                                          <div class="animation-bg">
+                                            <div class="table-img">
+                                              <div class="table-cell p-3 py-md-3 px-md-3 overflow-hidden">
+                                                '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto d-block')).' 
+                                              </div>
+                                            </div>
+                                            <div class="px-2 text-center">
+                                              <h4 class="title-product pt-3 position-relative">'. get_the_title() .'</h4>  
+                                              <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                                              <div class="price pb-2">';
+                                              if($price_promo) { echo '<del class="pr-2">'.$price_promo.'</del>'; }
+                                                echo'<strong>';if($price) { echo $price; } else { echo "Liên hệ";} echo '</strong>
+                                              </div>                                            
+                                            </div>
+                                          </div>
+                                        </a>
+                                      </div>'; 
+                                    }
+                                  }
+                                echo '
+                                </div></div>';
+                              //} 
+                              $pst ++;
+                            }                           
                           }
+                        } else {
+                          $post_prod = new WP_Query(array(
+                            'post_type' => 'sanpham',
+                            'post_status' => 'publish',
+                            'posts_per_page' => '8',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => $term->taxonomy,
+                                    'field' => 'slug',
+                                    'terms' => $term->slug,
+                                    'operator' => 'IN'
+                                )
+                             )
+                          ));
+                          echo '<div class="tab-pane fade show active" id="'.$term->slug.'" role="tabpanel"><div class="row">';
+                            if($post_prod->have_posts()) {
+                              while ($post_prod->have_posts()) { 
+                                $post_prod->the_post(); 
+                                $post_id = get_the_ID();
+                                $price = get_post_meta($post_id, 'price', true);
+                                $price_promo = get_post_meta($post_id, 'price_promo', true);
+                                echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                  <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
+                                    <div class="animation-bg">
+                                      <div class="table-img">
+                                        <div class="table-cell p-3 py-md-3 px-md-3 overflow-hidden">
+                                          '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto d-block')).' 
+                                        </div>
+                                      </div>
+                                      <div class="px-2 text-center">
+                                        <h4 class="title-product pt-3 position-relative">'. get_the_title() .'</h4>  
+                                        <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                                        <div class="price pb-2">';
+                                        if($price_promo) { echo '<del class="pr-2">'.$price_promo.'</del>'; }
+                                          echo'<strong>';if($price) { echo $price; } else { echo "Liên hệ";} echo '</strong>
+                                        </div>                                            
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>'; 
+                              }
+                            }
+                          echo '</div></div>';
                         }
                       ?>
-                      
                     </div>
                   </div>
                 </div>
               </div>
-            <?php } 
-          }  endif; ?>
+            <?php }
+          }  
+        endif; ?>
     </div>
   </div>
   <div class="py-5  bg-gray why-select">
@@ -174,7 +245,7 @@ get_header(); ?>
               <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid">                    
               <div class="media-body pl-2">
                 <h5 class="mt-0 mb-2">THANH TOÁN TÀI CHÍNH DỄ DÀNG</h5>
-                <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.          </div>
+                <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.</div>
               </div>
             </div>            
           </div>
@@ -236,7 +307,7 @@ get_header(); ?>
             
             ?>  
             <div class="col-12 py-3">
-              <div class="item item-block p-5">
+              <div class="item item-block p-5 p-sm-3 p-lg-5">
                 <div class="media align-items-center">
                   <div class="left-media text-center">
                     <div class="img-review mt-0 mb-3 mx-auto">
@@ -250,10 +321,6 @@ get_header(); ?>
                     <?php echo get_the_content(); ?>
                   </div>
                 </div>
-                <!-- <a href="<?php echo $link_videos; ?>" title="<?php echo get_the_title(); ?>" data-modal-video>
-                  <div class="bg-img mb-3 mb-md-4 position-relative rounded" style="background-image: url('<?php echo $thumb['0'] ?>')"><div class="icon-play"></div></div>
-                </a>    
-                <h3 class="title-h3 mt-3 mb-3 mb-md-4"><a href="<?php echo $link_videos; ?>" title="<?php echo get_the_title(); ?>" data-modal-video><?php echo get_the_title(); ?></a></h3> -->
               </div>
             </div>             
           <?php } 
@@ -285,7 +352,7 @@ get_header(); ?>
               $addres_room = get_post_meta($post_id, 'addres_room', true );
               ?>  
               <div class="col-6 col-sm-4 col-md-4 mt-4">
-                <div class="block-room py-5 px-5">
+                <div class="block-room py-4 p-md-4 p-lg-5">
                   <h5 class="mt-0 text-uppercase mb-3"><?php echo get_the_title();?></h5>
                   <div class="media">
                     <div class="icon-map"><i class="fa fa-map-marker" aria-hidden="true"></i></div>                  

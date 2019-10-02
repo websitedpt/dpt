@@ -1066,9 +1066,9 @@ function catalog_grid($name_category = '') {
 }
 function news_home($post_page = '3') {
 	$args = array(
+	'category_name' => 'tin-tuc',
 	'post_type' => 'post',
 	'post_status' => 'publish',
-	'category_slug' => 'tin-tuc',
 	'posts_per_page' => $post_page, 
 	);
 	$the_query = new WP_Query($args );
@@ -1081,7 +1081,7 @@ function news_home($post_page = '3') {
 			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
 			if ( has_post_thumbnail() ) {	
 				if($stt==1) { 									
-			        $string .= '<div class="col-12 col-sm-6 col-md-6 mb-3 mb-md-4 first-post wow fadeInLeft">
+			        $string .= '<div class="col-12 col-lg-6 mb-3 mb-md-4 first-post wow fadeInLeft">
 			          <div class="overflow-hidden rounded item-block text-center">
 			            <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">
 			              <div class="bg-img mb-3" style="background-image: url('.$thumb['0'].')"></div>
@@ -1095,7 +1095,7 @@ function news_home($post_page = '3') {
 			              <div class="descripton text-left">'. trim_text_to_words(get_the_content(), 350) .'</div>                  
 			            </div>            
 			          </div>              
-			        </div><div class="col-12 col-sm-6 col-md-6 wow fadeInRight">';
+			        </div><div class="col-12 col-lg-6 wow fadeInRight">';
 				} else { 
 		            $string .= '<div class="row mb-3 mb-md-4">
 			            <div class="col-6 pr-0">
@@ -2092,3 +2092,167 @@ function showroom_save($post_id) {
 	
 }
 add_action( 'save_post', 'showroom_save' );
+function login_redirect($redirect_to, $request, $user ) {
+    if (isset($user->roles) && is_array($user->roles)) {
+    	if (in_array('administrator', $user->roles)) {
+            $redirect_to =  home_url().'/wp-admin';
+        } else {
+        	$redirect_to =  home_url().'/thong-tin-ca-nhan/';
+    	}
+    }
+    return $redirect_to;
+}
+add_filter( 'login_redirect', 'login_redirect', 10, 3 );
+
+function add_fields_user($profile_fields){
+	$profile_fields['phone'] = 'Số điện thoại';
+	$profile_fields['user_address'] = 'Địa chỉ';
+	// $profile_fields['facebook'] = 'Facebook profile URL';
+	return $profile_fields;
+}
+add_filter('user_contactmethods', 'add_fields_user');
+
+
+
+
+
+/* Upload img Avarta */
+function my_custom_scripts(){
+	wp_enqueue_media();
+	wp_enqueue_script('my-custom-jquery', get_stylesheet_directory_uri().'/uploadavatar.js', array('jquery'), false, true );
+}
+add_action('admin_enqueue_scripts', 'my_custom_scripts');
+function bdsttp_profile_fields($user ) {
+	$profile_pic = ($user!=='add-new-user') ? get_user_meta($user->ID, 'bdsttppic', true): false;
+	if( !empty($profile_pic) ){
+			$image = wp_get_attachment_image_src($profile_pic, 'medium' );
+	} ?>
+<fieldset>
+<legend><?php _e('Ảnh đại diện', 'bdsttp') ?></legend>
+	<table class="form-table fh-profile-upload-options wpuf-table">
+			<tr>
+			<th><label for="uploadnd">Hình ảnh đại diện của bạn&nbsp;&nbsp;</label></th>
+					<td class="wp-core-ui nd">
+							<input type="button" data-id="bdsttp_image_id" data-src="bdsttp-img" class="button bdsttp-image" name="bdsttp_image" id="bdsttp-image" value="Tải ảnh lên" />
+							<input type="hidden" class="button" name="bdsttp_image_id" id="bdsttp_image_id" value="<?php echo !empty($profile_pic) ? $profile_pic : ''; ?>" />
+							<img id="bdsttp-img" src="<?php echo !empty($profile_pic) ? $image[0] : ''; ?>" style="<?php echo  empty($profile_pic) ? 'display:none;' :'' ?> width: 100px; height: auto; border:1px solid #eee;padding:2px;" />
+					</td>
+			</tr>
+	</table>
+	</fieldset>
+	<?php
+}
+add_action( 'show_user_profile', 'bdsttp_profile_fields' );
+add_action( 'edit_user_profile', 'bdsttp_profile_fields' );
+add_action( 'user_new_form', 'bdsttp_profile_fields' );
+function bdsttp_profile_update($user_id){
+	if( current_user_can('administrator') || current_user_can('editor') || current_user_can('author') || current_user_can('subscriber') || current_user_can('contributor')){
+			$profile_pic = empty($_POST['bdsttp_image_id']) ? '' : $_POST['bdsttp_image_id'];
+			update_user_meta($user_id, 'bdsttppic', $profile_pic);
+	}
+}
+add_action('profile_update', 'bdsttp_profile_update');
+add_action('user_register', 'bdsttp_profile_update');
+
+add_filter( 'get_avatar' , 'my_custom_avatar' , 1 , 5 );
+function my_custom_avatar($avatar, $id_or_email, $size, $default, $alt ) {
+	$user = false;
+	if ( is_numeric($id_or_email ) ) {
+			$id = (int) $id_or_email;
+			$user = get_user_by( 'id' , $id );
+	} elseif ( is_object($id_or_email ) ) {
+			if ( ! empty($id_or_email->user_id ) ) {
+					$id = (int) $id_or_email->user_id;
+					$user = get_user_by( 'id' , $id );
+			}
+	} else {
+			$user = get_user_by( 'email', $id_or_email );
+	}
+	if($user){
+			$custom_avatar  =   get_user_meta($user->data->ID, 'bdsttppic', true );
+
+			if( !empty($custom_avatar) ){
+					 
+					$image  =   wp_get_attachment_image_src($custom_avatar, 'medium');
+					if($image ){
+						$safe_alt = esc_attr($alt);
+						$avatar = "<img alt='{$safe_alt}' src='{$image[0]}' class='avatar photo' height='60px' width='60px' />";
+					}
+			}
+	}
+	return $avatar;
+}
+
+function insert_attachment($file_handler,$user_id,$setthumb='false') {
+    // check to make sure its a successful upload
+    if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK) __return_false();
+    require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+    require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+    $attach_id = media_handle_upload($file_handler, $user_id );
+ 
+    if ($setthumb) update_post_meta($user_id,'bdsttppic',$attach_id);
+    return $attach_id;
+}
+
+add_action('after_setup_theme', 'remove_admin_bar'); 
+function remove_admin_bar() {
+	if (current_user_can('subscriber') || current_user_can('author') || current_user_can('contributor') || current_user_can('editor') ) {
+	  show_admin_bar(false);
+	}
+}
+
+function upload_user_file($file = array() ) {
+    require_once( ABSPATH . 'wp-admin/includes/admin.php' );
+    $file_return = wp_handle_upload($file, array('test_form' => false ) );
+    if( isset($file_return['error'] ) || isset($file_return['upload_error_handler'] ) ) {
+        return false;
+    } else {
+        $filename = $file_return['file'];
+        $attachment = array(
+            'post_mime_type' => $file_return['type'],
+            'post_title' => preg_replace( '/\.[^.]+$/', '', basename($filename ) ),
+            'post_content' => '',
+            'post_status' => 'inherit',
+            'guid' => $file_return['url']
+        );
+        $attachment_id = wp_insert_attachment($attachment, $file_return['url'] );
+        require_once (ABSPATH . 'wp-admin/includes/image.php' );
+        $attachment_data = wp_generate_attachment_metadata($attachment_id, $filename );
+        wp_update_attachment_metadata($attachment_id, $attachment_data );
+        if( 0 < intval($attachment_id ) ) {
+            return $attachment_id;
+        }
+    }
+    return false;
+}
+
+function showTaxomi($id) {
+	$taxonomy_p = 'danh-muc-san-pham';
+	$get_field = new WP_Query(array(
+      'post_type' => 'sanpham',
+      'post_status' => 'publish',
+    ));
+
+	$cached_array = array();
+
+    if($get_field->have_posts()) {
+
+        while ($get_field->have_posts()) { 
+          $get_field->the_post(); 
+          $post_id = get_the_ID();
+          $value = get_post_meta($post_id, $id, true);
+          $value = trim($value);
+
+          if ($cached_array[$id] === NULL) {
+          	$cached_array[$id] = array();
+          }
+          
+          if($value && $cached_array[$id][$value] === NULL) {
+          	$cached_array[$id][$value] = 1;
+	      	echo "<option value='".$value."'>".$value."</option>";
+	      }
+      }
+
+  	}
+}
