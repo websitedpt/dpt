@@ -649,6 +649,26 @@ function register_settings(){
     register_setting( 'my-settings-group', 'google_plus_company' );
     register_setting( 'my-settings-group', 'instagram_company' );    
 }
+add_action( 'admin_footer', 'rv_custom_dashboard_widget' );
+function rv_custom_dashboard_widget(){if(get_current_screen()->base !== 'dashboard'){return;}?>
+ <div id="custom-id" class="welcome-panel" style="display: none;">
+ 	<h3 style="margin-top: 0;text-transform: uppercase">CHÀO MỪNG BẠN ĐẾN VỚI TRANG QUẢN TRỊ WEBSITE <?php echo get_bloginfo( 'name' ); ?>.</h3>
+	<p><strong>THÔNG TIN WEBSITE:</strong></p>
+	<p><?php echo bloginfo( 'name' ); ?> | <?php echo bloginfo( 'description' ); ?></p>
+	<p>Website được phát triển bởi <strong><a href="https://www.facebook.com/vanhoach.nguyen.7773">Nguyễn Văn Hoạch</a></strong>.</p>
+	<p><strong>THÔNG TIN LIÊN HỆ:</strong></p>
+	<p><strong>Web Developer</strong>:  Nguyễn Văn Hoạch</p>
+	<p><strong>Email</strong>: theearthsmall@gmail.com</p>
+	<p><strong>Phone</strong>: <a href="tel:0937956838">0937.956.838</a>&nbsp;|&nbsp;<a href="tel:0989084017">0989.084.017</a></p> 
+ </div>
+ <script>
+  jQuery(document).ready(function($){$('#welcome-panel').after($('#custom-id').show());});
+ </script>
+<?php }
+add_action( 'admin_bar_menu', 'remove_wp_logo', 999 );
+function remove_wp_logo($wp_admin_bar ) {
+	$wp_admin_bar->remove_node( 'wp-logo' );
+}
 function wpdocs_register_my_custom_menu_page(){
 	 // add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
     add_menu_page('Config Page Custom Title','Cấu Hình Trang Tùy Chỉnh', 'manage_options', 'custompage','my_custom_menu_page','dashicons-admin-generic',90); 

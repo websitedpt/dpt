@@ -92,7 +92,7 @@
     <div class="header-top py-2 py-md-2 py-lg-4">
       <div class="container d-flex flex-wrap align-items-center">
         <a class="navbar-brand logo mx-md-auto" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
-          <img src="<?php echo get_template_directory_uri();?>/assets/images/logo.png" alt="<?php echo get_bloginfo( 'name' );?>">
+          <img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/logo.png" alt="<?php echo get_bloginfo( 'name' );?>">
         </a>
         <button class="navbar-toggler btn-menu-top d-lg-none ml-auto" type="button"><span></span><span></span><span></span></button>
 
@@ -126,7 +126,7 @@
         <div class="collapse navbar-collapse">
           <div class="d-lg-flex align-items-center w-100 pb-4 pb-md-0">   
             <a class="navbar-brand logo-sticky d-none mr-3" href="<?php echo get_bloginfo( 'url' );?>">
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/logo-sticky.png" alt="<?php echo get_bloginfo( 'name' );?>">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/logo-sticky.png" alt="<?php echo get_bloginfo( 'name' );?>">
             </a>                          
             <?php if ( has_nav_menu( 'top' ) ) : ?>               
               <?php wp_nav_menu( array(
