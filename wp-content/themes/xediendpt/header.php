@@ -101,7 +101,7 @@
             <div class="d-flex align-items-center px-3 px-md-0">
               <div class="search-area d-inline-block">
                 <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">  
-                  <input id="<?php echo $unique_id; ?>" type="search" class="search-field input-searchbox" placeholder="<?php echo esc_attr_x( 'Search …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s">
+                  <input id="<?php echo $unique_id; ?>" type="search" class="search-field input-searchbox" placeholder="<?php echo esc_attr_x( 'Tìm kiếm …', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s">
                   <div class="actions"><button class="btn btn-searchbox" type="submit" value="<?php echo esc_attr_x( 'Search', 'submit button' ) ?>">Tìm kiếm</button></div>
                 </form>    
               </div>                      
