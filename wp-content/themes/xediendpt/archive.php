@@ -104,6 +104,8 @@ get_header();
                 while ($p_cat->have_posts()) { 
                   $p_cat->the_post(); 
                   $post_id = get_the_ID();
+                  $price = get_post_meta($post_id, 'price', true);
+                  $price_promo = get_post_meta($post_id, 'price_promo', true);
                   echo '<div class="col-md-4 my-3 box-1">
                     <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
                       <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
@@ -112,6 +114,15 @@ get_header();
                       <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
                         '. get_the_title() .'
                       </h3>
+                      <div class="text-center">
+                        <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                        <div class="price pb-2">';
+                          if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
+                          } else  {
+                            echo'<strong>';if($price) { echo $price.'<sup>(vnđ)</sup>'; } else { echo "Liên hệ";} echo '</strong>';
+                          }
+                        echo '</div>                                            
+                      </div>
                     </a>
                   </div>'; 
                 }
@@ -138,15 +149,26 @@ get_header();
                 while ($q_products->have_posts()) { 
                   $q_products->the_post(); 
                   $post_id = get_the_ID();
+                  $price = get_post_meta($post_id, 'price', true);
+                  $price_promo = get_post_meta($post_id, 'price_promo', true);
                 ?>
                   <div class="col-md-4 my-3 box-1">
                     <a href="<?php echo get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>">
                       <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
                         <?php if(has_post_thumbnail()){ echo get_the_post_thumbnail($post_id, 'full', array( 'class' => 'img-fluid mx-auto')); } ?>
                       </div>
-                      <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
+                      <h3 class="mt-3 mb-2 title-h3 text-capitalize text-center text-sm-left">
                         <?php echo get_the_title(); ?>
                       </h3>
+                      <div class="text-center">
+                        <div class="review-star mb-2"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                        <div class="price pb-2">
+                         <?php if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
+                          } else  {
+                            echo'<strong>';if($price) { echo $price.'<sup>(vnđ)</sup>'; } else { echo "Liên hệ";} echo '</strong>';
+                          }
+                        echo '</div>'; ?>                                          
+                      </div>
                     </a>
                   </div>
                 <?php }
