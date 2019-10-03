@@ -105,7 +105,13 @@ get_header();
                   $p_cat->the_post(); 
                   $post_id = get_the_ID();
                   $price = get_post_meta($post_id, 'price', true);
+                  if($price) {
+                    $price = number_format($price);
+                  }
                   $price_promo = get_post_meta($post_id, 'price_promo', true);
+                  if($price_promo) {
+                    $price_promo = number_format($price_promo);
+                  }
                   echo '<div class="col-md-4 my-3 box-1">
                     <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
                       <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
@@ -150,7 +156,13 @@ get_header();
                   $q_products->the_post(); 
                   $post_id = get_the_ID();
                   $price = get_post_meta($post_id, 'price', true);
+                  if($price) {
+                    $price = number_format($price);
+                  }
                   $price_promo = get_post_meta($post_id, 'price_promo', true);
+                  if($price_promo) {
+                    $price_promo = number_format($price_promo);
+                  }
                 ?>
                   <div class="col-md-4 my-3 box-1">
                     <a href="<?php echo get_the_permalink(); ?>" title="<?php echo get_the_title(); ?>">

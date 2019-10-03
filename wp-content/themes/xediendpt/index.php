@@ -153,7 +153,13 @@ get_header(); ?>
                                       $q_Post->the_post(); 
                                       $post_id = get_the_ID();
                                       $price = get_post_meta($post_id, 'price', true);
+                                      if($price) {
+                                        $price = number_format($price);
+                                      }
                                       $price_promo = get_post_meta($post_id, 'price_promo', true);
+                                      if($price_promo) {
+                                        $price_promo = number_format($price_promo);
+                                      }
                                       echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
                                         <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
                                           <div class="animation-bg">
@@ -202,7 +208,13 @@ get_header(); ?>
                                 $post_prod->the_post(); 
                                 $post_id = get_the_ID();
                                 $price = get_post_meta($post_id, 'price', true);
+                                if($price) {
+                                  $price = number_format($price);
+                                }
                                 $price_promo = get_post_meta($post_id, 'price_promo', true);
+                                if($price_promo) {
+                                  $price_promo = number_format($price_promo);
+                                }
                                 echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
                                   <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
                                     <div class="animation-bg">
