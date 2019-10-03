@@ -43,70 +43,48 @@ get_header(); global $wpdb;?>
               'posts_per_page' => '-1',
               'order' => 'ASC',
               'meta_query' => array(
-                'relation' => 'OR',
-                  array(
-                    'key' => 'hangxe',
-                    'value' => $hangxe,
-                    'compare' => 'LIKE'
-                  ),
+                'relation' => 'AND',
+                array(
+                  'key' => 'hangxe',
+                  'value' => $hangxe,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'loaixe',
-                    'value' => $loaixe,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'loaixe',
+                  'value' => $loaixe,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'xuatxu',
-                    'value' => $xuatxu,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'xuatxu',
+                  'value' => $xuatxu,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'namsanxuat',
-                    'value' => $namsanxuat,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'namsanxuat',
+                  'value' => $namsanxuat,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'tinhtrang',
-                    'value' => $tinhtrang,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'tinhtrang',
+                  'value' => $tinhtrang,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'color',
-                    'value' => $color,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'color',
+                  'value' => $color,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'price',
-                    'value' => $price,
-                    'compare' => 'LIKE'
-                  )
+                  'key' => 'price',
+                  'value' => $price,
+                  'compare' => 'LIKE'
                 ),
                 array(
-                  'relation' => 'OR',
-                  array(
-                    'key' => 'model',
-                    'value' => $model,
-                    'compare' => 'LIKE'
-                  )
-                ),
-                            
+                  'key' => 'model',
+                  'value' => $model,
+                  'compare' => 'LIKE'
+                )
+              ),                            
             );
 
             $timKiem = new WP_Query( $post );
