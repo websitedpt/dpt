@@ -59,7 +59,7 @@
           <div class="row align-items-center">
             <div class="col-12 col-md-5 order-md-1 text-md-right mb-2 mb-md-0">
               <div class="follow">
-                <span class="pr-4">Follow Us: </span>
+                <span class="pr-4">Theo dõi chúng tôi: </span>
                 <ul class="list-inline social-icon d-inline-block mb-0">
                   <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
                   <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>

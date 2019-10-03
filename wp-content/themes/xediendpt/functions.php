@@ -1809,7 +1809,7 @@ function newsLetter() {?>
 		<form method="post" accept-charset="utf-8" enctype="multipart/form-data" id="subscribe-form"> 
 	      <div class="pb-2">Đăng Ký Nhận Bản Tin</div>
 	      <div class="position-relative">
-	        <input type="email" required="" name="mail_subscribe" class="form-control mail_subscribe pr-4 pr-md-5" placeholder="Enter your Email">
+	        <input type="email" required="" name="mail_subscribe" class="form-control mail_subscribe pr-4 pr-md-5" placeholder="Nhập Email của bạn!" data-error="Bạn chưa nhập Email!">
 	        <button class="btn" type="submit" name="btn-subscribe" id="btn-subscribe"><i class="fa fa-angle-right" aria-hidden="true"></i></button>                        
 	      </div>                   
 	    </form>

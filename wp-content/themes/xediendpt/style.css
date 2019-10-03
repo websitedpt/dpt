@@ -245,7 +245,7 @@ body a:focus,body a:hover {
 	color: #298ac7;
 	outline: none;
 }
-.header {    box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);}
+.header {box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);}
 .header.sticky {
     background: #fff;
     position: fixed;
@@ -1891,6 +1891,7 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	}
 }
 @media(max-width: 1111px) {
+	.header{ position: relative;z-index: 9999;   }
 	.sticky #top-menu.navbar-nav li, .home .sticky #top-menu.navbar-nav li {
 	    padding-left: 15px;
 	    padding-right: 15px;
@@ -1975,6 +1976,7 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	#top-menu.navbar-nav li a i {float:right;width: 25px;text-align: right;}
 }
 @media(max-width: 767px) {
+	.header.sticky .logo img {max-height: 50px;}
 	#totop {bottom: 85px}
 	#crumbs {font-size: 13px;}
 	.title-post {font-size: 18px;}
@@ -2023,8 +2025,23 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	.line-2 {margin: 10px auto;}
 }
 @media(max-width: 400px) {
+	.header-top-one {font-size: 12px}
 	.view-all {
 	    font-size: 13px;
 	}
 	.navbar-brand.logo {max-width: 50%}
+	.header .support::before {
+	    width: 26px;
+	    height: 24px;
+	}
+	.header .hotline::before {
+	    width: 24px;
+	    height: 24px;
+	}
+	.header .support, .header .hotline {
+	    padding-left: 30px;
+	}
+	.header .support a, .header .hotline a {
+	    font-size: 13px;
+	}
 }
