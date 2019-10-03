@@ -1,9 +1,15 @@
 <?php 
 	$postid = get_the_ID(); 
-	$price = get_post_meta($postid, 'price', true);
 	$slider = get_post_meta($postid, 'tdc_gallery_id', true);
 
-	$price_promo = get_post_meta($postid, 'price_promo', true);
+	$price = get_post_meta($postid, 'price', true);
+	  if($price) {
+	    $price = number_format($price);
+	  }
+	  $price_promo = get_post_meta($postid, 'price_promo', true);
+	  if($price_promo) {
+	    $price_promo = number_format($price_promo);
+	  }
 	$color = get_post_meta($postid, 'color', true); 
 	$model = get_post_meta($postid, 'model', true);
 	$tinhtrang = get_post_meta($postid, 'tinhtrang', true);
