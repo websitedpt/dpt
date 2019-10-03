@@ -284,7 +284,7 @@ body a:focus,body a:hover {
 .banner-home .slick-slider:hover .slick-prev {
     right: 15px;
 }
-.banner-general>div {position: relative;z-index: 5;    height: 100%;}
+.banner-general>div {position: relative;z-index: 5; }
 .page-title {
 	color: #fff;
 	font-size: 35px;
@@ -452,10 +452,10 @@ body a:focus,body a:hover {
 .page-search article .link-more {font-style: italic}
 .page-search .navigation.pagination svg {display: none}
 #crumbs {
-	position: absolute;
-	bottom: 15px;
     font-size: 15px;
-    color: rgba(255,255,255,.53);
+    color: #9fa4af;
+    border-bottom: 1px dashed #eee;
+    background: #fff;
 }
 .style-i {
 	font-size: 15px;
@@ -465,16 +465,17 @@ body a:focus,body a:hover {
 	color: #cb3435
 }
 #crumbs i {
-    color: #cb3435;
+    color: #9fa4af;
     padding-left: 10px;
     padding-right: 10px;
 }
 #crumbs i.fa-home {
     padding-left: 0;
+    color: #cb3435;
 }
 #crumbs a {
     font-weight: bold;
-    color: #cb3435;
+    color: #0077bd;
 }
 .header-contact-right {font-size: 15px;font-weight: bold}
 .header-contact-right .icon{
@@ -988,7 +989,7 @@ body a:focus,body a:hover {
 	color: #444	
 }
 .box-3 li:hover a  {color: #0077bd}
-.price del {color: #505050;    font-size: 15px;}
+.price .price-promo {color: #505050;    font-size: 15px;}
 .wrap-price .price {font-size: 20px;}
 .wrap-price del {color: #505050;}
 .content-product .title-block {font-size: 18px;}
@@ -1436,7 +1437,7 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
     border: 1px solid #fff;
     border-radius: 5px;
     position: fixed;
-    bottom: 25px;
+    bottom: 100px;
     right: 15px;
     z-index: 999;
     transition: all .5s;
@@ -1974,6 +1975,8 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 	#top-menu.navbar-nav li a i {float:right;width: 25px;text-align: right;}
 }
 @media(max-width: 767px) {
+	#totop {bottom: 85px}
+	#crumbs {font-size: 13px;}
 	.title-post {font-size: 18px;}
 	.wrap-content .content-list h2 {font-size: 18px;}
 	.list-tabs li a {

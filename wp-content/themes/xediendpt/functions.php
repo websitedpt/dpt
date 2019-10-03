@@ -742,7 +742,7 @@ function my_custom_menu_page() { ?>
 <?php } }
 function breadcrumb() {
     global $post; ?>
-    <div id="crumbs" class="list-crumb text-capitalize">
+    <div id="crumbs" class="list-crumb text-capitalize pb-1">
     <?php 
     	$name = 'Trang chủ'; 
 		

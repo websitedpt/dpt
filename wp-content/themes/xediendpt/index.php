@@ -166,9 +166,11 @@ get_header(); ?>
                                               <h4 class="title-product pt-3 position-relative">'. get_the_title() .'</h4>  
                                               <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
                                               <div class="price pb-2">';
-                                              if($price_promo) { echo '<del class="pr-2">'.$price_promo.'</del>'; }
-                                                echo'<strong>';if($price) { echo $price; } else { echo "Liên hệ";} echo '</strong>
-                                              </div>                                            
+                                              if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
+                                            } else  {
+                                                echo'<strong>';if($price) { echo $price.'<sup>(vnđ)</sup>'; } else { echo "Liên hệ";} echo '</strong>';
+                                              }
+                                              echo '</div>                                            
                                             </div>
                                           </div>
                                         </a>
@@ -213,9 +215,11 @@ get_header(); ?>
                                         <h4 class="title-product pt-3 position-relative">'. get_the_title() .'</h4>  
                                         <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
                                         <div class="price pb-2">';
-                                        if($price_promo) { echo '<del class="pr-2">'.$price_promo.'</del>'; }
-                                          echo'<strong>';if($price) { echo $price; } else { echo "Liên hệ";} echo '</strong>
-                                        </div>                                            
+                                        if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
+                                          } else  {
+                                              echo'<strong>';if($price) { echo $price.'<sup>(vnđ)</sup>'; } else { echo "Liên hệ";} echo '</strong>';
+                                            }
+                                            echo '</div>                                            
                                       </div>
                                     </div>
                                   </a>

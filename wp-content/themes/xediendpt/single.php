@@ -10,16 +10,16 @@
  * @version 1.0
  */
 get_header(); $Catalog = get_the_category();$catalogName = $Catalog[0]->cat_name; ?>
-<div class="banner banner-general  position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
-  <div class="container text-center d-flex flex-wrap align-items-center position-relative">
+<div class="banner banner-general  d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
+  <div class="container text-center">
       <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title(); ?></h1>
-      <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
   </div>
 </div>
 <div class="content-area area-post py-5">
 	<div class="container">	
 		<div class="row">
 			<div class="col-sm-8 col-md-9">
+				<?php if(function_exists('breadcrumb')){  echo '<div class="mb-4">'; breadcrumb();  echo '</div>';  } ?> 
 				<?php 
 					/* Start the Loop */
 					while ( have_posts() ) : the_post();

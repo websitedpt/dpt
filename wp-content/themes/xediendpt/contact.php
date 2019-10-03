@@ -1,17 +1,17 @@
 <?php /*Template Name: Contact Layout*/ get_header(); $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' ); ?>
-<div class="banner banner-general position-relative" style="background-image: url('<?php if($thumb) {
+<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php if($thumb) {
   echo $thumb['0'];
 } else {
   echo get_template_directory_uri()."/assets/images/bg_contact.jpg";
 } ?>')">
-  <div class="container text-center d-flex flex-wrap align-items-center position-relative">
-      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title();?></h1>
-      <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
+  <div class="container text-center">
+      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title();?></h1>      
   </div>
 </div>
 
 <div class="container py-5 contact-form overflow-hidden"> 
-  <div class="row mb-4 mb-md-5 wow fadeInDown">
+  <?php if(function_exists('breadcrumb')){  echo '<div class="mb-4 mb-md-5">'; breadcrumb();  echo '</div>';  } ?>  
+  <div class="row mb-4 mb-md-5 wow fadeInDown ">
     <div class="col-md-4 mb-3 mb-md-0">
       <div class="box-contacts-icon d-flex align-items-center justify-content-center p-4">
         <div class="text-center">

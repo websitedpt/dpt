@@ -65,9 +65,18 @@
 	        <div class="col-md-6">
 	            <?php the_title( '<h3 class="text-capitalize title-block mb-4 d-none d-md-block"><strong>', '</strong></h3>' );?>	
 	            <div class="review-star mb-3"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-	            <div class="wrap-price mb-2"><strong class="pr-2">Giá:</strong> <?php if($price_promo) { echo'<del class="pr-1">'.$price_promo.'<sup>(vnđ)</sup></del>';} ?>
-	            	<span class="price"><strong> 
-	             	<?php if($price) { echo $price.'<sup>(vnđ)</sup>';} else { echo "Liên hệ";}?></strong></span>
+	            <div class="wrap-price mb-2"><strong class="pr-2">Giá:</strong> 
+	            	<?php 
+	            		if($price_promo) { 
+		            		if($price) {
+		            			echo'<del>'.$price.'</del><sup>(vnđ)</sup>';
+		            			echo'<span class="price pl-2"><strong>'.$price_promo.'</strong><sup>(vnđ)</sup></span>';
+		            		} else {echo "Liên hệ";}	            		
+	            		} else { ?>
+	            			<span class="price"><strong> 
+	             			<?php if($price) { echo $price.'<sup>(vnđ)</sup>';} else { echo "Liên hệ";} ?></strong></span>
+	            		<?php  } ?>
+	            	
 	            </div>
 	            <div class="line-1 mb-2"></div>
 	            <div class="mb-3">

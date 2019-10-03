@@ -32,34 +32,33 @@ get_header();
 	$loaixe = get_post_meta($postid, 'loaixe', true);
 
 ?>
-<div class="banner banner-general  position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
-	<div class="container text-center d-flex flex-wrap align-items-center position-relative">
+<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
+	<div class="container text-center ">
         <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title(); ?></h1>
-        <div id="crumbs" class="list-crumb text-capitalize">
-		    <i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo get_site_url();?>" title="">Trang chủ</a>
-		    <?php foreach ( $terms as $child ) {
-				if($child->parent == 0) {
-					echo '<i class="fa fa-angle-double-right"></i>';
-			  		echo '<a href="' . get_term_link( $child->name, $taxonomy_name) . '">' . $child->name . '</a>';
-				}
-			}
-			foreach ( $terms as $child ) {
-				if($child->parent != 0) {
-					echo '<i class="fa fa-angle-double-right"></i>';
-					echo '<a href="' . get_term_link( $child->name, $taxonomy_name) . '">' . $child->name . '</a>';
-				}
-			}
-			echo '<i class="fa fa-angle-double-right"></i>';
-			echo get_the_title();
-			?>
-		</div>
     </div>
 </div>
-
-<div class="content-area area-post py-5">
+<div class="content-area area-post py-4 py-md-5">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-lg-9 wow fadeInUp">	
+			<div class="col-md-8 col-lg-9 wow fadeInUp">
+				<div id="crumbs" class="list-crumb text-capitalize pb-1 mb-4 mb-md-5">
+				    <i class="fa fa-home" aria-hidden="true"></i><a href="<?php echo get_site_url();?>" title="">Trang chủ</a>
+				    <?php foreach ( $terms as $child ) {
+						if($child->parent == 0) {
+							echo '<i class="fa fa-angle-double-right"></i>';
+					  		echo '<a href="' . get_term_link( $child->name, $taxonomy_name) . '">' . $child->name . '</a>';
+						}
+					}
+					foreach ( $terms as $child ) {
+						if($child->parent != 0) {
+							echo '<i class="fa fa-angle-double-right"></i>';
+							echo '<a href="' . get_term_link( $child->name, $taxonomy_name) . '">' . $child->name . '</a>';
+						}
+					}
+					echo '<i class="fa fa-angle-double-right"></i>';
+					echo get_the_title();
+					?>
+				</div>
 				<div class="pr-lg-4">
 			        <?php 
 						/* Start the Loop */

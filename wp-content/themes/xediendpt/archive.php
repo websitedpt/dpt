@@ -23,17 +23,17 @@ get_header();
     $paged = 1;
   }   
 ?>
-<div class="banner banner-general position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
-  <div class="container text-center d-flex flex-wrap align-items-center position-relative">
-      <h1 class="text-uppercase page-title mb-3 d-block text-center w-100"><?php echo $taxonomy->name; ?></h1>
-      <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
+<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
+  <div class="container text-center ">
+      <h1 class="text-uppercase page-title mb-3 d-block text-center w-100"><?php echo $taxonomy->name; ?></h1>      
   </div>
 </div>
 
 <div class="py-5">
-  <div class="container">
+  <div class="container">   
     <div class="row">
       <div class="col-md-8 col-lg-9 wow fadeInUp">    
+        <?php if(function_exists('breadcrumb')){  echo '<div class="mb-4 mb-md-5">'; breadcrumb();  echo '</div>';  } ?> 
         <?php if($taxonomy_name == 'danh-muc-san-pham') {
           if($taxonomy->parent == 0) {
             echo '<div class="row">';
