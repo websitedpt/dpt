@@ -14,8 +14,8 @@
 <?php wp_head(); //session_start();
 
   if (is_home() || is_front_page()) {?>
-      <meta property="og:title" content="The Crypto Sight - Your Daily Crypto Insight." />
-      <meta property="og:description" content="Brings you the latest news on cryptocurrency and technology. TheCryptoSight covers all aspects of crypto asset and blockchain technology." />
+      <meta property="og:title" content="Xe Điện Đại Phát Tín - Nơi gửi trọn niềm tin" />
+      <meta property="og:description" content="Xe điện, ô tô điện Đại Phát Tín, nhà cung cấp các loại xe điện chở khách, xe điện chở hàng, xe điện sân golf và ô tô điện số 1 tại Việt Nam, chất lượng tốt" />
       <meta property="og:image" content="<?php echo get_template_directory_uri();?>/assets/images/banner-1.jpg"> 
     <?php } else {     
     echo '<meta property="og:image" content="'. get_the_post_thumbnail_url(get_the_ID(),'full')   .'" />';    
