@@ -847,6 +847,7 @@ function sdt_remove_ver_css_js( $src ) {
   $src = remove_query_arg( 'ver', $src );
  return $src;
 }
+remove_action( 'wp_head', 'wp_generator' );
 
 // add_filter( 'wp_nav_menu_items','add_search_box', 9, 2 );
 // function add_search_box( $items, $args ) {
