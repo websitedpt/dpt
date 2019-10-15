@@ -1363,7 +1363,8 @@ function create_posttype_sanpham() {
 			'public' => true,
 			'hierarchical' => true,
 			'show_ui' => true,
-			'rewrite' => array( 'slug' => 'danh-muc-san-pham', 'hierarchical' => true, 'with_front' => false ),
+			//'rewrite' => array( 'slug' => 'danh-muc-san-pham', 'hierarchical' => true, 'with_front' => false ),
+			'rewrite' => array( 'slug' => '/', 'hierarchical' => true, 'with_front' => false ),
 		)
 	);
 }
@@ -2109,13 +2110,14 @@ add_action( 'add_meta_boxes', 'showroom_meta_box' );
 
 function showroom_output($post) {
 	$addres_room = get_post_meta($post->ID,'addres_room',true);	
-	//$content_review = get_post_meta($post->ID,'content_review',true);
+	$mapview = get_post_meta($post->ID,'mapview',true);
 	wp_nonce_field( 'showroom_review', 'showroom_nonce' );?>
 	<p>
 		<label for="addres_room">Địa chỉ </label><br>
 		<input type="text" style="height:38px;width: 100%" id="addres_room" placeholder="Nhập địa chỉ" name="addres_room" value="<?php echo esc_attr($addres_room); ?>"/>
  	</p>
- 	
+ 	<p><textarea style="width: 100%" name="mapview" cols="10" rows="6" class="form-control" placeholder="Nhập Src Iframe của bản đồ"><?php echo esc_attr($mapview); ?></textarea></p>
+
 <?php }
 function showroom_save($post_id) {
 	$showroom_nonce = $_POST['showroom_nonce'];
@@ -2124,6 +2126,8 @@ function showroom_save($post_id) {
 	if( !wp_verify_nonce($showroom_nonce, 'showroom_review' ) ) { return; }
 	$addres_room = sanitize_text_field($_POST['addres_room'] );	
 	update_post_meta($post_id, 'addres_room', $addres_room);
+	$mapview = sanitize_text_field($_POST['mapview'] );	
+	update_post_meta($post_id, 'mapview', $mapview);
 	
 }
 add_action( 'save_post', 'showroom_save' );

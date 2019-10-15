@@ -67,7 +67,7 @@ get_header(); ?>
     <div class="container py-4 py-md-5">
       <div class="row align-items-center">
         <div class="col-12 col-md-6 mb-4 mb-md-0"> 
-          <div class="wow fadeInLeft pr-md-4">
+          <div class="pr-md-4">
             <h3 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex align-items-center">Về Chúng Tôi!</h3>
             <p>Xe điện Đại Phát Tín là đơn vị cung cấp xe ô tô điện chính hãng tại thị trường Việt Nam. Hoạt động kinh doanh chính của chúng tôi hiện nay là phân phối, cung ứng dịch vụ bảo trì sửa chữa và cung cấp phụ tùng xe ô tô điện. Sản xuất và kinh doanh xe tải điện nhập khẩu nguyên chiếc & đóng thùng xe tải điện.</p>
             <p>Hiện nay, xe điện Đại Phát tín là một trong những nhà nhập khẩu lớn xe ô tô điện chính hãng. Với nhiều mẫu mã đa dạng, đem lại cho người dân Việt Nam những sản phẩm xe điện bốn bánh đa dạng, chất lượng giá cả hợp lý.</p>
@@ -75,7 +75,7 @@ get_header(); ?>
           </div>
         </div>
         <div class="col-12 col-md-6">
-          <div class="wow fadeInRight">
+          <div class="">
             <div class="img-wrap img-decoration">
               <div class="bg-img" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/showroom-xe-dien-dai-phat-tin.jpg')">
               </div>
@@ -88,22 +88,27 @@ get_header(); ?>
   
   <div class="py-5 prod-home">
     <div class="container pt-4 pb-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-4 pb-4 text-center wow fadeInDown">Sản Phẩm</h3>
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-4 pb-4 text-center">Sản Phẩm</h3>
     </div>
     <div class="container">
-      <?php $taxonomy_prod = 'danh-muc-san-pham'; $terms = get_terms($taxonomy_prod); 
+      <?php $taxonomy_prod = 'danh-muc-san-pham'; //$terms = get_terms($taxonomy_prod); 
+      $terms = get_terms(array(
+        'taxonomy' => $taxonomy_prod,
+        'orderby' => 'ID',
+        'order' => 'ASC' 
+      ));
         if ( $terms && !is_wp_error( $terms ) ) : 
           foreach ( $terms as $term ) {
-            if($term->parent == 0) {
+            if($term->parent == 0) { 
               $term_children = get_term_children($term->term_id,$taxonomy_prod); ?> 
               <div class="row mb-4">
                 <div class="col-12">   
-                  <div class="wow fadeInUp" data-wow-duration="2s">    
+                  <div>    
                     <div class="title-block title-b-3 position-relative line-bg-3 text-uppercase mt-2 mb-5 pb-2 d-flex align-items-center flex-wrap"><?php echo $term->name; ?>
                       <div class="ml-md-auto d-flex flex-wrap align-items-center">
                         <ul class="list-inline list-tabs mb-0 mr-md-4 nav" role="tablist">
                           <?php
-                            $stt= 1;
+                            $stt= 1;                            
                             foreach ( $term_children as $child ) { 
                               $term_child = get_term_by('id', $child, $taxonomy_prod );
                               if($term_child->count > 0) {
@@ -121,15 +126,16 @@ get_header(); ?>
                       </div>
                     </div>
                     <div class="tab-content">                      
-                      <?php
-                        if($term_child) {
+                      <?php 
+                        if($term_children) {
                           $pst= 1;
                           foreach ( $term_children as $child ) {    
                             $term_child = get_term_by('id', $child, $taxonomy_prod );
                             //$image_id = get_term_meta ($term_child->term_id, 'category-image-id', true );
                             //$banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
                              if($term_child->count > 0) {                            
-                              //if($term_child->count == 1) {
+                              //if($term_child->count == 1) {                              
+                              if($term->term_id == 14) {
                                 $q_Post = new WP_Query(array(
                                   'post_type' => 'sanpham',
                                   'post_status' => 'publish',
@@ -143,6 +149,21 @@ get_header(); ?>
                                       )
                                    )
                                 ));
+                              } else {
+                                $q_Post = new WP_Query(array(
+                                  'post_type' => 'sanpham',
+                                  'post_status' => 'publish',
+                                  'posts_per_page' => '4',
+                                  'tax_query' => array(
+                                      array(
+                                          'taxonomy' => $term->taxonomy,
+                                          'field' => 'slug',
+                                          'terms' => $term_child->slug,
+                                          'operator' => 'IN'
+                                      )
+                                   )
+                                ));                                
+                              }
                                 $active1 ='';
                                 if($pst==1) {
                                   $active1 ='active';
@@ -188,11 +209,11 @@ get_header(); ?>
                               $pst ++;
                             }                           
                           }
-                        } else {
+                        } else {                          
                           $post_prod = new WP_Query(array(
                             'post_type' => 'sanpham',
                             'post_status' => 'publish',
-                            'posts_per_page' => '8',
+                            'posts_per_page' => '4',
                             'tax_query' => array(
                                 array(
                                     'taxonomy' => $term->taxonomy,
@@ -251,50 +272,50 @@ get_header(); ?>
     </div>
   </div>
   <div class="py-4 py-md-5 bg-gray why-select">
-    <div class="container pt-4 pb-3 overflow-hidden wow zoomIn">
+    <div class="container pt-4 pb-3 overflow-hidden">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
       <div class="row">
-        <div class="col-12 col-sm-6 mb-4">
-          <div class="box-select p-5">
-            <div class="media">
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid">                    
-              <div class="media-body pl-2">
-                <h5 class="mt-0 mb-2">THANH TOÁN TÀI CHÍNH DỄ DÀNG</h5>
-                <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.</div>
-              </div>
-            </div>            
-          </div>
-        </div>
-        <div class="col-12 col-sm-6 mb-4">
-          <div class="box-select p-5">
-            <div class="media">
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-2.png" alt="" class="mr-3 img-fluid">                    
-              <div class="media-body pl-2">
-                <h5 class="mt-0 mb-2">THƯƠNG HIỆU NỔI TIẾNG</h5>
-                <div>Với một sự lựa chọn những hãng xe điện nổi tiếng và uy tín trên Thế Giới.</div>
-              </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">THANH TOÁN TÀI CHÍNH DỄ DÀNG</h5>
+              <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.</div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 mb-4 mb-4 mb-sm-0">
-          <div class="box-select p-5">
-            <div class="media">
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-3.png" alt="" class="mr-3 img-fluid">                    
-              <div class="media-body pl-2">
-                <h5 class="mt-0 mb-2">ĐƯỢC TÍN NHIỆM BỞI HÀNG NGHÌN NGƯỜI</h5>
-                <div>Có 10 đơn đặt hàng mới mỗi ngày. 350 lượt truy cập mỗi tháng và là nơi vô cùng tin cậy của hàng nghìn Khách Hàng.        </div>
-              </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-2.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">THƯƠNG HIỆU NỔI TIẾNG</h5>
+              <div>Với một sự lựa chọn những hãng xe điện nổi tiếng và uy tín trên Thế Giới.</div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6">
-          <div class="box-select p-5">
-            <div class="media">
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-4.png" alt="" class="mr-3 img-fluid">                    
-              <div class="media-body pl-2">
-                <h5 class="mt-0 mb-2">DỊCH VỤ BẢO HÀNH BẢO DƯỠNG XE</h5>
-                <div>Bộ phận dịch vụ của chúng tôi bảo dưỡng xe của bạn để giữ an toàn trên đường trong nhiều năm nữa.</div>
-              </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-3.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">ĐƯỢC TÍN NHIỆM BỞI HÀNG NGHÌN NGƯỜI</h5>
+              <div>Có 10 đơn đặt hàng mới mỗi ngày. 350 lượt truy cập mỗi tháng và là nơi vô cùng tin cậy của hàng nghìn Khách Hàng.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-4.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">DỊCH VỤ BẢO HÀNH BẢO DƯỠNG XE</h5>
+              <div>Bộ phận dịch vụ của chúng tôi bảo dưỡng xe của bạn để giữ an toàn trên đường trong nhiều năm nữa.</div>
             </div>
           </div>
         </div>
@@ -304,7 +325,7 @@ get_header(); ?>
 
   <div class="py-4 py-md-5 review-custome">
     <div class="container pt-4 pb-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 mb-md-5 pb-4 text-center wow fadeInDown">Đánh giá khách hàng</h3>
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 mb-md-5 pb-4 text-center">Đánh giá khách hàng</h3>
       <?php 
         $post_news_videos = new WP_Query(array(
           'post_type' => 'review',
@@ -312,7 +333,7 @@ get_header(); ?>
           'posts_per_page' => '6',          
         ));
         if($post_news_videos->have_posts()) {
-          echo '<div class="row wow fadeInUp" data-review>';
+          echo '<div class="row" data-review>';
           while ($post_news_videos->have_posts()) {
             $post_news_videos->the_post(); 
             $post_id = get_the_ID();
@@ -346,40 +367,64 @@ get_header(); ?>
   </div>
   <div class="py-4 py-md-5 news-home bg-gray">
     <div class="container pt-4 pb-3">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center wow fadeInDown">Tin tức</h3>
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center">Tin tức</h3>
       <?php echo news_home();?>
     </div>
   </div>
   <div class="show-room py-4 py-md-5">
-      <div class="container pt-4 pb-3 overflow-hidden">
-        <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 pb-4 text-center wow fadeInDown">Hệ thống showroom</h3>
-        <?php 
-          $post_news_videos = new WP_Query(array(
-            'post_type' => 'showroom',
-            'post_status' => 'publish',
-            'posts_per_page' => '-1',          
-          ));
-          if($post_news_videos->have_posts()) {
-            echo '<div class="row wow fadeInUp justify-content-center">';
-            while ($post_news_videos->have_posts()) {
-              $post_news_videos->the_post(); 
-              $post_id = get_the_ID();
-              $addres_room = get_post_meta($post_id, 'addres_room', true );
-              ?>  
-              <div class="col-sm-6 col-sm-4 col-md-4 mt-4">
-                <div class="block-room py-4 px-4 p-lg-5">
-                  <h5 class="mt-0 text-uppercase mb-3"><?php echo get_the_title();?></h5>
-                  <div class="media">
-                    <div class="icon-map"><i class="fa fa-map-marker" aria-hidden="true"></i></div>                  
-                    <div class="media-body pl-2"><?php echo $addres_room; ?></div>
-                  </div>                  
+    <div class="container pt-4 pb-3 overflow-hidden">
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 pb-4 text-center">Hệ thống showroom</h3>
+      <?php 
+        $post_news_videos = new WP_Query(array(
+          'post_type' => 'showroom',
+          'post_status' => 'publish',
+          'posts_per_page' => '-1',          
+        ));
+        if($post_news_videos->have_posts()) {
+          $stt = 1;$acti = 1;
+          $active_class ='';$active_cl ='';
+          echo '<div class="row justify-content-center mt-4">';
+            echo '<div class="col-md-5 order-md-2"><div class="block-room p-2 p-sm-3"><ul class="nav nav-tabs">';
+              while ($post_news_videos->have_posts()) {
+                $post_news_videos->the_post(); 
+                $post_id = get_the_ID();
+                $slug = get_post_field( 'post_name', $post_id );
+                $addres_room = get_post_meta($post_id, 'addres_room', true );
+                $mapview = get_post_meta($post_id, 'mapview', true );
+                if($acti==1) { $active_cl ='active'; }
+                ?>
+                <li class="d-block w-100">
+                  <a class="block-room-inner d-block p-3" data-toggle="tab" href="#<?php echo $slug;?>">
+                    <h5 class="mt-0 text-uppercase mb-2"><?php echo get_the_title();?></h5>
+                    <div class="media align-items-center">
+                      <div class="icon-map"><i class="fa fa-map-marker" aria-hidden="true"></i></div>                  
+                      <div class="media-body pl-2"><?php echo $addres_room; ?></div>
+                    </div>    
+                  </a>
+                </li>            
+              <?php $acti ++;  } 
+            echo '</ul></div></div>';
+            echo '<div class="col-md-7 d-none d-sm-block"><div class="tab-content">';
+              while ($post_news_videos->have_posts()) {
+                $post_news_videos->the_post(); 
+                $post_id = get_the_ID();
+                $slug = get_post_field( 'post_name', $post_id );
+                $addres_room = get_post_meta($post_id, 'addres_room', true );
+                $mapview = get_post_meta($post_id, 'mapview', true );
+                if($stt==1) { $active_class ='active'; } else {$active_class ='fade';}
+                ?>                 
+                <div class="tab-pane <?php echo $active_class; ?>" id="<?php echo $slug;?>">
+                  <div class="room-map border-1">
+                    <iframe src="<?php echo $mapview; ?>" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                  </div>
                 </div>
-              </div>
-            <?php } 
-            echo '</div>';
-          } 
-        wp_reset_postdata();  ?>  
-      </div>
+              <?php $stt ++; } 
+            echo '</div></div>';
+            
+          echo '</div>';
+        } 
+      wp_reset_postdata();  ?>  
     </div>
-  
+  </div>
+
   <?php get_footer();?>

@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-4 mb-3 mb-md-0 overflow-hidden ">
-            <div class="pr-lg-5 wow fadeInRight">
+            <div class="pr-lg-5">
               <h2 class="title-h2 mb-4 text-uppercase"><strong>CÔNG TY TNHH <?php bloginfo('name');?></strong></h2>
               <ul class="address list-unstyled px-0">
                 <?php if(get_option('address_company') !='') {echo'<li class="mb-3 address-icon">'.get_option('address_company').'</li>';}?>
@@ -15,7 +15,7 @@
             </div>
           </div>
           <div class="col-md-8 overflow-hidden">
-            <div class="row wow fadeInDown">
+            <div class="row">
               <div class="col-6 col-md-4">
                 <h4 class="title-h4 pb-2 mb-3 text-capitalize">Sản Phẩm</h4>
                 <?php
@@ -43,7 +43,7 @@
                  </ul>
               </div>
               <div class="col-sm-12 col-md-4">
-                <div class=" wow fadeInLeft">
+                <div class="">
                   <div class="wrap-fb overflow-hidden mb-4">
                     <div id="fb-root"></div><script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=215651349123280&autoLogAppEvents=1"></script><div class="fb-page" data-href="https://www.facebook.com/xedienchokhachdulich/" data-tabs="timeline" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/xedienchokhachdulich/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xedienchokhachdulich/">Xe điện Đại Phát Tín</a></blockquote></div>
                   </div>
@@ -62,9 +62,10 @@
                 <span class="pr-4">Theo dõi chúng tôi: </span>
                 <ul class="list-inline social-icon d-inline-block mb-0">
                   <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
+                  <?php if(get_option('google_plus_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('google_plus_company').'" target="_blank" title="'.get_option('google_plus_company').'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';}?>
                   <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>
                   <?php if(get_option('youtube_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('youtube_company').'" target="_blank" title="'.get_option('youtube_company').'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';}?>
-                  <?php if(get_option('google_plus_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('google_plus_company').'" target="_blank" title="'.get_option('google_plus_company').'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';}?>
+                  
                   <?php if(get_option('instagram_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('instagram_company').'" target="_blank" title="'.get_option('instagram_company').'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';}?>
                  </ul>
               </div>

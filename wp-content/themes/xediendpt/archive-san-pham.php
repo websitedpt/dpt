@@ -24,7 +24,6 @@
 	        <?php if(function_exists('breadcrumb')){breadcrumb();} ?>  
 	    </div>
     </div>
-    
 	<div class="py-5 arch-products">
 	  	<div class="container">
 		  	<div class="row">
