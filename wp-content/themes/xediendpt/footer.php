@@ -75,6 +75,22 @@
         </div>     
       </div>    
     </footer>
+    <?php if(get_option('phone_company') !='') {?>
+    <div class="hotline-phone-ring-wrap">
+      <div class="hotline-phone-ring">
+        <div class="hotline-phone-ring-circle"></div>
+        <div class="hotline-phone-ring-circle-fill"></div>
+        <div class="hotline-phone-ring-img-circle d-flex align-items-center justify-content-center">
+          <a href="tel:<?php echo get_option('phone_company');?>" class="pps-btn-img"><img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/icon-phone.png" alt="Số điện thoại" width="50"></a>
+        </div>
+      </div>
+      <div class="hotline-bar">
+        <a href="tel:<?php echo get_option('phone_company');?>">
+          <span class="text-hotline"><?php echo get_option('phone_company');?></span>
+        </a>
+      </div>
+    </div>
+  <?php } ?>
     <a id="totop" class="totop" href="#" title="To top"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
     <?php wp_footer(); ?>
     <script src="<?php echo get_template_directory_uri();?>/assets/js/jquery.min.js"></script>
