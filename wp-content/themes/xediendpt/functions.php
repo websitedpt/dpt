@@ -1364,7 +1364,7 @@ function create_posttype_sanpham() {
 			'hierarchical' => true,
 			'show_ui' => true,
 			//'rewrite' => array( 'slug' => 'danh-muc-san-pham', 'hierarchical' => true, 'with_front' => false ),
-			'rewrite' => array( 'slug' => '/', 'hierarchical' => true, 'with_front' => false ),
+			'rewrite' => array( 'slug' => 'san-phams', 'hierarchical' => true, 'with_front' => false ),
 		)
 	);
 }

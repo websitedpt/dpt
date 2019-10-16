@@ -465,7 +465,7 @@ body a:focus,body a:hover {
 	height: 45px;
 }
 .color-red {
-	color: #cb3435
+	color: #0077bd
 }
 #crumbs i {
     color: #9fa4af;
@@ -554,7 +554,7 @@ body a:focus,body a:hover {
     left: 0;
     height: 100%;
     width: 0%;   
-    border-bottom: 3px solid #ad2d2d;    
+    border-bottom: 3px solid #0077bd;    
     transition: width .3s ease;
     visibility: hidden;
     opacity: 0;
@@ -727,19 +727,19 @@ body a:focus,body a:hover {
     position: relative;
 }
 
-.menu-vertical {position: relative;background: #ad2d2d;color: #fff;margin-top: -67px;}
+.menu-vertical {position: relative;background: #0077bd;color: #fff;margin-top: -67px;}
 .menu-vertical h4 {
-	border-bottom:3px solid #992828;
-	font-family: 'Times New Roman', "Helvetica Neue", Helvetica, sans-serif;	
+	border-bottom:3px solid #1d4b83;
+	font-family: 'Roboto-Regular', "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 18px;
 	font-weight: bold;
 	line-height: 1.3;
 	min-height: 65px;
 	line-height: 65px;
 }
-.menu-vertical .list-inline {background-color: #cb3435}
+.menu-vertical .list-inline {background-color: #248cca}
 .menu-vertical .list-inline li {
-	border-bottom: 1px solid #d35253;
+	border-bottom: 1px solid #37a1e0;
 }
 .menu-vertical .list-inline li a {
 	color: #fff;
@@ -786,22 +786,22 @@ body a:focus,body a:hover {
 .menu-vertical .list-inline .sub-list li a {font-size: 13px;}
 .menu-vertical::before {
 	left: -10px;
-	border-bottom: 4px solid #992828;
-    border-right: 5px solid #992828;
+	border-bottom: 4px solid #2a99da;
+    border-right: 5px solid #2a99da;
     border-top: 4px solid transparent;
     border-left: 5px solid transparent;
 }
 .menu-vertical::after {
 	right: -10px;
-	border-bottom: 4px solid #992828;
+	border-bottom: 4px solid #2a99da;
 	border-right: 5px solid transparent;
 	border-top: 4px solid transparent;
-	border-left: 5px solid #992828;
+	border-left: 5px solid #2a99da;
 }
 .home .wrap-mmenu .navbar-collapse {margin-left: 25%;padding-left: 7px;border-top:none;}
 .home .sticky .wrap-mmenu .navbar-collapse {margin-left: 0;padding-left: 0}
 .title-block {
-	font-family: 'Times New Roman', "Helvetica Neue", Helvetica, sans-serif;
+	font-family: 'Roboto-Regular', "Helvetica Neue", Helvetica, sans-serif;
 	font-size: 22px;
 	font-weight: bold;
 	color: #0077bd;
@@ -890,11 +890,15 @@ body a:focus,body a:hover {
     content: "";
     width: 0;
     height: 2px;
-    background: #cb3435;
+    background: #0077bd;
     position: absolute;
     top: 0;
     left: 0;
     transition: all 1s;
+}
+.taxomy_descript {
+	font-size: 16px;
+	white-space: pre-line;
 }
 .box-select {
 	font-size: 14px;

@@ -6,7 +6,7 @@ get_header();
 	$catalogName = $Catalog->name; 
   $getArrayCatlogParent = $Catalog->category_parent;
   $getParentSlug = get_category($getArrayCatlogParent)->slug; 
-  
+
   $taxonomy = get_queried_object();  
   $taxonomy_name = $taxonomy->taxonomy;  
   $term_id = $taxonomy->term_id;  
@@ -14,6 +14,7 @@ get_header();
   $cat_id = $taxonomy->term_id;
   $child_categories=get_categories(array( 'parent' => $cat_id ));
   //$post_type = get_post_type();
+  
   $big = 999999999;
   if ( get_query_var('paged') ) {
     $paged = get_query_var('paged'); 
@@ -33,8 +34,12 @@ get_header();
   <div class="container">   
     <div class="row">
       <div class="col-md-8 col-lg-9 wow fadeInUp">    
-        <?php if(function_exists('breadcrumb')){  echo '<div class="mb-4 mb-md-5">'; breadcrumb();  echo '</div>';  } ?> 
-        <?php 
+        <?php if(function_exists('breadcrumb')){  echo '<div class="mb-4 mb-md-5">'; breadcrumb();  echo '</div>';  } 
+          if($taxonomy->description !='') {
+            echo '<div class="row"><div class="col-12 taxomy_descript mb-4">';
+            echo $taxonomy->description;
+            echo '</div></div>';
+          }
         if($taxonomy_name == 'danh-muc-san-pham') {
           // if($taxonomy->parent == 0) {
           //   echo '<div class="row">';
@@ -213,7 +218,96 @@ get_header();
           } 
         }?>
       </div>
-      <div class="col-md-4 col-lg-3 d-none d-md-block wow fadeInRight"><?php get_sidebar(); ?></div>
+      <div class="col-md-4 col-lg-3 d-none d-md-block wow fadeInRight">
+        <?php if($taxonomy_name == 'danh-muc-san-pham') { ?>
+          <div class="search-block p-2">
+            <h3 class="m-0 mb-2">Công Cụ Tìm Kiếm</h3>          
+            <form class="form-timkiem" action="<?php bloginfo('url'); ?>/ket-qua-tim-kiem" method="get" accept-charset="utf-8" enctype="multipart/form-data">
+              <input type="text" name="name_search" class="form-control mb-3" placeholder="Nhập địa điểm cần tìm kiếm">
+              <div class="select-box mb-3">
+                <select class="form-control" name="hangxe">
+                   <option value="" selected disabled hidden>Hãng xe</option>
+                  <?php showTaxomi('hangxe');?>
+                </select>
+              </div>
+              <div class="select-box mb-3">
+                <select class="form-control" name="model">
+                  <option value="" selected disabled hidden>Model</option>
+                  <?php showTaxomi('model');?>
+                </select>
+              </div> 
+              <div class="select-box mb-3">
+                <select class="form-control" name="loaixe">
+                  <option value="" selected disabled hidden>Loại xe</option>
+                  <?php showTaxomi('loaixe');?>
+                </select>
+              </div>
+              <div class="select-box mb-3">
+                <select class="form-control" name="color">
+                  <option value="" selected disabled hidden>Màu sắc</option>
+                  <?php showTaxomi('color');?>
+                </select>
+              </div>
+              
+              <div class="select-box mb-3">
+                <select class="form-control" name="xuatxu">
+                  <option value="" selected disabled hidden>Xuất xứ</option>
+                  <?php showTaxomi('xuatxu');?> 
+                </select>
+              </div>
+              <div class="select-box mb-3">
+                <select class="form-control" name="namsanxuat">
+                  <option value="" selected disabled hidden>Năm sản xuất</option>
+                  <?php showTaxomi('namsanxuat');?>
+                </select>
+              </div> 
+              <div class="select-box mb-3">
+                <select class="form-control" name="tinhtrang">
+                  <option value="" selected disabled hidden>Tình trạng</option>
+                  <?php showTaxomi('tinhtrang');?>
+                </select>
+              </div> 
+              <div class="select-box mb-3">
+                <select class="form-control" name="price">
+                  <option value="" selected disabled hidden>Giá tiền</option>
+                  <?php showTaxomi('price');?>
+                </select>
+              </div> 
+              
+              
+              <input type="submit" name="querySearch" class="form-control btn-search text-uppercase" value="Tìm Kiếm">
+              <?php wp_nonce_field( 'post_nonce', 'post_nonce_field' ); ?>
+            </form>                     
+          </div>
+          <div class="line-doted mb-2 mt-5"></div>
+          <h3 class="title-block text-capitalize mb-3">Hãng Xe</h3>
+          <?php
+            $taxonomy_prod = 'danh-muc-san-pham';
+            $term_children = get_term_children('14',$taxonomy_prod); 
+            echo '<ul class="list-menu list-inline px-2 py-2 box-3 shadow-img-3">';  
+            foreach ( $term_children as $child ) { 
+              $term_child = get_term_by('id', $child, $taxonomy_prod );
+              //echo $term_child->name;             
+              echo '<li class="px-2 text-capitalize"><a class="py-2 d-block" href="'.get_term_link($term_child->slug, $taxonomy_prod).'" >'. $term_child->name .'</a></li>'; 
+            }
+            echo '</ul>';
+          ?>
+
+          <div class="line-doted mb-2 mt-5"></div>
+          <h3 class="title-block text-capitalize mb-3">Loại Xe</h3>
+          <?php
+            $term_children_2 = get_term_children('19',$taxonomy_prod); 
+            echo '<ul class="list-menu list-inline px-2 py-2 box-3 shadow-img-3">';  
+            foreach ( $term_children_2 as $child ) { 
+              $term_child = get_term_by('id', $child, $taxonomy_prod );
+              //echo $term_child->name;             
+              echo '<li class="px-2 text-capitalize"><a class="py-2 d-block" href="'.get_term_link($term_child->slug, $taxonomy_prod).'" >'. $term_child->name .'</a></li>'; 
+            }
+            echo '</ul>';
+          ?>
+        <?php } else { get_sidebar(); } ?>
+          
+        </div>
     </div>
   </div>
 </div>
