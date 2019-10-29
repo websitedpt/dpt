@@ -646,7 +646,7 @@ function register_settings(){
     register_setting( 'my-settings-group', 'facebook_company' );
     register_setting( 'my-settings-group', 'twitter_company' );
     register_setting( 'my-settings-group', 'youtube_company' );
-    register_setting( 'my-settings-group', 'google_plus_company' );
+    register_setting( 'my-settings-group', 'pinterest_company' );
     register_setting( 'my-settings-group', 'instagram_company' );    
 }
 add_action( 'admin_footer', 'rv_custom_dashboard_widget' );
@@ -723,8 +723,8 @@ function my_custom_menu_page() { ?>
 				 <input style="width:100%; height: 38px;" type="text" name="youtube_company" value="<?php echo get_option('youtube_company')?>" /></p>
 				</div>
 				<div class="px-15 h-w">
-				 <p><label for="google_plus_company">Địa chỉ Google Plus</label><br/>
-				 <input style="width:100%; height: 38px;" type="text" name="google_plus_company" value="<?php echo get_option('google_plus_company')?>" /></p>
+				 <p><label for="pinterest_company">Địa chỉ Pinterest</label><br/>
+				 <input style="width:100%; height: 38px;" type="text" name="pinterest_company" value="<?php echo get_option('pinterest_company')?>" /></p>
 				</div>
 				<div class="px-15 h-w">
 				 <p><label for="instagram_company">Địa chỉ Instagram</label><br/>

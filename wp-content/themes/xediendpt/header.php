@@ -41,7 +41,7 @@
         </div>   
         <ul class="list-inline social-icon m-0 d-none d-lg-block">
           <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
-          <?php if(get_option('google_plus_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('google_plus_company').'" target="_blank" title="'.get_option('google_plus_company').'"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>';}?>
+          <?php if(get_option('pinterest_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('pinterest_company').'" target="_blank" title="'.get_option('pinterest_company').'"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>';}?>
           <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>
           <?php if(get_option('youtube_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('youtube_company').'" target="_blank" title="'.get_option('youtube_company').'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';}?>
           

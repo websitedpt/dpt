@@ -23,7 +23,7 @@ get_header(); ?>
         <div class="menu-vertical">
           <h4 class="px-3 m-0 text-capitalize">Danh mục sản phẩm</h4>
           <?php $taxonomy_p = 'danh-muc-san-pham';
-            $terms_1 = get_terms($taxonomy_p);
+            $terms_1 = get_terms(array( 'taxonomy' => $taxonomy_p,'orderby' => 'ID','order' => 'ASC' ));            
             if ( $terms_1 && !is_wp_error( $terms_1 ) ) : 
               echo '<ul class="list-inline m-0 pb-3">';
               foreach ( $terms_1 as $term ) {
@@ -62,12 +62,62 @@ get_header(); ?>
     </div>
   </div>  
 </div> 
-  
-  <div class="py-md-4 overflow-hidden bg-gray mt-4 gthieu-home">
+  <div class="py-4 py-md-5 bg-gray why-select mt-4 ">
+    <div class="container pt-4 pb-3 overflow-hidden">
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
+      <div class="row">
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">THANH TOÁN TÀI CHÍNH DỄ DÀNG</h5>
+              <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-2.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">THƯƠNG HIỆU NỔI TIẾNG</h5>
+              <div>Với một sự lựa chọn những hãng xe điện nổi tiếng và uy tín trên Thế Giới.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-3.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">ĐƯỢC TÍN NHIỆM BỞI HÀNG NGHÌN NGƯỜI</h5>
+              <div>Có 10 đơn đặt hàng mới mỗi ngày. 350 lượt truy cập mỗi tháng và là nơi vô cùng tin cậy của hàng nghìn Khách Hàng.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-sm-3 mb-4">
+          <div class="box-select py-4 px-4 text-center">
+            <div class="img-2">              
+              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-4.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
+            </div>
+            <div class="media-body">
+              <h5 class="mt-0 mb-2 text-center">DỊCH VỤ BẢO HÀNH BẢO DƯỠNG XE</h5>
+              <div>Bộ phận dịch vụ của chúng tôi bảo dưỡng xe của bạn để giữ an toàn trên đường trong nhiều năm nữa.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-md-4 overflow-hidden gthieu-home">
     <div class="container py-4 py-md-5">
       <div class="row align-items-center">
         <div class="col-12 col-md-6 mb-4 mb-md-0"> 
-          <div class="pr-md-4">
+          <div class="pr-md-4 pr-lg-5">
             <h3 class="title-block line-bg-1 text-uppercase mt-0 mb-4 p-0 position-relative d-flex align-items-center">Về Chúng Tôi!</h3>
             <p>Xe điện Đại Phát Tín là đơn vị cung cấp xe ô tô điện chính hãng tại thị trường Việt Nam. Hoạt động kinh doanh chính của chúng tôi hiện nay là phân phối, cung ứng dịch vụ bảo trì sửa chữa và cung cấp phụ tùng xe ô tô điện. Sản xuất và kinh doanh xe tải điện nhập khẩu nguyên chiếc & đóng thùng xe tải điện.</p>
             <p>Hiện nay, xe điện Đại Phát tín là một trong những nhà nhập khẩu lớn xe ô tô điện chính hãng. Với nhiều mẫu mã đa dạng, đem lại cho người dân Việt Nam những sản phẩm xe điện bốn bánh đa dạng, chất lượng giá cả hợp lý.</p>
@@ -271,57 +321,7 @@ get_header(); ?>
         endif; ?>
     </div>
   </div>
-  <div class="py-4 py-md-5 bg-gray why-select">
-    <div class="container pt-4 pb-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
-      <div class="row">
-        <div class="col-12 col-sm-3 mb-4">
-          <div class="box-select py-4 px-4 text-center">
-            <div class="img-2">              
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-1.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
-            </div>
-            <div class="media-body">
-              <h5 class="mt-0 mb-2 text-center">THANH TOÁN TÀI CHÍNH DỄ DÀNG</h5>
-              <div>Bộ Phận Tài Chính làm việc hiệu suất cao có thể tìm giải pháp tài chính tiết kiệm và tối ưu cho Quý Khách Hàng.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3 mb-4">
-          <div class="box-select py-4 px-4 text-center">
-            <div class="img-2">              
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-2.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
-            </div>
-            <div class="media-body">
-              <h5 class="mt-0 mb-2 text-center">THƯƠNG HIỆU NỔI TIẾNG</h5>
-              <div>Với một sự lựa chọn những hãng xe điện nổi tiếng và uy tín trên Thế Giới.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3 mb-4">
-          <div class="box-select py-4 px-4 text-center">
-            <div class="img-2">              
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-3.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
-            </div>
-            <div class="media-body">
-              <h5 class="mt-0 mb-2 text-center">ĐƯỢC TÍN NHIỆM BỞI HÀNG NGHÌN NGƯỜI</h5>
-              <div>Có 10 đơn đặt hàng mới mỗi ngày. 350 lượt truy cập mỗi tháng và là nơi vô cùng tin cậy của hàng nghìn Khách Hàng.</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-sm-3 mb-4">
-          <div class="box-select py-4 px-4 text-center">
-            <div class="img-2">              
-              <img src="<?php echo get_template_directory_uri();?>/assets/images/icon-4.png" alt="" class="mr-3 img-fluid mb-3 d-block mx-auto">
-            </div>
-            <div class="media-body">
-              <h5 class="mt-0 mb-2 text-center">DỊCH VỤ BẢO HÀNH BẢO DƯỠNG XE</h5>
-              <div>Bộ phận dịch vụ của chúng tôi bảo dưỡng xe của bạn để giữ an toàn trên đường trong nhiều năm nữa.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
   <div class="py-4 py-md-5 review-custome">
     <div class="container pt-4 pb-3 overflow-hidden">
