@@ -88,12 +88,12 @@ class ODB_Cleaner {
 			if($odb_class->odb_rvg_options['delete_older'] == 'Y') {
 				$results_older_than = $this->odb_get_revisions_older_than();
 			} // if($odb_class->odb_rvg_options['delete_older'] == 'Y')
-
+			
 			$results_keep_revisions = array();
 			if($odb_class->odb_rvg_options['rvg_revisions'] == 'Y') {
 				$results_keep_revisions = $this->odb_get_revisions_keep_revisions();
-			} if($odb_class->odb_rvg_options['rvg_revisions'] == 'Y')
-
+			} // if($odb_class->odb_rvg_options['rvg_revisions'] == 'Y')
+			
 			if (count($results_older_than) > 0 || count($results_keep_revisions) > 0) {
 				// REVISIONS FOUND
 				$this->grand_total += count($results_older_than) + count($results_keep_revisions);

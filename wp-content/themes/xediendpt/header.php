@@ -48,6 +48,7 @@
           <?php if(get_option('instagram_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('instagram_company').'" target="_blank" title="'.get_option('instagram_company').'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';}?>
         </ul>  
         <ul class="list-inline ml-auto mb-0 d-none d-lg-block">
+          <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/so-sanh" title="So Sánh" class="d-inline-block"><div class="d-flex compare">So Sánh <div class="position-relative pl-1 mr-2"><img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/compare.png" alt="So Sánh"><span class="list-badge"><span data-contains="compare-count">2</span></span></div></div></a></li>
           <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/tin-tuc/su-kien/" title="Sự kiện" class="d-inline-block">Sự kiện</a></li>
           <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/cau-hoi-thuong-gap/" title="Câu hỏi thường gặp" class="d-inline-block">Câu hỏi thường gặp</a></li>
           <li class="pl-3 d-inline-block"><a href="<?php bloginfo('url'); ?>/tuyen-dung/" title="Tuyển dụng" class="d-block">Tuyển dụng</a></li>

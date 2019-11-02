@@ -165,5 +165,29 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+    <script src="<?php echo get_template_directory_uri();?>/assets/js/jquery.cookie.js"></script>
+    <script>
+     $('[data-action="add-compare"]').on('click', function(event) {
+        event.preventDefault();
+        var that = $(this);
+        var id = that.attr("data-compare-id");
+        $name_ck = 'compare_ids_'+id;
+        $.cookie($name_ck, id);
+        that.addClass('d-none');
+        parents = that.parent();
+        parents.find('[data-action="remove-compare"]').removeClass('d-none');
+      });
+     $('[data-action="remove-compare"]').on('click', function(event) {
+        event.preventDefault();
+        var that = $(this);
+        var id = that.attr("data-compare-id");
+        $name_ck = 'compare_ids_'+id;
+        $.removeCookie($name_ck, id);
+     });
+      // console.log($.cookie(''));
+      
+      // $.removeCookie();
+      
+    </script>
   </body>
 </html>

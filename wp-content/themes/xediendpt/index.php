@@ -62,9 +62,9 @@ get_header(); ?>
     </div>
   </div>  
 </div> 
-  <div class="py-4 py-md-5 bg-gray why-select mt-4 ">
-    <div class="container pt-4 pb-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
+  <div class="py-4 bg-gray why-select mt-4 ">
+    <div class="container pt-4 pb-1 overflow-hidden">
+      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-4 pb-4 text-center ">Tại sao chọn chúng tôi</h3>
       <div class="row">
         <div class="col-12 col-sm-3 mb-4">
           <div class="box-select py-4 px-4 text-center">
@@ -181,25 +181,26 @@ get_header(); ?>
                           $pst= 1;
                           foreach ( $term_children as $child ) {    
                             $term_child = get_term_by('id', $child, $taxonomy_prod );
+
                             //$image_id = get_term_meta ($term_child->term_id, 'category-image-id', true );
                             //$banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
                              if($term_child->count > 0) {                            
                               //if($term_child->count == 1) {                              
-                              if($term->term_id == 14) {
-                                $q_Post = new WP_Query(array(
-                                  'post_type' => 'sanpham',
-                                  'post_status' => 'publish',
-                                  'posts_per_page' => '8',
-                                  'tax_query' => array(
-                                      array(
-                                          'taxonomy' => $term->taxonomy,
-                                          'field' => 'slug',
-                                          'terms' => $term_child->slug,
-                                          'operator' => 'IN'
-                                      )
-                                   )
-                                ));
-                              } else {
+                              // if($term->term_id == 14) {
+                              //   $q_Post = new WP_Query(array(
+                              //     'post_type' => 'sanpham',
+                              //     'post_status' => 'publish',
+                              //     'posts_per_page' => '8',
+                              //     'tax_query' => array(
+                              //         array(
+                              //             'taxonomy' => $term->taxonomy,
+                              //             'field' => 'slug',
+                              //             'terms' => $term_child->slug,
+                              //             'operator' => 'IN'
+                              //         )
+                              //      )
+                              //   ));
+                              // } else {
                                 $q_Post = new WP_Query(array(
                                   'post_type' => 'sanpham',
                                   'post_status' => 'publish',
@@ -213,7 +214,7 @@ get_header(); ?>
                                       )
                                    )
                                 ));                                
-                              }
+                              // }
                                 $active1 ='';
                                 if($pst==1) {
                                   $active1 ='active';
@@ -254,6 +255,9 @@ get_header(); ?>
                                       </div>'; 
                                     }
                                   }
+                                  echo '<div class="col-12 mb-4 text-center">';?>
+                                    <a class="text-center text-capitalize read-more rounded px-3 mt-3 mb-4 mb-md-0" href="<?php echo get_term_link($term_child->slug, $taxonomy_prod); ?>" title="<?php echo $term_child->name; ?>">Xem thêm <?php echo $term_child->name; ?> <i class="fa fa-angle-right pl-2" aria-hidden="true"></i></a>
+                                  <?php echo '</div>';
                                 echo '</div></div>';
                               //} 
                               $pst ++;
@@ -323,8 +327,8 @@ get_header(); ?>
   </div>
   
 
-  <div class="py-4 py-md-5 review-custome">
-    <div class="container pt-4 pb-3 overflow-hidden">
+  <div class="pb-4 review-custome">
+    <div class="container py-3 overflow-hidden">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 mb-md-5 pb-4 text-center">Đánh giá khách hàng</h3>
       <?php 
         $post_news_videos = new WP_Query(array(
@@ -366,13 +370,13 @@ get_header(); ?>
     </div>
   </div>
   <div class="py-4 py-md-5 news-home bg-gray">
-    <div class="container pt-4 pb-3">
+    <div class="container py-3">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-5 pb-4 text-center">Tin tức</h3>
       <?php echo news_home();?>
     </div>
   </div>
   <div class="show-room py-4 py-md-5">
-    <div class="container pt-4 pb-3 overflow-hidden">
+    <div class="container py-3 overflow-hidden">
       <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 pb-4 text-center">Hệ thống showroom</h3>
       <?php 
         $post_news_videos = new WP_Query(array(

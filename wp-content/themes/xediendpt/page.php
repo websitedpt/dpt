@@ -16,13 +16,13 @@
  */
 
 get_header(); $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' ); ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php if($thumb) {
+<div class="banner banner-general d-flex flex-wrap align-items-end position-relative" style="background-image: url('<?php if($thumb) {
 	echo $thumb['0'];
 } else {
 	echo get_template_directory_uri()."/assets/images/banner-1.jpg";
 } ?>')">
-  <div class="container text-center ">
-      <h1 class="text-uppercase page-title mb-3 d-block w-100 text-center"><?php echo get_the_title();?></h1>
+  <div class="container">
+      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title();?></h1>
   </div>
 </div>
 

@@ -32,8 +32,8 @@ get_header();
 	$loaixe = get_post_meta($postid, 'loaixe', true);
 
 ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
-	<div class="container text-center ">
+<div class="banner banner-general d-flex flex-wrap align-items-end position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/banner-2.jpg');background-position: bottom">
+	<div class="container">
         <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo get_the_title(); ?></h1>
     </div>
 </div>

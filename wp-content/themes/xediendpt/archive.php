@@ -24,9 +24,9 @@ get_header();
     $paged = 1;
   }   
 ?>
-<div class="banner banner-general d-flex flex-wrap align-items-center position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
-  <div class="container text-center ">
-      <h1 class="text-uppercase page-title mb-3 d-block text-center w-100"><?php echo $taxonomy->name; ?></h1>      
+<div class="banner banner-general d-flex flex-wrap align-items-end position-relative" style="background-image: url('<?php echo get_template_directory_uri();?>/assets/images/bg_cat.jpg')">
+  <div class="container">
+      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo $taxonomy->name; ?></h1> 
   </div>
 </div>
 
@@ -40,7 +40,10 @@ get_header();
             echo $taxonomy->description;
             echo '</div></div>';
           }
+          // var_dump($taxonomy);
+          
         if($taxonomy_name == 'danh-muc-san-pham') {
+          echo catalog_grid_2($taxonomy->slug);
           // if($taxonomy->parent == 0) {
           //   echo '<div class="row">';
           //     if($term_children) {
@@ -181,7 +184,10 @@ get_header();
                         <?php echo get_the_title(); ?>
                       </h3>
                       <div class="text-center">
-                        <div class="review-star mb-2"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                        <div class="d-flex flex-wrap mb-2 align-items-center justify-content-center">
+                          <div class="review-star pr-2"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
+                          <div class="compare-add px-2 rounded" data-compare-id = "<?php echo $post_id; ?>" data-action="add-compare"><span class="text-compare">So Sánh</span> <i class="fa fa-plus-square-o" aria-hidden="true"></i></div>                          
+                        </div>
                         <div class="price pb-2">
                          <?php if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
                           } else  {

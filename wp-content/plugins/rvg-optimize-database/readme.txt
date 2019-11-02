@@ -10,8 +10,8 @@ Contributors: cageehv
 Requires at least: 2.8
 Requires PHP: 5.0
 Tested up to: 5.2.3
-Stable tag: 4.8.6
-Version: 4.8.6
+Stable tag: 4.8.7
+Version: 4.8.7
 License: GPLv2 or later
 
 == Description ==
@@ -111,6 +111,9 @@ http://cagewebdev.com/category/news-tech-art/wordpress/
 * If you run the plugin from any of the sites, it will cleanup ALL the sites in the network!
 
 == Changelog ==
+= 4.8.7 [09/28/2019] =
+* BUG FIX: Bug fix for 'Delete revisions older than'
+
 = 4.8.6 [09/22/2019] =
 * BUG FIX: Some bug fixes + other minor changes
 

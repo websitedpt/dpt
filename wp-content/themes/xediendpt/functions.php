@@ -1084,6 +1084,35 @@ function catalog_grid($name_category = '') {
 	/* Restore original Post Data */
 	wp_reset_postdata();
 }
+function catalog_grid_2($name_category = '') {
+	$the_query = new WP_Query( array( 'category_name' => $name_category,'posts_per_page' => 2,) );
+	if ( $the_query->have_posts() ) {		
+		$string ='<div class="row mx-auto">';
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();		
+			$thumb = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'full' );	
+			if ( has_post_thumbnail() ) {	
+				$string .= '<div class="col-12 col-sm-6 mb-4 overflow-hidden rounded item-block">
+					<div class="row">
+						<div class="col-4 px-0">
+							<a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">
+				              '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto w-100 h-100')).'
+				            </a>  
+						</div>
+						<div class="col-8">
+				            <h3 class="title-h3 mt-2 mb-3 mb-md-2"><a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">' . get_the_title() .'</a></h3>
+				            <div class="descripton text-left">'. trim_text_to_words(get_the_content(), 120) .'</div>                  
+				        </div>   
+					</div>		                        
+		        </div>';
+			} 
+		}
+	$string .= '</div>';
+	}else{/*no posts found*/}
+	return $string;
+	/* Restore original Post Data */
+	wp_reset_postdata();
+}
 function news_home($post_page = '3') {
 	$args = array(
 	'category_name' => 'tin-tuc',
@@ -1126,9 +1155,9 @@ function news_home($post_page = '3') {
 				            <div class="overflow-hidden rounded-left item-block  text-center">
 				                <a href="' . get_the_permalink() .'"  title="' . get_the_title() .'">';
 				                if ( has_post_thumbnail() ) {
-					              $string .= '<div class="bg-img mb-3" style="background-image: url('.$thumb['0'].')"></div>';
+					              $string .= '<div class="bg-img mb-3 mb-sm-0" style="background-image: url('.$thumb['0'].')"></div>';
 					            } else {
-					            	$string .= '<div class="bg-img mb-3 d-flex align-items-center justify-content-center no-img"><img src="'.get_template_directory_uri().'/assets/images/noimage.jpg" alt="Không có hình ảnh"></div>';
+					            	$string .= '<div class="bg-img mb-3 mb-sm-0 d-flex align-items-center justify-content-center no-img"><img src="'.get_template_directory_uri().'/assets/images/noimage.jpg" alt="Không có hình ảnh"></div>';
 					            }
 				                  
 				                $string .= '</a>
@@ -1331,7 +1360,7 @@ function create_posttype_sanpham() {
 		array(
 		  'labels' => array(
 		    'name' => __( 'Sản Phẩm' ),
-		    'singular_name' => __( 'sanpham' ),
+		    'singular_name' => __( 'Sản Phẩm' ),
         	'add_new_item'        => __( 'Thêm sản phẩm mới'),
         	'add_new'             => __( 'Thêm sản phẩm mới' ),
         	'update_item'         => __( 'Cập nhật sản phẩm' ),

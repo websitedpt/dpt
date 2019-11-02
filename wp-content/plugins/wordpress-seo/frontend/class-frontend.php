@@ -614,7 +614,7 @@ class WPSEO_Frontend {
 	 */
 	public function get_debug_mark() {
 		return sprintf(
-			'<!-- This site is optimized with the  GTSSolution - http://gsts.vn/ -->',
+			'<!-- This site is optimized with the %1$s %2$s - https://yoast.com/wordpress/plugins/seo/ -->',
 			esc_html( $this->head_product_name() ),
 			/**
 			 * Filter: 'wpseo_hide_version' - can be used to hide the Yoast SEO version in the debug marker (only available in Yoast SEO Premium).
@@ -776,6 +776,13 @@ class WPSEO_Frontend {
 
 		$robotsstr = preg_replace( '`^index,follow,?`', '', $robotsstr );
 		$robotsstr = str_replace( array( 'noodp,', 'noodp' ), '', $robotsstr );
+
+		if ( strpos( $robotsstr, 'noindex' ) === false && strpos( $robotsstr, 'nosnippet' ) === false ) {
+			if ( $robotsstr !== '' ) {
+				$robotsstr .= ', ';
+			}
+			$robotsstr .= 'max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+		}
 
 		/**
 		 * Filter: 'wpseo_robots' - Allows filtering of the meta robots output of Yoast SEO.

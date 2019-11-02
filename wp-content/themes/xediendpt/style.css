@@ -287,7 +287,7 @@ body a:focus,body a:hover {
 .banner-general>div {position: relative;z-index: 5; }
 .page-title {
 	color: #fff;
-	font-size: 35px;
+	font-size: 65px;
 }
 .block-2 {
     border: 1px solid #ccc;
@@ -1366,6 +1366,9 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 .archive .bg-img,.arch-videos .bg-img {
 	height: 185px;
 }
+.archive.tax-danh-muc-san-pham .bg-img {
+	height: 140px;
+}
 .videos-home .bg-img {
 	height: 220px;
 }
@@ -1848,6 +1851,10 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 .mh {
 	min-height: 100vh;
 }
+.btn-2 {
+	background: #f5f5f5;
+	color: #333
+}
 .slider-bar ul li {
     padding: 10px 0;
     position: relative;
@@ -1997,6 +2004,65 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 .entry-content table tbody td {padding:10px;border:1px solid;}
 .room-map {
 	height: 600px;
+}
+.compare .list-badge {
+    position: absolute;
+    top: -5px;
+    right: -12px;
+    min-width: 18px;
+    font-weight: 700;
+    font-size: 11px;
+    color: #fff;
+    background-color: #00a7e5;
+    padding: 0 2px;
+    line-height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.14);
+}
+.compare-add {
+	border: 1px solid #eee;
+	background: #ccc;
+	color: #888;
+	font-size: 14px;
+}
+.compare-add:hover {
+	color: #0069ff;
+	border-color: #0069ff
+}
+.compare-col {
+	
+	color: #888;
+}
+.compare-col i.car {font-size: 50px;}
+.compare-col i.plus {font-size: 25px;}
+.compare-remove:hover .comparing{
+	display: none
+}
+.compare-remove:hover .compare-hover{
+	display: block!important
+}
+.compare-col h5 {
+	font-size: 16px;
+}
+.compare-col .image {
+	background: #f5f5f5;
+	min-height: 120px;
+}
+.compare-col:hover .image {
+	background: #cacaca;
+}
+.tbl1.table thead th,.tbl1.table tbody td {
+	    font-size: 13px;
+	    font-weight: bold;
+	border-top: none;
+	border-bottom: 1px solid #dee2e6;
+	padding-left: 0;
+	padding-right: 0;
+}
+.tbl1.table thead th {
+	color: #0077bd;
+	
 }
 .post-ratings {
 	font-size: 18px;
@@ -2225,7 +2291,7 @@ table.tbl-product  {margin-bottom: 1.5rem!important}
 		height: 30px;
 	}
 	.header .support a, .header .hotline a {font-size: 14px;}
-	.page-title {font-size: 25px;}
+	.page-title {font-size: 30px;}
 	.h-video {height: 350px;}
 	.title-block {font-size: 18px;}
 	.banner {min-height: 350px;}
