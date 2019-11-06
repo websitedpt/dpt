@@ -6,7 +6,6 @@ get_header();
 	$catalogName = $Catalog->name; 
   $getArrayCatlogParent = $Catalog->category_parent;
   $getParentSlug = get_category($getArrayCatlogParent)->slug; 
-
   $taxonomy = get_queried_object();  
   $taxonomy_name = $taxonomy->taxonomy;  
   $term_id = $taxonomy->term_id;  
@@ -40,129 +39,23 @@ get_header();
             echo $taxonomy->description;
             echo '</div></div>';
           }
-          // var_dump($taxonomy);
-          
         if($taxonomy_name == 'danh-muc-san-pham') {
           echo catalog_grid_2($taxonomy->slug);
-          // if($taxonomy->parent == 0) {
-          //   echo '<div class="row">';
-          //     if($term_children) {
-          //       foreach ( $term_children as $child ) {    
-          //         $term = get_term_by('id', $child, $taxonomy_name );
-          //         $image_id = get_term_meta ($term->term_id, 'category-image-id', true );
-          //         $banerUrl = wp_get_attachment_image_src($image_id, 'full')[0];
-          //         if($term->count > 0) { 
-          //           if($term->count == 1) {
-          //             $q_Post = new WP_Query(array(
-          //               'post_type' => 'sanpham',
-          //               'post_status' => 'publish',
-          //               'posts_per_page' => -1,
-          //               'tax_query' => array(
-          //                   array(
-          //                       'taxonomy' => $term->taxonomy,
-          //                       'field' => 'slug',
-          //                       'terms' => $term->slug,
-          //                       'operator' => 'IN'
-          //                   )
-          //                )
-          //             ));
-          //             if($q_Post->have_posts()) {
-          //               while ($q_Post->have_posts()) { 
-          //                 $q_Post->the_post(); 
-          //                 $post_id = get_the_ID();
-          //                 echo '<div class="col-md-4 my-3 box-1">
-          //                   <a href="' . get_the_permalink() . '" title="'. $term->name .'">
-          //                     <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
-          //                       '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto')).'                 
-          //                     </div>
-          //                     <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
-          //                       '. $term->name .'
-          //                     </h3>
-          //                   </a>
-          //                 </div>'; 
-          //               }
-          //             }                             
-          //           } else { 
-          //             echo '<div class="col-md-4 my-3 box-1">
-          //               <a href="' . get_term_link( $child, $taxonomy_name ) . '" title="'. $term->name .'">
-          //                 <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
-          //                   <img src="'. $banerUrl.'" class="img-fluid mx-auto" alt="">                    
-          //                 </div>
-          //                 <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
-          //                   '. $term->name .'
-          //                 </h3>
-          //               </a>
-          //             </div>';  
-          //           }
-          //         } 
-          //       }
-          //     } else {
-          //     $p_cat = new WP_Query(array(
-          //       'post_type' => 'sanpham',
-          //       'post_status' => 'publish',
-          //       'posts_per_page' => -1,
-          //       'tax_query' => array(
-          //           array(
-          //               'taxonomy' => $taxonomy_name,
-          //               'field' => 'slug',
-          //               'terms' => $taxonomy->slug,
-          //               'operator' => 'IN'
-          //           )
-          //        )
-          //     ));
-          //     if($p_cat->have_posts()) { 
-          //       while ($p_cat->have_posts()) { 
-          //         $p_cat->the_post(); 
-          //         $post_id = get_the_ID();
-          //         $price = get_post_meta($post_id, 'price', true);
-          //         if($price) {
-          //           $price = number_format($price);
-          //         }
-          //         $price_promo = get_post_meta($post_id, 'price_promo', true);
-          //         if($price_promo) {
-          //           $price_promo = number_format($price_promo);
-          //         }
-          //         echo '<div class="col-md-4 my-3 box-1">
-          //           <a href="' . get_the_permalink() . '" title="'. get_the_title() .'">
-          //             <div class="box-fix-h d-flex align-items-center justify-content-center p-3">
-          //               '.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto')).'                 
-          //             </div>
-          //             <h3 class="mt-3 mb-0 title-h3 text-capitalize text-center text-sm-left">
-          //               '. get_the_title() .'
-          //             </h3>
-          //             <div class="text-center">
-          //               <div class="review-star"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-          //               <div class="price pb-2">';
-          //                 if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
-          //                 } else  {
-          //                   echo'<strong>';if($price) { echo $price.'<sup>(vnđ)</sup>'; } else { echo "Liên hệ";} echo '</strong>';
-          //                 }
-          //               echo '</div>                                            
-          //             </div>
-          //           </a>
-          //         </div>'; 
-          //       }
-          //     }
-          //     }
-          //   echo '</div>';
-          // } else { 
               $q_products = new WP_Query(array(
               'post_type' => 'sanpham',
               'post_status' => 'publish',
-              // 'posts_per_page' => '16', 
-              // 'paged'          => $paged,
               'posts_per_page' => -1,
               'tax_query' => array(
-                  array(
-                      'taxonomy' => $taxonomy_name,
-                      'field' => 'slug',
-                      'terms' => $taxonomy->slug,
-                      'operator' => 'IN'
-                  )
-               )
+                array(
+                    'taxonomy' => $taxonomy_name,
+                    'field' => 'slug',
+                    'terms' => $taxonomy->slug,
+                    'operator' => 'IN'
+                )
+              )
             ));
               if($q_products->have_posts()) {
-                echo '<div class="row">';
+                echo '<div class="row product">';
                 while ($q_products->have_posts()) { 
                   $q_products->the_post(); 
                   $post_id = get_the_ID();
@@ -186,7 +79,13 @@ get_header();
                       <div class="text-center">
                         <div class="d-flex flex-wrap mb-2 align-items-center justify-content-center">
                           <div class="review-star pr-2"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-                          <div class="compare-add px-2 rounded" data-compare-id = "<?php echo $post_id; ?>" data-action="add-compare"><span class="text-compare">So Sánh</span> <i class="fa fa-plus-square-o" aria-hidden="true"></i></div>                          
+                          <div class="compare-prod" data-compare-id = "<?php echo $post_id; ?>">
+                            <div class="compare-add px-2 rounded" data-compare-id = "<?php echo $post_id; ?>" data-action="add-compare"><span class="text-compare">So Sánh</span> <i class="fa fa-plus-square-o" aria-hidden="true"></i></div> 
+                            <div class="compare-remove px-2 rounded d-none" data-compare-id = "<?php echo $post_id; ?>" data-action="remove-compare"><span class="text-compare">
+                              <div class="comparing">Đang So Sánh</span> <i class="fa fa-balance-scale" aria-hidden="true"></i></div>                     
+                              <div class="compare-hover d-none">Bỏ So Sánh</span> <i class="fa fa-minus-square-o" aria-hidden="true"></i></div>                     
+                          </div>
+                          </div>
                         </div>
                         <div class="price pb-2">
                          <?php if($price_promo) { if($price) { echo '<span class="price-promo"><del>'.$price.'</del><sup>(vnđ)</sup></span>'; } else { echo "Liên hệ";} echo '<strong class="pl-2">'.$price_promo.'<sup>(vnđ)</sup></strong>';
@@ -198,11 +97,7 @@ get_header();
                     </a>
                   </div>
                 <?php }
-                  // echo '<div class="col-12">';
-                  //   echo panigation();
-                  // echo '</div>';
-                echo '</div>';          
-              
+                echo '</div>';         
               }
           //}   
         } else {  ?>    

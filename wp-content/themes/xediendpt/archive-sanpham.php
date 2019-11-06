@@ -23,7 +23,7 @@
 	      <h1 class="text-uppercase page-title mb-3 d-block w-100"><?php echo $Catalog->label; ?></h1> 
 	  </div>
 	</div>
-	<div class="py-5">
+	<div class="py-5 product">
 		<div class="container">   
 		    <div class="row">
 		      <div class="col-md-8 col-lg-9 wow fadeInUp">    
@@ -68,7 +68,7 @@
 	                      <div class="text-center">
 	                        <div class="d-flex flex-wrap mb-2 align-items-center justify-content-center">
 	                          <div class="review-star pr-2"><i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></div>
-	                          <div class="compare-prod">
+	                          <div class="compare-prod" data-compare-id = "<?php echo $post_id; ?>">
 		                          <div class="compare-add px-2 rounded" data-compare-id = "<?php echo $post_id; ?>" data-action="add-compare"><span class="text-compare">So Sánh</span> <i class="fa fa-plus-square-o" aria-hidden="true"></i></div> 
 		                          <div class="compare-remove px-2 rounded d-none" data-compare-id = "<?php echo $post_id; ?>" data-action="remove-compare"><span class="text-compare">
 		                          	<div class="comparing">Đang So Sánh</span> <i class="fa fa-balance-scale" aria-hidden="true"></i></div>                     

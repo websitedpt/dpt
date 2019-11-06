@@ -166,28 +166,80 @@
     </script>
     <!--End of Tawk.to Script-->
     <script src="<?php echo get_template_directory_uri();?>/assets/js/jquery.cookie.js"></script>
-    <script>
-     $('[data-action="add-compare"]').on('click', function(event) {
+    <script>     
+      var ajaxurl = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
+      // $('.product ')
+      function allProduct() {
+        $('.product .compare-prod').each(function(){
+          var that = $(this);
+          var compare_Id = $(this).data('compare-id');
+          updateCount(); 
+          for(var i = 0; i <= getCompareIds().length; i++) {
+            if(compare_Id == getCompareIds()[i]) {
+              var el_this =$(this);
+              el_this.find('.compare-add').addClass('d-none');
+              el_this.find('.compare-remove').removeClass('d-none');
+            }
+          }
+
+        });
+
+      }
+      allProduct();
+      $('[data-action="add-compare"]').on('click', function(event) {
         event.preventDefault();
         var that = $(this);
         var id = that.attr("data-compare-id");
         $name_ck = 'compare_ids_'+id;
-        $.cookie($name_ck, id);
-        that.addClass('d-none');
-        parents = that.parent();
-        parents.find('[data-action="remove-compare"]').removeClass('d-none');
+        //console.log(countCompare());
+        if(countCompare()<3) {
+          $.cookie($name_ck, id,{path:'/'});
+          that.addClass('d-none');
+          parents = that.parent();
+          parents.find('[data-action="remove-compare"]').removeClass('d-none');
+          updateCount(); 
+        } else {
+          $('.compare-header').show();
+          setTimeout(function(){$('.compare-header').hide();}, 5000);
+        }
       });
      $('[data-action="remove-compare"]').on('click', function(event) {
         event.preventDefault();
         var that = $(this);
         var id = that.attr("data-compare-id");
         $name_ck = 'compare_ids_'+id;
-        $.removeCookie($name_ck, id);
+        // $.removeCookie($name_ck, id);
+        $.removeCookie($name_ck, { path: '/' });
+        that.addClass('d-none');
+        var pa = that.parent();
+        pa.find('.compare-add').removeClass('d-none');
+        updateCount(); 
+        allProduct();
      });
-      // console.log($.cookie(''));
-      
-      // $.removeCookie();
-      
+
+      function getCompareIds() {
+        let cookies = $.cookie('');
+        let ids = [];
+         for(let field in cookies) {
+            if (field.indexOf('compare_ids') >= 0) {
+              ids.push(cookies[field]);
+            }
+         }
+         return ids;
+     }
+
+     function countCompare() {
+       return getCompareIds().length;
+     }
+     function updateCount() {
+        let count = countCompare();
+        $('[data-contains="compare-count"]').text(count);
+
+     }    
+     
+    updateCount();    
+    setTimeout(function(){$('.compare-header').hide();}, 5000);    
+       
     </script>
   </body>
 </html>

@@ -431,4 +431,31 @@ get_header(); ?>
     </div>
   </div>
 
+  <?php
+   $id_array = array(208,107);
+    
+    $args = array(
+        // 'post_type' => 'sanpham',
+        'post__in' => $id_array,
+        // 'post_status' => 'publish',
+        // 'posts_per_page' => '3',
+    );
+    // var_dump($args);
+    
+    // $args = array(
+    //  'post_type'=> 'post',
+    //  'post_status' => 'publish',
+    //  'posts_per_page' => -1 // this will retrive all the post that is published 
+    // );
+    $listPost = new WP_Query($args);
+    global $post;
+    if ( $listPost-> have_posts() ) :
+      $stt = 1 ;
+      while ( $listPost->have_posts() ) : $listPost->the_post();
+        echo get_the_title();
+      endwhile;
+    endif; 
+    wp_reset_postdata(); 
+  ?>
+
   <?php get_footer();?>

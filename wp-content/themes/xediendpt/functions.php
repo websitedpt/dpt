@@ -2324,3 +2324,472 @@ function showTaxomi($id) {
 
   	}
 }
+
+
+add_action('wp_ajax_show_compare', 'show_compare_callback');
+add_action('wp_ajax_nopriv_show_compare', 'show_compare_callback');
+
+function show_compare_callback() {
+	$getCpareID = $_POST['getCpareID'];
+    check_ajax_referer('none_show_compare', 'security');
+
+    $args = array(
+        'post_type' => 'sanpham',
+        'post__in' => $getCpareID,
+        'post_status' => 'publish',
+        'posts_per_page' => '3',
+    );
+
+		$listPost = new WP_Query($args);
+		global $post;
+		echo '<div class="row align-items-center mb-5">
+		      <div class="col-md-3">
+		        <div class="line-doted mb-2"></div>
+		        <h3 class="title-block text-uppercase mb-3">So Sánh Xe</h3>
+		      </div>';
+		if ( $listPost-> have_posts() ) :	
+			while ( $listPost->have_posts() ) : $listPost->the_post();
+				$post_id = get_the_ID();
+	            $model = get_post_meta($post_id, 'model', true);
+	            $price = get_post_meta($post_id, 'price', true);
+	            $tinhtrang = get_post_meta($post_id, 'tinhtrang', true);
+	            $xuatxu = get_post_meta($post_id, 'xuatxu', true);
+	            $phamvivanchuyen = get_post_meta($post_id, 'phamvivanchuyen', true); 
+	            $congsuat = get_post_meta($post_id, 'congsuat', true);
+	            $namsanxuat = get_post_meta($post_id, 'namsanxuat', true);
+	            $chongoi = get_post_meta($post_id, 'chongoi', true);
+	            $color = get_post_meta($post_id, 'color', true);
+	            $bodieukhien = get_post_meta($post_id, 'bodieukhien', true);
+	            $binhdien = get_post_meta($post_id, 'binhdien', true);
+	            $kichthuoc = get_post_meta($post_id, 'kichthuoc', true);
+	            $tocdotoida = get_post_meta($post_id, 'tocdotoida', true);
+	            $leodoc = get_post_meta($post_id, 'leodoc', true);
+	            $taitrong = get_post_meta($post_id, 'taitrong', true);
+	            $hangxe = get_post_meta($post_id, 'hangxe', true);
+	            $loaixe = get_post_meta($post_id, 'loaixe', true);
+	            
+			 ?>
+				<!-- echo the_title(); -->
+				<div class="col-md-3 d-none d-md-block">
+					<div class="product-compare">
+						<a class="compare-col text-center text-uppercase d-none" href="<?php bloginfo('url'); ?>/san-pham">
+				          <div class="image d-flex align-items-center justify-content-center">
+				            <div>
+				              <i class="fa fa-plus-circle plus" aria-hidden="true"></i>
+				              <i class="fa fa-car car" aria-hidden="true"></i>              
+				            </div>
+				          </div>
+				          <h5 class="mt-3"><strong>Thêm xe</strong></h5>
+				        </a>   
+				        <a class="compare-img" href="<?php the_permalink() ?>" title="<?php echo the_title();?>">
+				          <div class="box-fix-h d-flex align-items-center justify-content-center p-3 position-relative"><?php echo the_post_thumbnail('full', array( 'class' =>'img-fluid mx-auto') ); ?>    
+				            <div class="text-center box-compare d-none flex-wrap align-items-center justify-content-center">
+				              <div class="compare-prod" data-compare-id="<?php echo $post_id; ?>">
+				                <div class="compare-remove px-2 rounded" data-compare-id="<?php echo $post_id; ?>" data-action="remove-compare"><span class="text-compare">
+				                  <div class="compare-hover px-3 rounded">Bỏ So Sánh <i class="fa fa-minus-square-o" aria-hidden="true"></i></div>                     
+				                </span></div>
+				              </div>
+				            </div>                   
+				          </div>
+				          <h3 class="mt-3 mb-2 title-h3 text-capitalize text-center text-sm-left"><?php echo the_title();?></h3>
+				      	</a>
+						
+					</div>
+			      </div>					
+				<?php endwhile;
+			endif; 
+			wp_reset_postdata(); 
+			if($listPost->post_count == 1) {
+		      echo "<div class='col-md-3'>
+		        <a class='compare-col text-center text-uppercase d-block' href='".get_bloginfo( 'url' )."/san-pham'>
+		          <div class='image d-flex align-items-center justify-content-center'>
+		            <div>
+		              <i class='fa fa-plus-circle plus' aria-hidden='true'></i>
+		              <i class='fa fa-car car' aria-hidden='true'></i>              
+		            </div>
+		          </div>
+		          <h5 class='mt-3'><strong>Thêm xe</strong></h5>
+		        </a>      
+		      </div>";
+		      echo "<div class='col-md-3'>
+		        <a class='compare-col text-center text-uppercase d-block' href='".get_bloginfo( 'url' )."/san-pham'>
+		          <div class='image d-flex align-items-center justify-content-center'>
+		            <div>
+		              <i class='fa fa-plus-circle plus' aria-hidden='true'></i>
+		              <i class='fa fa-car car' aria-hidden='true'></i>              
+		            </div>
+		          </div>
+		          <h5 class='mt-3'><strong>Thêm xe</strong></h5>
+		        </a>      
+		      </div>";
+		      
+		    } else if($listPost->post_count == 2) {
+		    	echo "<div class='col-md-3'>
+		        <a class='compare-col text-center text-uppercase d-block' href='".get_bloginfo( 'url' )."/san-pham'>
+		          <div class='image d-flex align-items-center justify-content-center'>
+		            <div>
+		              <i class='fa fa-plus-circle plus' aria-hidden='true'></i>
+		              <i class='fa fa-car car' aria-hidden='true'></i>              
+		            </div>
+		          </div>
+		          <h5 class='mt-3'><strong>Thêm xe</strong></h5>
+		        </a>      
+		      </div>";
+
+		    }
+		echo "</div>";
+		echo '<div class="row">';
+			echo '<div class="col-md-3 d-none d-md-block">
+		      <table class="table tbl1">
+		        <thead>
+		          <tr>
+		            <th class="text-capitalize">MODEL</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">GIÁ</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">TÌNH TRẠNG</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">XUẤT XỨ</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">PHẠM VI VẬN CHUYỂN</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">CÔNG SUẤT ĐỘNG CƠ</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">NĂM SẢN XUẤT</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">SỐ CHỖ NGỒI</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">MÀU SẮC</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">BỘ ĐIỀU KHIỂN</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">BÌNH ĐIỆN/HỘP ĐIỆN</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">KÍCH THƯỚC XE (MM)</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">TỐC ĐỘ TỐI ĐA</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">KHẢ NĂNG LEO DỐC</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">TẢI TRỌNG CHO PHÉP</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">HÃNG XE</th>
+		          </tr>
+		          <tr>
+		            <th class="text-capitalize">LOẠI XE</th>
+		          </tr>
+		        </thead>
+		      </table>
+		    </div>';
+			if ( $listPost-> have_posts() ) :	
+				while ( $listPost->have_posts() ) : $listPost->the_post();
+					$post_id = get_the_ID();
+		            $model = get_post_meta($post_id, 'model', true);
+		            $price = get_post_meta($post_id, 'price', true);
+		            $tinhtrang = get_post_meta($post_id, 'tinhtrang', true);
+		            $xuatxu = get_post_meta($post_id, 'xuatxu', true);
+		            $phamvivanchuyen = get_post_meta($post_id, 'phamvivanchuyen', true); 
+		            $congsuat = get_post_meta($post_id, 'congsuat', true);
+		            $namsanxuat = get_post_meta($post_id, 'namsanxuat', true);
+		            $chongoi = get_post_meta($post_id, 'chongoi', true);
+		            $color = get_post_meta($post_id, 'color', true);
+		            $bodieukhien = get_post_meta($post_id, 'bodieukhien', true);
+		            $binhdien = get_post_meta($post_id, 'binhdien', true);
+		            $kichthuoc = get_post_meta($post_id, 'kichthuoc', true);
+		            $tocdotoida = get_post_meta($post_id, 'tocdotoida', true);
+		            $leodoc = get_post_meta($post_id, 'leodoc', true);
+		            $taitrong = get_post_meta($post_id, 'taitrong', true);
+		            $hangxe = get_post_meta($post_id, 'hangxe', true);
+		            $loaixe = get_post_meta($post_id, 'loaixe', true);
+		            
+				 ?>
+				<!-- echo the_title(); -->
+				    <div class="col-md-3 d-md-none">
+						<div class="product-compare">
+							<a class="compare-col text-center text-uppercase d-none" href="<?php bloginfo('url'); ?>/san-pham">
+					          <div class="image d-flex align-items-center justify-content-center">
+					            <div>
+					              <i class="fa fa-plus-circle plus" aria-hidden="true"></i>
+					              <i class="fa fa-car car" aria-hidden="true"></i>              
+					            </div>
+					          </div>
+					          <h5 class="mt-3"><strong>Thêm xe</strong></h5>
+					        </a>   
+					        <a class="compare-img" href="<?php the_permalink() ?>" title="<?php echo the_title();?>">
+					          <div class="box-fix-h d-flex align-items-center justify-content-center p-3 position-relative"><?php echo the_post_thumbnail('full', array( 'class' =>'img-fluid mx-auto') ); ?>    
+					            <div class="text-center box-compare d-none flex-wrap align-items-center justify-content-center">
+					              <div class="compare-prod" data-compare-id="<?php echo $post_id; ?>">
+					                <div class="compare-remove px-2 rounded" data-compare-id="<?php echo $post_id; ?>" data-action="remove-compare"><span class="text-compare">
+					                  <div class="compare-hover px-3 rounded">Bỏ So Sánh <i class="fa fa-minus-square-o" aria-hidden="true"></i></div>                     
+					                </span></div>
+					              </div>
+					            </div>                   
+					          </div>
+					          <h3 class="mt-3 mb-2 title-h3 text-capitalize text-center text-sm-left"><?php echo the_title();?></h3>
+					      	</a>							
+						</div>
+				      </div>	
+					<div class="col-md-3 mb-4 mb-md-0">
+				      <table class="table tbl1">
+				        <tbody>
+				          <tr>
+				            <td><?php if($model) {echo $model;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($price) {echo $price;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($tinhtrang) {echo $tinhtrang;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($xuatxu) {echo $xuatxu;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($phamvivanchuyen) {echo $phamvivanchuyen;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($congsuat) {echo $congsuat;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($namsanxuat) {echo $namsanxuat;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($chongoi) {echo $chongoi;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($color) {echo $color;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($bodieukhien) {echo $bodieukhien;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($binhdien) {echo $binhdien;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($kichthuoc) {echo $kichthuoc;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($tocdotoida) {echo $tocdotoida;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($leodoc) {echo $leodoc;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($taitrong) {echo $taitrong;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($hangxe) {echo $hangxe;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+				          <tr>
+				            <td><?php if($loaixe) {echo $loaixe;} else {echo "&nbsp;";} ?></td>
+				          </tr>
+
+				        </tbody>
+				      </table>
+				    </div>
+				<?php endwhile;
+			endif; 
+			wp_reset_postdata(); 
+			 if($listPost->post_count == 1) {
+			 	echo '<div class="col-md-3">
+			      <table class="table tbl1">
+			        <tbody>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			        </tbody>
+			      </table>
+			    </div>';
+			    echo '<div class="col-md-3">
+			      <table class="table tbl1">
+			        <tbody>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			        </tbody>
+			      </table>
+			    </div>';
+			 } else if($listPost->post_count == 2) {
+			 	echo '<div class="col-md-3">
+			      <table class="table tbl1">
+			        <tbody>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			          <tr>
+			            <td>&nbsp;</td>
+			          </tr>
+			        </tbody>
+			      </table>
+			    </div>';
+			 }
+		echo '</div>';
+
+    wp_die();
+}
+
+// add_action('wp_ajax_load_posts_by_ajax', 'load_posts_by_ajax_callback');
+// add_action('wp_ajax_nopriv_load_posts_by_ajax', 'load_posts_by_ajax_callback');
+
+// function load_posts_by_ajax_callback() {
+//     check_ajax_referer('load_more_posts', 'security');
+//     $getCpareID = $_POST['getCpareID'];
+// 		echo 'kakasss';
+//     wp_die();
+// }
