@@ -51,7 +51,7 @@
         </a>      
       </div>
     </div>
-    <div class="row">
+    <div class="row show-pro-copare">
       <div class="col-md-3">
         <table class="table tbl1">
           <thead>
@@ -275,22 +275,30 @@
           'getCpareID': newArray,
           'security': '<?php echo wp_create_nonce("none_show_compare"); ?>'
       };
-      $.post(ajaxurl, data, function(response) {       
-        $('.reset-product').html(response);
-        $('[data-action="remove-compare"]').on('click', function(event) {
-          event.preventDefault();
-          var that = $(this);
-          var id = that.attr("data-compare-id");
-          $name_ck = 'compare_ids_'+id;
-          $.removeCookie($name_ck, { path: '/' });
-          updateCount(); 
-          var pa = that.parents('.product-compare');
-          pa.find('.compare-img').addClass('d-none');
-          pa.find('.compare-col').addClass('d-block');
-       });
+    $.post(ajaxurl, data, function(response) {       
+      $('.reset-product').html(response);
+      $('[data-action="remove-compare"]').on('click', function(event) {
+        updateCount(); 
+        event.preventDefault();
+        var that = $(this);
+        var id = that.attr("data-compare-id");
+        $name_ck = 'compare_ids_'+id;
+        $.removeCookie($name_ck, { path: '/' });
+        var pa = that.parents('.product-compare');
+        var parents = that.parents('.reset-product'); 
+        pa.find('.compare-img').addClass('d-none');
+        pa.find('.compare-col').addClass('d-block');
+        var el_show_pro = parents.find('.show-pro-copare').find('.table');
+        el_show_pro.each(function(){
+          var el_show = $(this);
+          var id_show = el_show.data('show-id');
+          if (id == id_show) {
+            el_show.html('<table class="table tbl1"><tbody><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr></tbody></table>');
+          }
+        });
 
       });
-
+    });
   }
 </script>
 

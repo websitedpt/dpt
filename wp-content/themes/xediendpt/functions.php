@@ -2438,9 +2438,9 @@ function show_compare_callback() {
 
 		    }
 		echo "</div>";
-		echo '<div class="row">';
+		echo '<div class="row show-pro-copare">';
 			echo '<div class="col-md-3 d-none d-md-block">
-		      <table class="table tbl1">
+		      <table class="table tbl1" data-show-id="">
 		        <thead>
 		          <tr>
 		            <th class="text-capitalize">MODEL</th>
@@ -2545,13 +2545,13 @@ function show_compare_callback() {
 						</div>
 				      </div>	
 					<div class="col-md-3 mb-4 mb-md-0">
-				      <table class="table tbl1">
+				      <table class="table tbl1" data-show-id="<?php echo $post_id; ?>">
 				        <tbody>
 				          <tr>
 				            <td><?php if($model) {echo $model;} else {echo "&nbsp;";} ?></td>
 				          </tr>
 				          <tr>
-				            <td><?php if($price) {echo $price;} else {echo "&nbsp;";} ?></td>
+				            <td><?php if($price) {echo number_format($price);} else {echo "Liên hệ";} ?></td>				            
 				          </tr>
 				          <tr>
 				            <td><?php if($tinhtrang) {echo $tinhtrang;} else {echo "&nbsp;";} ?></td>
@@ -2607,7 +2607,7 @@ function show_compare_callback() {
 			wp_reset_postdata(); 
 			 if($listPost->post_count == 1) {
 			 	echo '<div class="col-md-3">
-			      <table class="table tbl1">
+			      <table class="table tbl1" data-show-id="">
 			        <tbody>
 			          <tr>
 			            <td>&nbsp;</td>
@@ -2664,7 +2664,7 @@ function show_compare_callback() {
 			      </table>
 			    </div>';
 			    echo '<div class="col-md-3">
-			      <table class="table tbl1">
+			      <table class="table tbl1" data-show-id="">
 			        <tbody>
 			          <tr>
 			            <td>&nbsp;</td>
@@ -2722,7 +2722,7 @@ function show_compare_callback() {
 			    </div>';
 			 } else if($listPost->post_count == 2) {
 			 	echo '<div class="col-md-3">
-			      <table class="table tbl1">
+			      <table class="table tbl1" data-show-id="">
 			        <tbody>
 			          <tr>
 			            <td>&nbsp;</td>
