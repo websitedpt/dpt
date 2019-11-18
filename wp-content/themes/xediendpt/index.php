@@ -51,7 +51,7 @@ get_header(); ?>
       </div>
       <div class="col-12 col-xl-9">
         <?php if(function_exists('getSliderBanner')){?>
-          <div class="banner-home position-relative overflow-hidden">
+          <div class="banner-home position-relative overflow-hidden mt-3 mt-md-0">
             <div data-slider class="">
               <!-- wow fadeInDown -->
               <?php echo getSliderBanner(); ?>
@@ -375,87 +375,4 @@ get_header(); ?>
       <?php echo news_home();?>
     </div>
   </div>
-  <div class="show-room py-4 py-md-5">
-    <div class="container py-3 overflow-hidden">
-      <h3 class="title-block position-relative line-bg-2 text-uppercase mt-0 mb-3 pb-4 text-center">Hệ thống showroom</h3>
-      <?php 
-        $post_news_videos = new WP_Query(array(
-          'post_type' => 'showroom',
-          'post_status' => 'publish',
-          'posts_per_page' => '-1',          
-        ));
-        if($post_news_videos->have_posts()) {
-          $stt = 1;$acti = 1;
-          $active_class ='';$active_cl ='';
-          echo '<div class="row justify-content-center mt-4">';
-            echo '<div class="col-md-5 order-md-2"><div class="block-room p-2 p-sm-3"><ul class="nav nav-tabs">';
-              while ($post_news_videos->have_posts()) {
-                $post_news_videos->the_post(); 
-                $post_id = get_the_ID();
-                $slug = get_post_field( 'post_name', $post_id );
-                $addres_room = get_post_meta($post_id, 'addres_room', true );
-                $mapview = get_post_meta($post_id, 'mapview', true );
-                if($acti==1) { $active_cl ='active'; }
-                ?>
-                <li class="d-block w-100">
-                  <a class="block-room-inner d-block p-3" data-toggle="tab" href="#<?php echo $slug;?>">
-                    <h5 class="mt-0 text-uppercase mb-2"><?php echo get_the_title();?></h5>
-                    <div class="media align-items-center">
-                      <div class="icon-map"><i class="fa fa-map-marker" aria-hidden="true"></i></div>                  
-                      <div class="media-body pl-2"><?php echo $addres_room; ?></div>
-                    </div>    
-                  </a>
-                </li>            
-              <?php $acti ++;  } 
-            echo '</ul></div></div>';
-            echo '<div class="col-md-7 d-none d-sm-block"><div class="tab-content">';
-              while ($post_news_videos->have_posts()) {
-                $post_news_videos->the_post(); 
-                $post_id = get_the_ID();
-                $slug = get_post_field( 'post_name', $post_id );
-                $addres_room = get_post_meta($post_id, 'addres_room', true );
-                $mapview = get_post_meta($post_id, 'mapview', true );
-                if($stt==1) { $active_class ='active'; } else {$active_class ='fade';}
-                ?>                 
-                <div class="tab-pane <?php echo $active_class; ?>" id="<?php echo $slug;?>">
-                  <div class="room-map border-1">
-                    <iframe src="<?php echo $mapview; ?>" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                  </div>
-                </div>
-              <?php $stt ++; } 
-            echo '</div></div>';
-            
-          echo '</div>';
-        } 
-      wp_reset_postdata();  ?>  
-    </div>
-  </div>
-
-  <?php
-   $id_array = array(208,107);
-    
-    $args = array(
-        // 'post_type' => 'sanpham',
-        'post__in' => $id_array,
-        // 'post_status' => 'publish',
-        // 'posts_per_page' => '3',
-    );
-    // var_dump($args);
-    
-    // $args = array(
-    //  'post_type'=> 'post',
-    //  'post_status' => 'publish',
-    //  'posts_per_page' => -1 // this will retrive all the post that is published 
-    // );
-    $listPost = new WP_Query($args);
-    global $post;
-    if ( $listPost-> have_posts() ) :
-      $stt = 1 ;
-      while ( $listPost->have_posts() ) : $listPost->the_post();
-        echo get_the_title();
-      endwhile;
-    endif; 
-    wp_reset_postdata(); 
-  ?>
-
   <?php get_footer();?>

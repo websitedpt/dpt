@@ -647,7 +647,12 @@ function register_settings(){
     register_setting( 'my-settings-group', 'twitter_company' );
     register_setting( 'my-settings-group', 'youtube_company' );
     register_setting( 'my-settings-group', 'pinterest_company' );
-    register_setting( 'my-settings-group', 'instagram_company' );    
+    register_setting( 'my-settings-group', 'instagram_company' ); 
+
+    register_setting( 'my-settings-group', 'line_header_1' ); 
+    register_setting( 'my-settings-group', 'line_header_2' ); 
+    register_setting( 'my-settings-group', 'line_header_3' ); 
+    register_setting( 'my-settings-group', 'line_header_4' );    
 }
 add_action( 'admin_footer', 'rv_custom_dashboard_widget' );
 function rv_custom_dashboard_widget(){if(get_current_screen()->base !== 'dashboard'){return;}?>
@@ -730,13 +735,34 @@ function my_custom_menu_page() { ?>
 				 <p><label for="instagram_company">Địa chỉ Instagram</label><br/>
 				 <input style="width:100%; height: 38px;" type="text" name="instagram_company" value="<?php echo get_option('instagram_company')?>" /></p>
 				</div>
-
+				<div class="px-15" style="clear: both;padding-top: 10px;">
+					<h2 >Hiện Thị Hotline Ở Header</h2>		
+				</div>
+				
+				<div class="px-15 h-w">
+					 <p><label for="line_header_1">Hot line 1:</label><br/>
+					 <input style="width:100%; height: 38px;" type="text" name="line_header_1" value="<?php echo get_option('line_header_1')?>" placeholder="Ví dụ: 0989084017" /></p>			 	
+				</div>
+				<div class="px-15 h-w">
+					 <p><label for="line_header_2">Hot line 2:</label><br/>
+					 <input style="width:100%; height: 38px;" type="text" name="line_header_2" value="<?php echo get_option('line_header_2')?>" placeholder="Ví dụ: 0989084017" /></p>			 	
+				</div>
+				<div class="px-15 h-w">
+					 <p><label for="line_header_3">Hot line 3:</label><br/>
+					 <input style="width:100%; height: 38px;" type="text" name="line_header_3" value="<?php echo get_option('line_header_3')?>" placeholder="Ví dụ: 0989084017" /></p>			 	
+				</div>
+				<div class="px-15 h-w">
+					 <p><label for="line_header_4">Hot line 4:</label><br/>
+					 <input style="width:100%; height: 38px;" type="text" name="line_header_4" value="<?php echo get_option('line_header_4')?>" placeholder="Ví dụ: 0989084017" /></p>			 	
+				</div>
 				<div class="px-15" style="clear: both;">
 				 <p class="submit">
 				 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 				 </p>
-				</div>			 
+				</div>	
+
 			</div>
+
 		</form>
 	</div>
 <?php } }
@@ -1322,20 +1348,12 @@ function banner_save($post_id) {
 }
 add_action( 'save_post', 'banner_save' );
 
-function getSliderBanner($post_page = '3') {  
+function getSliderBanner() {  
   	$args = array(
     'post_type' => 'slideshow',
     'orderby' => 'date',
     'order' => 'ASC',
-    'posts_per_page' => $post_page,
-        // 'tax_query' => array(
-        //     array(
-        //         'taxonomy' => 'slider-location',
-        //         'field' => 'slug',
-        //         'terms' => 'homeslide-vi',//tên ở trong homslide
-        //         'operator' => 'IN'
-        //     )
-        //  )
+    'posts_per_page' => -1
     );
     $listbanner = new WP_Query($args); 
     if ($listbanner->have_posts()) {
@@ -1836,10 +1854,10 @@ function getYoutubeEmbedUrl($url) {
 }
 
 function newsLetter() {?>
-	<div class="new-letter">
+	<div class="new-letter d-md-flex justify-content-center">
 		<form method="post" accept-charset="utf-8" enctype="multipart/form-data" id="subscribe-form"> 
-	      <div class="pb-2">Đăng Ký Nhận Bản Tin</div>
-	      <div class="position-relative">
+	      <div class="text-left">Đăng ký nhận bản tin</div>
+	      <div class="position-relative d-inline-block">
 	        <input type="email" required="" name="mail_subscribe" class="form-control mail_subscribe pr-4 pr-md-5" placeholder="Nhập Email của bạn!" data-error="Bạn chưa nhập Email!">
 	        <button class="btn" type="submit" name="btn-subscribe" id="btn-subscribe"><i class="fa fa-angle-right" aria-hidden="true"></i></button>                        
 	      </div>                   

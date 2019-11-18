@@ -1,5 +1,4 @@
-    </main>
-    
+    </main>    
     <footer class="footer pt-4 pt-md-5">
       <div class="container">
         <div class="row">
@@ -11,66 +10,59 @@
                 <?php if(get_option('phone_company') !='') {echo'<li class="mb-3 hotline-icon">'.get_option('phone_company').'</li>';}?>
                 <?php if(get_option('fax_company') !='') {echo'<li class="mb-3 fax-icon">'.get_option('fax_company').'</li>';}?>
                 <?php if(get_option('mail_company') !='') {echo'<li class="mb-3 mail-icon">'.get_option('mail_company').'</li>';}?>
-              </ul>              
+              </ul>    
+              <div class="wrap-fb overflow-hidden mb-3">
+                <div id="fb-root"></div><script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=215651349123280&autoLogAppEvents=1"></script><div class="fb-page" data-href="https://www.facebook.com/xedienchokhachdulich/" data-tabs="timeline" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/xedienchokhachdulich/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xedienchokhachdulich/">Xe điện Đại Phát Tín</a></blockquote></div>
+              </div>
+
             </div>
           </div>
           <div class="col-md-8 overflow-hidden">
-            <div class="row">
-              <div class="col-6 col-md-4">
-                <h4 class="title-h4 pb-2 mb-3 text-capitalize">Sản Phẩm</h4>
-                <?php
-                  $taxonomy = 'danh-muc-san-pham';
-                  $terms = get_terms($taxonomy);
-                  if ( $terms && !is_wp_error( $terms ) ) : 
-                    echo '<ul class="list-unstyled list-i">';
-                    foreach ( $terms as $term ) {
-                      if($term->parent == 0) { ?>                         
-                        <li class="mb-2"><a href="<?php echo get_term_link($term->slug, $taxonomy); ?>" title="<?php echo $term->name; ?>"><?php echo $term->name; ?></a></li>
-                      <?php } 
-                    }
-                  echo '</ul>'; endif;
-                ?>                 
-              </div>
-              <div class="col-6 col-md-4">
-                 <h4 class="title-h4 pb-2 mb-3 text-capitalize">Liên Kết nhanh</h4>
-                 <ul class="list-unstyled list-i">
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/gioi-thieu" title="Giới thiệu">Giới thiệu</a></li>
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/tin-tuc" title="Tin tức">Tin tức</a></li>
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/lien-he" title="Liên hệ">Liên hệ</a></li>
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/tuyen-dung" title="Tuyển dụng">Tuyển dụng</a></li>
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/tin-tuc/su-kien" title="Sự kiện">Sự kiện</a></li>
-                   <li class="mb-2"><a href="<?php bloginfo('url'); ?>/cau-hoi-thuong-gap" title="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
-                 </ul>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <div class="">
-                  <div class="wrap-fb overflow-hidden mb-4">
-                    <div id="fb-root"></div><script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.2&appId=215651349123280&autoLogAppEvents=1"></script><div class="fb-page" data-href="https://www.facebook.com/xedienchokhachdulich/" data-tabs="timeline" data-height="70" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/xedienchokhachdulich/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xedienchokhachdulich/">Xe điện Đại Phát Tín</a></blockquote></div>
-                  </div>
-                  <?php echo newsLetter(); ?>                  
+            <?php 
+              $post_news_videos = new WP_Query(array(
+                'post_type' => 'showroom',
+                'post_status' => 'publish',
+                'posts_per_page' => '-1',          
+              ));
+              if($post_news_videos->have_posts()) {
+                echo '<ul class="list-showroom list-inline d-md-flex flex-md-wrap">';
+                  while ($post_news_videos->have_posts()) {
+                    $post_news_videos->the_post(); 
+                    $post_id = get_the_ID();
+                    $slug = get_post_field( 'post_name', $post_id );
+                    $addres_room = get_post_meta($post_id, 'addres_room', true );
+                    $mapview = get_post_meta($post_id, 'mapview', true );
+                    ?>
+                    <li class="mb-4 mb-md-4"><h4 class="mt-0 text-uppercase mb-2 pb-1"><strong><?php echo get_the_title();?></strong></h4><div><?php echo $addres_room; ?></div></li>     
+                  <?php }
+                echo '</ul>';
+              } 
+            wp_reset_postdata();  ?>  
+          </div>                    
+        </div>
+      </div>  
+      <div class="ft-bottom py-2 mt-3 mt-md-4">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-4 order-md-2 mb-2 mb-md-0">
+                <?php echo newsLetter(); ?> 
+            </div>
+            <div class="col-12 col-md-4 order-md-2 mb-2 mb-md-0 ml-auto">
+              <div class="follow d-md-flex justify-content-center">
+                <div>
+                  <div class="pr-4">Theo dõi chúng tôi: </div>
+                  <ul class="list-inline social-icon d-inline-block mb-0">
+                    <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
+                    <?php if(get_option('pinterest_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('pinterest_company').'" target="_blank" title="'.get_option('pinterest_company').'"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>';}?>
+                    <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>
+                    <?php if(get_option('youtube_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('youtube_company').'" target="_blank" title="'.get_option('youtube_company').'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';}?>
+                    
+                    <?php if(get_option('instagram_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('instagram_company').'" target="_blank" title="'.get_option('instagram_company').'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';}?>
+                   </ul>                 
                 </div>
               </div>
             </div>
-          </div>          
-        </div>
-      </div>  
-      <div class="ft-bottom py-3 mt-3 mt-md-4">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-12 col-md-5 order-md-1 text-md-right mb-2 mb-md-0">
-              <div class="follow">
-                <span class="pr-4">Theo dõi chúng tôi: </span>
-                <ul class="list-inline social-icon d-inline-block mb-0">
-                  <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
-                  <?php if(get_option('pinterest_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('pinterest_company').'" target="_blank" title="'.get_option('pinterest_company').'"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>';}?>
-                  <?php if(get_option('twitter_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('twitter_company').'" target="_blank" title="'.get_option('twitter_company').'"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>';}?>
-                  <?php if(get_option('youtube_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('youtube_company').'" target="_blank" title="'.get_option('youtube_company').'"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>';}?>
-                  
-                  <?php if(get_option('instagram_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('instagram_company').'" target="_blank" title="'.get_option('instagram_company').'"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>';}?>
-                 </ul>
-              </div>
-            </div>
-            <?php if(get_option('copy_right') !='') {echo'<div class="col-12 col-md-7">© '.get_option('copy_right').'</div>';}?>      
+            <?php if(get_option('copy_right') !='') {echo'<div class="col-12 col-md-4">© '.get_option('copy_right').'</div>';}?>      
           </div>  
         </div>     
       </div>    
@@ -150,7 +142,6 @@
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         return pattern.test(emailAddress);
       }
-
     </script>
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -181,9 +172,7 @@
               el_this.find('.compare-remove').removeClass('d-none');
             }
           }
-
         });
-
       }
       allProduct();
       $('[data-action="add-compare"]').on('click', function(event) {
@@ -216,7 +205,6 @@
         updateCount(); 
         allProduct();
      });
-
       function getCompareIds() {
         let cookies = $.cookie('');
         let ids = [];
@@ -227,7 +215,6 @@
          }
          return ids;
      }
-
      function countCompare() {
        return getCompareIds().length;
      }
@@ -235,8 +222,7 @@
         let count = countCompare();
         $('[data-contains="compare-count"]').text(count);
 
-     }    
-     
+     }      
     updateCount();    
     setTimeout(function(){$('.compare-header').hide();}, 5000);    
        

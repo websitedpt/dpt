@@ -28,16 +28,20 @@
     <div class="header-top-one py-2 d-block">
       <div class="container d-flex align-items-center"> 
         <div class="d-flex d-md-none justify-content-center w-100">
-          <div class="support hidden-xs">
+
+          <!-- <div class="support hidden-xs">
             <div>Tổng đài tư vấn</div>
             <?php if(get_option('Hotline1') !='') {echo'<a href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'">'.get_option('Hotline1').'</a>';}?>
             <span>&</span>
             <?php if(get_option('Hotline2') !='') {echo'<a href="tel:'.get_option('Hotline2').'" title="'.get_option('Hotline2').'">'.get_option('Hotline2').'</a>';}?>
-          </div>
-          <div class="hotline hidden-xs ml-2 ml-sm-3">
-            <div>Hotline</div>
-            <?php if(get_option('phone_company') !='') {echo'<a href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'">'.get_option('phone_company').'</a>';}?>
-          </div>             
+          </div> -->
+           
+          <div class="hotline hidden-xs ml-md-3 ml-xl-5 rounded pl-4 pr-2 py-1 d-flex flex-wrap justify-content-center">
+            <?php if(get_option('line_header_1') !='') {echo'<div class=""><a class="pl-1" href="tel:'.get_option('line_header_1').'" title="'.get_option('line_header_1').'">'.get_option('line_header_1').'</a></div>';}?>
+            <?php if(get_option('line_header_2') !='') {echo'<div class=""><span class="pl-1">-</span><a class="pl-1" href="tel:'.get_option('line_header_2').'" title="'.get_option('line_header_2').'">'.get_option('line_header_2').'</a></div>';}?>
+            <?php if(get_option('line_header_3') !='') {echo'<div class=""><span class="pl-1">-</span><a class="pl-1" href="tel:'.get_option('line_header_3').'" title="'.get_option('line_header_3').'">'.get_option('line_header_3').'</a></div>';}?>
+            <?php if(get_option('line_header_4') !='') {echo'<div class=""><a class="pl-1" href="tel:'.get_option('line_header_4').'" title="'.get_option('line_header_4').'">'.get_option('line_header_4').'</a></div>';}?>
+          </div>         
         </div>   
         <ul class="list-inline social-icon m-0 d-none d-lg-block">
           <?php if(get_option('facebook_company') !='') {echo'<li class="list-inline-item"><a href="'.get_option('facebook_company').'" target="_blank" title="'.get_option('facebook_company').'"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>';}?>
@@ -93,13 +97,16 @@
     </div>
     <div class="header-top py-2 py-md-3 py-lg-5">
       <div class="container d-flex flex-wrap align-items-center">
-        <a class="navbar-brand logo mx-md-auto py-0" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
+        <a class="navbar-brand logo py-0" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
           <img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/logo.png" alt="<?php echo get_bloginfo( 'name' );?>">
         </a>
         <button class="navbar-toggler btn-menu-top d-lg-none ml-auto" type="button"><span></span><span></span><span></span></button>
 
         <div class="header-contact-right d-none d-md-flex align-items-center flex-wrap ml-auto">
-          <div class="mr-md-3 mr-xl-5">
+          <div class="name-company pr-md-3 pr-xl-5">
+            <span class="text-uppercase"><strong>Xe Điện Đại Phát Tín</strong></span>
+          </div>
+          <div class="mr-md-3">
             <div class="d-flex align-items-center px-3 px-md-0">
               <div class="search-area d-inline-block">
                 <form role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">  
@@ -109,15 +116,17 @@
               </div>                      
             </div>                
           </div>
-          <div class="support hidden-xs">
+          <!-- <div class="support hidden-xs">
             <div>Tổng đài tư vấn</div>
             <?php if(get_option('Hotline1') !='') {echo'<a href="tel:'.get_option('Hotline1').'" title="'.get_option('Hotline1').'">'.get_option('Hotline1').'</a>';}?>
             <span>&</span>
             <?php if(get_option('Hotline2') !='') {echo'<a href="tel:'.get_option('Hotline2').'" title="'.get_option('Hotline2').'">'.get_option('Hotline2').'</a>';}?>
-          </div>
-          <div class="hotline hidden-xs ml-md-3  ml-xl-4">
-            <div>Hotline</div>
-            <?php if(get_option('phone_company') !='') {echo'<a href="tel:'.get_option('phone_company').'" title="'.get_option('phone_company').'">'.get_option('phone_company').'</a>';}?>
+          </div> -->
+          <div class="hotline hidden-xs ml-md-3 ml-xl-5 rounded pl-4 pr-2 py-1">
+            <?php if(get_option('line_header_1') !='') {echo'<div class="d-flex align-items-center"><a class="pl-1" href="tel:'.get_option('line_header_1').'" title="'.get_option('line_header_1').'">'.get_option('line_header_1').'</a></div>';}?>
+            <?php if(get_option('line_header_2') !='') {echo'<div class="d-flex align-items-center"><a class="pl-1" href="tel:'.get_option('line_header_2').'" title="'.get_option('line_header_2').'">'.get_option('line_header_2').'</a></div>';}?>
+            <?php if(get_option('line_header_3') !='') {echo'<div class="d-flex align-items-center"><a class="pl-1" href="tel:'.get_option('line_header_3').'" title="'.get_option('line_header_3').'">'.get_option('line_header_3').'</a></div>';}?>
+            <?php if(get_option('line_header_4') !='') {echo'<div class="d-flex align-items-center"><a class="pl-1" href="tel:'.get_option('line_header_4').'" title="'.get_option('line_header_4').'">'.get_option('line_header_4').'</a></div>';}?>
           </div>
           
         </div>
