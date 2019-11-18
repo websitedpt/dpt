@@ -96,11 +96,14 @@
       </div>       
     </div>
     <div class="header-top py-2 py-md-3 py-lg-5">
-      <div class="container d-flex flex-wrap align-items-center">
-        <a class="navbar-brand logo py-0" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
+      <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <a class="navbar-brand logo py-0 mr-0 mr-md-2" href="<?php echo get_bloginfo( 'url' );?>" title="<?php echo get_bloginfo( 'name' );?>">
           <img class="img-fluid" src="<?php echo get_template_directory_uri();?>/assets/images/logo.png" alt="<?php echo get_bloginfo( 'name' );?>">
         </a>
-        <button class="navbar-toggler btn-menu-top d-lg-none ml-auto" type="button"><span></span><span></span><span></span></button>
+        <div class="name-company pr-md-3 pr-xl-5 d-md-none">
+          <span class="text-uppercase"><strong>Xe Điện Đại Phát Tín</strong></span>
+        </div>
+        <button class="navbar-toggler btn-menu-top d-lg-none ml-md-auto" type="button"><span></span><span></span><span></span></button>
 
         <div class="header-contact-right d-none d-md-flex align-items-center flex-wrap ml-auto">
           <div class="name-company pr-md-3 pr-xl-5">
